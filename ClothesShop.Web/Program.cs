@@ -33,4 +33,6 @@ app.UseAuthorization();
 
 app.UseEndpoints();
 
+app.SeedData();
+
 app.Run();

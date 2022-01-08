@@ -1,8 +1,10 @@
-﻿namespace ClothesShop.Web.Controllers
+﻿using ClothesShop.Controllers.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+
+namespace ClothesShop.Controllers
 {
-    using ClothesShop.Web.Models;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Diagnostics;
+
     public class HomeController : Controller
     {
 

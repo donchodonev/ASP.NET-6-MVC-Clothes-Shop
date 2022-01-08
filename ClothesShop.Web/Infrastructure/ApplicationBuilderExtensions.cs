@@ -1,4 +1,7 @@
-﻿namespace ClothesShop.Web.Infrastructure
+﻿using ClothesShop.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace ClothesShop.Web.Infrastructure
 {
     public static class ApplicationBuilderExtensions
     {
@@ -33,6 +36,19 @@
             }
 
             return app;
+        }
+
+
+        public static IApplicationBuilder SeedData(this IApplicationBuilder app)
+        {
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetService<ShopDbContext>();
+
+                db.Database.Migrate();
+
+                return app;
+            }
         }
     }
 }

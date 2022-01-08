@@ -765,6 +765,19 @@
           }
         }
       },
+      "ClothesShop.Controllers/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ClothesShop.Controllers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ClothesShop.Controllers.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "ClothesShop.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2281,6 +2294,11 @@
         "version.txt"
       ]
     },
+    "ClothesShop.Controllers/1.0.0": {
+      "type": "project",
+      "path": "../ClothesShop.Controllers/ClothesShop.Controllers.csproj",
+      "msbuildProject": "../ClothesShop.Controllers/ClothesShop.Controllers.csproj"
+    },
     "ClothesShop.Data/1.0.0": {
       "type": "project",
       "path": "../ClothesShop.Data/ClothesShop.Data.csproj",
@@ -2294,6 +2312,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "ClothesShop.Controllers >= 1.0.0",
       "ClothesShop.Data >= 1.0.0",
       "ClothesShop.Services >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.1",
@@ -2330,6 +2349,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Controllers\\ClothesShop.Controllers.csproj": {
+              "projectPath": "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Controllers\\ClothesShop.Controllers.csproj"
+            },
             "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Data\\ClothesShop.Data.csproj": {
               "projectPath": "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Data\\ClothesShop.Data.csproj"
             },
