@@ -1,4 +1,6 @@
+using ClothesShop.Controllers;
 using ClothesShop.Data;
+using ClothesShop.Services.Shop;
 using ClothesShop.Web.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +19,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAutoMapper(
+    typeof(IShopService).Assembly,
+    typeof(HomeController).Assembly);
+
 var app = builder.Build();
+
 
 app.UseExceptionsHandling(app.Environment);
 

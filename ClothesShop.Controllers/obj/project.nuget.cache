@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MWmSr/0ZGM3xKb/6mxR8Xv5otJ36b6iYzrbyUs2/Qxj4Kjc9cR/flspZD3dG1O3nJ70jEOLNdP6/3jlVu3NaMw==",
+  "dgSpecHash": "vMxSwx00kWggKPxCj7vTIQwmcnv02T3G/weE8PReG55bMU+15jR+yWyleJ7ZS2+D9Cqa671PGmazaarO9nhpfw==",
   "success": true,
   "projectFilePath": "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Controllers\\ClothesShop.Controllers.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\dummy\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\dummy\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }
