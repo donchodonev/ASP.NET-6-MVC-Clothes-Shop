@@ -764,6 +764,33 @@
             "rid": "win"
           }
         }
+      },
+      "ClothesShop.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.1",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.1"
+        },
+        "compile": {
+          "bin/placeholder/ClothesShop.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ClothesShop.Data.dll": {}
+        }
+      },
+      "ClothesShop.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "ClothesShop.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ClothesShop.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ClothesShop.Services.dll": {}
+        }
       }
     }
   },
@@ -2253,10 +2280,22 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "ClothesShop.Data/1.0.0": {
+      "type": "project",
+      "path": "../ClothesShop.Data/ClothesShop.Data.csproj",
+      "msbuildProject": "../ClothesShop.Data/ClothesShop.Data.csproj"
+    },
+    "ClothesShop.Services/1.0.0": {
+      "type": "project",
+      "path": "../ClothesShop.Services/ClothesShop.Services.csproj",
+      "msbuildProject": "../ClothesShop.Services/ClothesShop.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "ClothesShop.Data >= 1.0.0",
+      "ClothesShop.Services >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.1",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.1",
@@ -2290,7 +2329,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Data\\ClothesShop.Data.csproj": {
+              "projectPath": "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Data\\ClothesShop.Data.csproj"
+            },
+            "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Services\\ClothesShop.Services.csproj": {
+              "projectPath": "C:\\Users\\dummy\\source\\repos\\.NET-6-Clothes-Shop\\ClothesShop.Services\\ClothesShop.Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
