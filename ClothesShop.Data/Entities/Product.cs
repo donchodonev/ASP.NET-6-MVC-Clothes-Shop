@@ -2,10 +2,11 @@
 {
     using ClothesShop.Data.Enums;
     using ClothesShop.Data.Interfaces;
+    using ClothesShop.Data.ValidationAttributes;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static ClothesShop.Data.DataConstants;
+    using static ClothesShop.Data.DataConstants.Product;
 
     public class Product : ICreatable, IDeletable, IModifiable, IStockable
     {
@@ -21,6 +22,7 @@
         [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
 
+        [ValidPrice("0", DecimalMaxValue)]
         public decimal Price { get; set; }
 
         public int Quantity { get; set; }
