@@ -17,7 +17,7 @@ namespace ClothesShop.Data.ValidationAttributes
         {
             decimal price = decimal.Parse(value.ToString());
 
-            return price > minValue && price < maxValue;
+            return price >= minValue && price <= maxValue;
         }
     }
 }

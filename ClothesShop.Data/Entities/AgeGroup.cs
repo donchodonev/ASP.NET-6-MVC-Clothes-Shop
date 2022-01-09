@@ -2,6 +2,5 @@
 {
     public class AgeGroup
     {
-        public int DiscountPercentage { get; set; }
     }
 }

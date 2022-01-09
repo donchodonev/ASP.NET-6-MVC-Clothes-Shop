@@ -22,22 +22,23 @@
         [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
 
-        [ValidPrice("0", DecimalMaxValue)]
+        [ValidPrice(Zero, DecimalMaxValue)]
         public decimal Price { get; set; }
 
+        [Range(MinQuantity,MaxQuantity)]
         public int Quantity { get; set; }
 
         [NotMapped]
         public bool InStock => Quantity > 0;
 
-        [NotMapped]
-        public int TotalDiscountPercentage => Category.DiscountPercentage + AgeGroup.DiscountPercentage;
-
+        [Range(DescriptionMinLength,DescriptionMaxLength)]
         public string Description { get; set; }
 
+
+        [Range(ManufacturerNameMinLength, ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
-        public ProductCategory Category { get; set; }
+        public virtual ProductCategory Category { get; set; }
 
         public Size Size { get; set; }
 
@@ -45,9 +46,9 @@
 
         public AgeGroup AgeGroup { get; set; }
 
-        public Rating Rating { get; set; }
-
         public string ImageURL { get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
