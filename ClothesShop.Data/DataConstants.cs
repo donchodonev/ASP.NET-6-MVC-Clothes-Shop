@@ -44,5 +44,20 @@
             public const int MinAge = 0;
             public const int MaxAge = 150;
         }
+
+        public class ShippingAddress
+        {
+            public const int CountryNameMinLength = 3;
+            public const int CountryNameMaxLength = 100;
+
+            public const int CityNameMinLength = 3;
+            public const int CityNameMaxLength = 100;
+
+            public const int StreetNameMinLength = 3;
+            public const int StreetNameMaxLength = 100;
+
+            public const int PostalCodeMinLength = 3;
+            public const int PostalCodeMaxLength = 10;
+        }
     }
 }

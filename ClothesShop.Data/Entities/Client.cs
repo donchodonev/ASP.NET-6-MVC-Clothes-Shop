@@ -37,5 +37,9 @@
         public GenderGroup? Gender{ get; set; }
 
         public virtual ICollection<Rating> Ratings { get; set; }
+
+        public int ShippingAddressId { get; set; }
+
+        public virtual ShippingAddress ShippingAddress { get; set; }
     }
 }

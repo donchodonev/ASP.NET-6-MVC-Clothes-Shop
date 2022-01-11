@@ -27,7 +27,7 @@
 
         DbSet<Rating> Ratings { get; set; }
 
-        DbSet<ShoppingCart> ShoppingCarts { get; set;}
+        DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,6 +40,11 @@
                 .HasOne(client => client.ShoppingCart)
                 .WithOne(shoppingCart => shoppingCart.Client)
                 .HasForeignKey<ShoppingCart>(client => client.ClientId);
+
+                        builder.Entity<Client>()
+                .HasOne(client => client.ShippingAddress)
+                .WithOne(shippingAddress => shippingAddress.Client)
+                .HasForeignKey<ShippingAddress>(client => client.ClientId);
 
             base.OnModelCreating(builder);
         }
