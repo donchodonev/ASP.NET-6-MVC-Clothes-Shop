@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static ClothesShop.Data.DataConstants.ShippingAddress;
+
     public class ShippingAddress : ICreatable, IModifiable, IDeletable
     {
         [Required]
