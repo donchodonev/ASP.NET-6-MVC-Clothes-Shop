@@ -1,15 +1,14 @@
 ﻿namespace ClothesShop.Data.Entities
 {
-    using ClothesShop.Data.Enums;
     using ClothesShop.Data.ValidationAttributes;
 
     using Microsoft.AspNetCore.Identity;
 
     using System.ComponentModel.DataAnnotations;
-
-    using static DataConstants.ProductConstants;
-    using static DataConstants.ClientConstants;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    using static DataConstants.ClientConstants;
+    using static DataConstants.ProductConstants;
 
     public class Client : IdentityUser
     {
@@ -36,7 +35,9 @@
 
         public virtual AgeGroup AgeGroup { get; set; }
 
-        public GenderGroup? Gender{ get; set; }
+        public int? GenderId { get; set; }
+
+        public virtual GenderGroup Gender{ get; set; }
 
         public virtual ICollection<Rating> Ratings { get; set; }
 

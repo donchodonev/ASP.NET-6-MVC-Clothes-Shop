@@ -19,13 +19,19 @@
 
         public DbSet<ClubCard> ClubCards { get; set; }
 
+        public DbSet<ClubCardTier> ClubCardTiers { get; set; }
+
         public DbSet<Discount> Discounts { get; set; }
+
+        public DbSet<GenderGroup> GenderGroups { get; set; }
 
         public DbSet<Product> Products { get; set; }
 
         public DbSet<ProductCategory> ProductCategories { get; set; }
 
         public DbSet<Rating> Ratings { get; set; }
+
+        public DbSet<ShippingAddress> ShippingAddresses { get; set; }
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
