@@ -18,6 +18,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAutoMapper();
 
+builder.Services.AddCustomServices();
+
 
 var app = builder.Build();
 

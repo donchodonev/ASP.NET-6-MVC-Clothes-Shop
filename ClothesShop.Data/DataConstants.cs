@@ -14,7 +14,7 @@
 
             public const string Zero = "0";
 
-            public const int MinQuantity = 0;
+            public const int MinQuantity = 1;
 
             public const int MaxQuantity = int.MaxValue;
 

@@ -1,6 +1,6 @@
 ﻿namespace ClothesShop.Services
 {
-    public class IShopService
+    public class IProductService
     {
     }
 }

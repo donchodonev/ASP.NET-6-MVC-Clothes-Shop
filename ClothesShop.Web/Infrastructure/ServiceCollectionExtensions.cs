@@ -27,8 +27,13 @@ namespace ClothesShop.Web.Infrastructure
         public static void AddAutoMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(
-                typeof(IShopService).Assembly,
+                typeof(IProductService).Assembly,
                 typeof(HomeController).Assembly);
+        }
+
+        public static void AddCustomServices(this IServiceCollection services)
+        {
+            services.AddTransient<IProductService, ProductService>();
         }
     }
 }
