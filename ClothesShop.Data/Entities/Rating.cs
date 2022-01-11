@@ -4,6 +4,6 @@
 
     public class Rating
     {
-        public RatingValue Value { get; set; }
+        public RatingValue? Value { get; set; }
     }
 }

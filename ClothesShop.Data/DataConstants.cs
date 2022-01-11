@@ -38,5 +38,11 @@
             public const int NameMinLength = 4;
             public const int NameMaxLength = 50;
         }
+
+        public class Client
+        {
+            public const int MinAge = 0;
+            public const int MaxAge = 150;
+        }
     }
 }

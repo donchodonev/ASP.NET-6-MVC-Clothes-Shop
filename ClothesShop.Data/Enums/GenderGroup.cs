@@ -1,6 +1,6 @@
 ﻿namespace ClothesShop.Data.Enums
 {
-    public enum Gender
+    public enum GenderGroup
     {
         Male = 0,
         Female = 1,

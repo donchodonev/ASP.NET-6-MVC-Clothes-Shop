@@ -42,13 +42,18 @@
 
         public Size Size { get; set; }
 
-        public Gender Gender { get; set; }
+        public GenderGroup GenderGroup { get; set; }
 
         public AgeGroup AgeGroup { get; set; }
 
+        [Url]
         public string ImageURL { get; set; }
 
         public virtual ICollection<Rating> Ratings { get; set; }
+
+        public int? DiscountId { get; set; }
+
+        public virtual Discount? Discount{ get; set; }
 
         public DateTime CreatedOn { get; set; }
 

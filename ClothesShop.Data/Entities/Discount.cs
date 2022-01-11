@@ -13,6 +13,10 @@
         [Range(PercentageMinValue, PercentageMaxValue)]
         public int Percentage { get; set; }
 
+        public ProductCategory? ProductCategory { get; set; }
+
+        public AgeGroup? AgeGroup { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }

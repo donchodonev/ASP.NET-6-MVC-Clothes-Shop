@@ -9,5 +9,7 @@
         XL = 50,
         XXL = 60,
         XXXL = 70,
+        XXXXL = 80,
+        XXXXXL = 90,
     }
 }
