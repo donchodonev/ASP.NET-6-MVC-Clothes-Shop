@@ -11,7 +11,7 @@
 
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseEndpoints(this IApplicationBuilder app)
+        public static void UseEndpoints(this IApplicationBuilder app)
         {
             app.UseEndpoints(endpoints =>
             {
@@ -21,11 +21,9 @@
 
                 endpoints.MapRazorPages();
             });
-
-            return app;
         }
 
-        public static IApplicationBuilder UseExceptionsHandling(
+        public static void UseExceptionsHandling(
             this IApplicationBuilder app,
             IWebHostEnvironment env)
         {
@@ -40,11 +38,9 @@
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-            return app;
         }
 
-        public static async Task<IApplicationBuilder> PrepareDatabaseAsync(this IApplicationBuilder app)
+        public static async Task PrepareDatabaseAsync(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())
             {
@@ -53,8 +49,6 @@
                 await Migrate(services);
                 await SeedAgeGroups(services);
                 await SeedAdministrator(services);
-
-                return app;
             }
         }
 
