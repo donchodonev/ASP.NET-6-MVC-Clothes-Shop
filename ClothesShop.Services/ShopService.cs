@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-
-namespace ClothesShop.Services.Shop
+﻿namespace ClothesShop.Services
 {
+    using AutoMapper;
+
     public class ShopService : IShopService
     {
         private readonly IMapper mapper;

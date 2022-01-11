@@ -13,21 +13,21 @@
 
         }
 
-        DbSet<AgeGroup> AgeGroups { get; set; }
+        public DbSet<AgeGroup> AgeGroups { get; set; }
 
-        DbSet<Client> Clients { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        DbSet<ClubCard> ClubCards { get; set; }
+        public DbSet<ClubCard> ClubCards { get; set; }
 
-        DbSet<Discount> Discounts { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
 
-        DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
 
-        DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
-        DbSet<Rating> Ratings { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
 
-        DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

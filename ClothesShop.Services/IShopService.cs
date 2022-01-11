@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Services.Shop
+﻿namespace ClothesShop.Services
 {
     public class IShopService
     {

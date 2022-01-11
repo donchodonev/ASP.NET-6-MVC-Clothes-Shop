@@ -1,7 +1,7 @@
 using ClothesShop.Controllers;
 using ClothesShop.Data;
 using ClothesShop.Data.Entities;
-using ClothesShop.Services.Shop;
+using ClothesShop.Services;
 using ClothesShop.Web.Infrastructure;
 
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +41,6 @@ app.UseAuthorization();
 
 app.UseEndpoints();
 
-app.SeedData();
+await app.PrepareDatabaseAsync();
 
 app.Run();

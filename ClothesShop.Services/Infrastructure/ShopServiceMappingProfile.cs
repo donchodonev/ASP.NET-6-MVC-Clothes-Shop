@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-
-namespace ClothesShop.Services.Infrastructure
+﻿namespace ClothesShop.Services.Infrastructure
 {
+    using AutoMapper;
+
     public class ShopServiceMappingProfile : Profile
     {
     }
