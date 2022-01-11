@@ -13,6 +13,7 @@
         public Product()
         {
             CreatedOn = DateTime.Now;
+            Ratings = new HashSet<Rating>();
         }
 
         [Required]

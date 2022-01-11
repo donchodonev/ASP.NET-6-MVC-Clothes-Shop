@@ -12,12 +12,18 @@
 
     public class Client : IdentityUser
     {
+        public Client()
+        {
+            Ratings = new HashSet<Rating>();
+        }
+
+
         [ValidPrice(Zero,DecimalMaxValue)]
         public decimal MoneySpent { get; set; }
 
-        public int CardId { get; set; }
+        public int? CardId { get; set; }
 
-        public virtual ClubCard? Card { get; set; }
+        public virtual ClubCard Card { get; set; }
 
         public virtual ShoppingCart ShoppingCart { get; set; }
 
@@ -27,5 +33,7 @@
         public AgeGroup? AgeGroup { get; set; }
 
         public GenderGroup? Gender{ get; set; }
+
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

@@ -6,6 +6,11 @@
 
     public class ProductCategory
     {
+        public ProductCategory()
+        {
+            Products = new HashSet<Product>();
+        }
+
         [Required]
         public int Id { get; set; }
 

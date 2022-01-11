@@ -6,6 +6,12 @@
 
     public class AgeGroup
     {
+        public AgeGroup()
+        {
+            Clients = new HashSet<Client>();
+            Products = new HashSet<Product>();
+        }
+
         [Required]
         public int Id { get; set; }
 
