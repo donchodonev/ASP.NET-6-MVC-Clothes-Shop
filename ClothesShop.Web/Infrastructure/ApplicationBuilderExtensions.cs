@@ -19,6 +19,14 @@
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "AdminArea_Home_Index",
+                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "AdminArea_Product_Add",
+                    pattern: "{area:exists}/{controller=Product}/{action=Add}/{id?}");
+
                 endpoints.MapRazorPages();
             });
         }
