@@ -7,8 +7,8 @@
 
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Product;
-    using static DataConstants.Client;
+    using static DataConstants.ProductConstants;
+    using static DataConstants.ClientConstants;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public class Client : IdentityUser
@@ -32,7 +32,9 @@
         [Range(MinAge,MaxAge)]
         public int? Age { get; set; }
 
-        public AgeGroup? AgeGroup { get; set; }
+        public int? AgeGroupId { get; set; }
+
+        public virtual AgeGroup AgeGroup { get; set; }
 
         public GenderGroup? Gender{ get; set; }
 

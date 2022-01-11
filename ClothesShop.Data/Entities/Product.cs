@@ -1,12 +1,11 @@
 ﻿namespace ClothesShop.Data.Entities
 {
-    using ClothesShop.Data.Enums;
     using ClothesShop.Data.Interfaces;
     using ClothesShop.Data.ValidationAttributes;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static ClothesShop.Data.DataConstants.Product;
+    using static ClothesShop.Data.DataConstants.ProductConstants;
 
     public class Product : ICreatable, IDeletable, IModifiable, IStockable
     {
@@ -42,11 +41,16 @@
 
         public virtual ProductCategory Category { get; set; }
 
-        public Size Size { get; set; }
+        [Required]
+        public int SizeId { get; set; }
 
-        public GenderGroup GenderGroup { get; set; }
+        public virtual Size Size { get; set; }
 
-        public AgeGroup AgeGroup { get; set; }
+        public int GenderGroupId { get; set; }
+
+        public virtual GenderGroup GenderGroup { get; set; }
+
+        public virtual AgeGroup AgeGroup { get; set; }
 
         [Url]
         public string ImageURL { get; set; }

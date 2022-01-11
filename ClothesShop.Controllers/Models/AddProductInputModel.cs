@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Services.Models
+﻿namespace ClothesShop.Controllers.Models
 {
     using ClothesShop.Data.Entities;
     using ClothesShop.Data.ValidationAttributes;
@@ -7,11 +7,8 @@
 
     using static ClothesShop.Data.DataConstants.ProductConstants;
 
-    public class ProductAllServiceModel
+    public class AddProductInputModel
     {
-        [Required]
-        public int Id { get; set; }
-
         [MaxLength(ProductNameMaxLength)]
         [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
@@ -28,7 +25,7 @@
         [Range(ManufacturerNameMinLength, ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
-        public  ProductCategory Category { get; set; }
+        public ProductCategory Category { get; set; }
 
         public Size Size { get; set; }
 
@@ -37,9 +34,5 @@
         public AgeGroup AgeGroup { get; set; }
 
         public string ImageURL { get; set; }
-
-        public virtual ICollection<Rating> Ratings { get; set; }
-
-        public virtual Discount? Discount { get; set; }
     }
 }

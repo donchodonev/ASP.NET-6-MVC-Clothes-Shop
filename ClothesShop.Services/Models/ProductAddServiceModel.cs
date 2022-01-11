@@ -1,12 +1,11 @@
 ﻿namespace ClothesShop.Services.Models
 {
     using ClothesShop.Data.Entities;
-    using ClothesShop.Data.Enums;
     using ClothesShop.Data.ValidationAttributes;
 
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.Product;
+    using static ClothesShop.Data.DataConstants.ProductConstants;
 
     public class ProductAddServiceModel
     {

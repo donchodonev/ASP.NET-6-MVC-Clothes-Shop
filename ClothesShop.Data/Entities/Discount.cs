@@ -3,13 +3,14 @@
     using ClothesShop.Data.Interfaces;
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.Discount;
+    using static ClothesShop.Data.DataConstants.DiscountConstants;
 
     public class Discount : ICreatable, IDeletable, IModifiable
     {
         [Required]
         public int Id { get; set; }
 
+        [Required]
         [Range(PercentageMinValue, PercentageMaxValue)]
         public int Percentage { get; set; }
 

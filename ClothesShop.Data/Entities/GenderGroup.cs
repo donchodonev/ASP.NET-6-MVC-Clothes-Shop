@@ -2,11 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class AgeGroup
+    public class GenderGroup
     {
-        public AgeGroup()
+        public GenderGroup()
         {
-            Clients = new HashSet<Client>();
             Products = new HashSet<Product>();
         }
 
@@ -15,8 +14,6 @@
 
         [Required]
         public string Name { get; set; }
-
-        public virtual ICollection<Client> Clients { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }

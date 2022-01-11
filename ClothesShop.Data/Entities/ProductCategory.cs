@@ -4,7 +4,7 @@
 
     using System.ComponentModel.DataAnnotations;
 
-    using static Data.DataConstants.ProductCategory;
+    using static Data.DataConstants.ProductCategoryConstants;
 
     public class ProductCategory : ICreatable, IModifiable, IDeletable
     {

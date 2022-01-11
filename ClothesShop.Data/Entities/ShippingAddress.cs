@@ -4,7 +4,7 @@
 
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.ShippingAddress;
+    using static ClothesShop.Data.DataConstants.ShippingAddressConstants;
 
     public class ShippingAddress : ICreatable, IModifiable, IDeletable
     {

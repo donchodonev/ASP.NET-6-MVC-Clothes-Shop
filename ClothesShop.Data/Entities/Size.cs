@@ -2,11 +2,12 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class AgeGroup
+    using static ClothesShop.Data.DataConstants.SizeConstants;
+
+    public class Size
     {
-        public AgeGroup()
+        public Size()
         {
-            Clients = new HashSet<Client>();
             Products = new HashSet<Product>();
         }
 
@@ -14,9 +15,9 @@
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Value { get; set; }
 
-        public virtual ICollection<Client> Clients { get; set; }
+        [Range(SizeNameMinLength,SizeNameMaxLength)]
 
         public virtual ICollection<Product> Products { get; set; }
     }

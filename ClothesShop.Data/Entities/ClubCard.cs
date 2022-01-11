@@ -1,6 +1,5 @@
 ﻿namespace ClothesShop.Data.Entities
 {
-    using ClothesShop.Data.Enums;
     using ClothesShop.Data.Interfaces;
 
     using System.ComponentModel.DataAnnotations;
@@ -16,7 +15,9 @@
         [Required]
         public virtual Client Client { get; set; }
 
-        [Required]
+
+        public int ClubCardTierId { get; set; }
+
         public ClubCardTier Tier { get; set; }
 
         public DateTime CreatedOn { get; set; }

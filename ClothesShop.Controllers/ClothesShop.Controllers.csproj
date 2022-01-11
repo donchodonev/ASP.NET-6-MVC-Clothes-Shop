@@ -7,11 +7,67 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Admin\Views\Home\Index.cshtml" />
+	  <None Remove="Admin\Views\Product\Add.cshtml" />
+	  <None Remove="Admin\Views\Shared\Error.cshtml" />
+	  <None Remove="Admin\Views\Shared\_Layout.cshtml" />
+	  <None Remove="Admin\Views\Shared\_LoginPartial.cshtml" />
+	  <None Remove="Admin\Views\Shared\_ValidationScriptsPartial.cshtml" />
+	  <None Remove="Admin\Views\_ValidationScriptsPartial.cshtml" />
+	  <None Remove="Admin\Views\_ViewImports.cshtml" />
+	  <None Remove="Admin\Views\_ViewStart.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Admin\Views\Home\Index.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\Product\Add.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\Shared\Error.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\Shared\_Layout.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\Shared\_LoginPartial.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\Shared\_ValidationScriptsPartial.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\_ValidationScriptsPartial.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\_ViewImports.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="Admin\Views\_ViewStart.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="AutoMapper" Version="11.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ClothesShop.Data\ClothesShop.Data.csproj" />
+	  <ProjectReference Include="..\ClothesShop.Services\ClothesShop.Services.csproj" />
 	</ItemGroup>
 
 </Project>

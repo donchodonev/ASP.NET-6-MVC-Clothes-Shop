@@ -2,12 +2,11 @@
 {
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
-    using ClothesShop.Data.Enums;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
-    using static ClothesShop.Data.DataConstants.Client;
+    using static ClothesShop.Data.DataConstants.ClientConstants;
 
     public static class ApplicationBuilderExtensions
     {
@@ -80,19 +79,19 @@
             {
                 new AgeGroup()
                 {
-                    Name = AgeGroupName.Babies,
+                    Name = "Babies",
                 },
                  new AgeGroup()
                 {
-                    Name = AgeGroupName.Children,
+                    Name = "Children",
                 },
                   new AgeGroup()
                 {
-                    Name = AgeGroupName.Teenager,
+                    Name = "Teenager",
                 },
                  new AgeGroup()
                 {
-                    Name = AgeGroupName.Adult,
+                    Name = "Adult",
                 },
             });
 

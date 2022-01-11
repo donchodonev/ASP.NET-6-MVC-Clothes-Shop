@@ -2,7 +2,7 @@
 {
     public static class DataConstants
     {
-        public class Product
+        public class ProductConstants
         {
             public const int ProductNameMaxLength = 200;
 
@@ -27,26 +27,26 @@
             public const int ManufacturerNameMaxLength = 100;
         }
 
-        public class Discount
+        public class DiscountConstants
         {
             public const int PercentageMinValue = 0;
             public const int PercentageMaxValue = 100;
         }
 
-        public class ProductCategory
+        public class ProductCategoryConstants
         {
             public const int NameMinLength = 4;
             public const int NameMaxLength = 50;
         }
 
-        public class Client
+        public class ClientConstants
         {
             public const int MinAge = 0;
             public const int MaxAge = 150;
             public const string AdminRoleName = "Administrator";
         }
 
-        public class ShippingAddress
+        public class ShippingAddressConstants
         {
             public const int CountryNameMinLength = 3;
             public const int CountryNameMaxLength = 100;
@@ -59,6 +59,12 @@
 
             public const int PostalCodeMinLength = 3;
             public const int PostalCodeMaxLength = 10;
+        }
+
+        public class SizeConstants
+        {
+            public const int SizeNameMinLength = 2;
+            public const int SizeNameMaxLength = 10;
         }
     }
 }
