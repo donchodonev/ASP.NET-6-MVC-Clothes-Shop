@@ -9,6 +9,7 @@
 
     using static DataConstants.Product;
     using static DataConstants.Client;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Client : IdentityUser
     {
@@ -19,6 +20,7 @@
 
 
         [ValidPrice(Zero,DecimalMaxValue)]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal MoneySpent { get; set; }
 
         public int? CardId { get; set; }

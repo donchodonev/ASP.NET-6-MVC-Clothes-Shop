@@ -24,6 +24,7 @@
         public string Name { get; set; }
 
         [ValidPrice(Zero, DecimalMaxValue)]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
 
         [Range(MinQuantity,MaxQuantity)]
