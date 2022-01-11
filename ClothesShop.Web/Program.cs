@@ -4,6 +4,7 @@ using ClothesShop.Data.Entities;
 using ClothesShop.Services;
 using ClothesShop.Web.Infrastructure;
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +16,16 @@ builder.Services.AddDbContext<ShopDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<Client>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ShopDbContext>();
+builder.Services.AddDefaultIdentity<Client>(options =>
+{
+    options.SignIn.RequireConfirmedEmail = false;
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+})
+        .AddRoles<IdentityRole>()
+        .AddEntityFrameworkStores<ShopDbContext>();
 
 builder.Services.AddControllersWithViews();
 

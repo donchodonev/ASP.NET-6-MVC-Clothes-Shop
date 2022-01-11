@@ -1,11 +1,13 @@
 ﻿namespace ClothesShop.Web.Infrastructure
 {
-
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
     using ClothesShop.Data.Enums;
 
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+
+    using static ClothesShop.Data.DataConstants.Client;
 
     public static class ApplicationBuilderExtensions
     {
@@ -42,7 +44,6 @@
             return app;
         }
 
-
         public static async Task<IApplicationBuilder> PrepareDatabaseAsync(this IApplicationBuilder app)
         {
             using (var scope = app.ApplicationServices.CreateScope())
@@ -51,6 +52,7 @@
 
                 await Migrate(services);
                 await SeedAgeGroups(services);
+                await SeedAdministrator(services);
 
                 return app;
             }
@@ -93,6 +95,34 @@
             });
 
             await db.SaveChangesAsync();
+        }
+
+        private static async Task SeedAdministrator(IServiceProvider services)
+        {
+            var userManager = services.GetRequiredService<UserManager<Client>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+            if (await roleManager.RoleExistsAsync(AdminRoleName))
+            {
+                return;
+            }
+
+            var role = new IdentityRole { Name = AdminRoleName };
+
+            await roleManager.CreateAsync(role);
+
+            const string adminEmail = "admin@clothes.com";
+            const string adminPassword = "123456";
+
+            var user = new Client
+            {
+                Email = adminEmail,
+                UserName = adminEmail,
+            };
+
+            var result = await userManager.CreateAsync(user, adminPassword);
+
+            await userManager.AddToRoleAsync(user, role.Name);
         }
     }
 }

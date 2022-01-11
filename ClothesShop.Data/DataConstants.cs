@@ -43,6 +43,7 @@
         {
             public const int MinAge = 0;
             public const int MaxAge = 150;
+            public const string AdminRoleName = "Administrator";
         }
 
         public class ShippingAddress
