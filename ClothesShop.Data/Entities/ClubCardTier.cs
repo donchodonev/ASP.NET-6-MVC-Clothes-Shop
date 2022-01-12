@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.ClubCardTierConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ClubCardTierConstants;
 
     public class ClubCardTier
     {

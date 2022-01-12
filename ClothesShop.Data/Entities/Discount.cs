@@ -1,9 +1,12 @@
 ﻿namespace ClothesShop.Data.Entities
 {
     using ClothesShop.Data.Interfaces;
+
+    using Miscellaneous;
+
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.DiscountConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.DiscountConstants;
 
     public class Discount : ICreatable, IDeletable, IModifiable
     {

@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Data
+﻿namespace ClothesShop.Data.Miscellaneous
 {
     public static class DataConstants
     {

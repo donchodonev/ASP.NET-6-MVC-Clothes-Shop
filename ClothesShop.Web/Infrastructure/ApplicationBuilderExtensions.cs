@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
-    using static ClothesShop.Data.DataConstants.ClientConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ClientConstants;
 
     public static class ApplicationBuilderExtensions
     {

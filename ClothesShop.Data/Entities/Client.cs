@@ -5,13 +5,14 @@
 
     using Microsoft.AspNetCore.Identity;
 
+    using Miscellaneous;
+
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static DataConstants.ClientConstants;
-    using static DataConstants.ProductConstants;
-
+    using static Miscellaneous.DataConstants.ClientConstants;
+    using static Miscellaneous.DataConstants.ProductConstants;
     public class Client : IdentityUser, ICreatable, IModifiable, IDeletable
     {
         public Client()
@@ -21,7 +22,7 @@
         }
 
 
-        [ValidPrice(Zero,DecimalMaxValue)]
+        [Price(Zero,DecimalMaxValue)]
         [Column(TypeName = "decimal(18,4)")]
         public decimal MoneySpent { get; set; }
 

@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.SizeConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.SizeConstants;
 
     public class Size
     {

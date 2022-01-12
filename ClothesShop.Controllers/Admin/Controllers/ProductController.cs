@@ -2,16 +2,16 @@
 {
     using AutoMapper;
 
-    using ClothesShop.Controllers.Models;
+    using ClothesShop.Controllers.Models.Category;
+    using ClothesShop.Controllers.Models.Product;
     using ClothesShop.Services;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Rendering;
 
     using System.Collections.Generic;
 
-    using static ClothesShop.Data.DataConstants.ClientConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ClientConstants;
 
     [Area("Admin")]
     [Authorize(Roles = AdminRoleName)]
@@ -31,7 +31,7 @@
         {
             var categories = await data.GetCategoriesAsync();
 
-            var categoriesSelectList = mapper.Map<IEnumerable<SelectListItem>>(categories);
+            var categoriesSelectList = mapper.Map<IEnumerable<CategorySelectListItem>>(categories);
 
             categoriesSelectList.First().Selected = true;
 

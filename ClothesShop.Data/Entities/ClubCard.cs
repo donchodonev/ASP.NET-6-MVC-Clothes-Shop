@@ -2,6 +2,8 @@
 {
     using ClothesShop.Data.Interfaces;
 
+    using Miscellaneous;
+
     using System.ComponentModel.DataAnnotations;
 
     public class ClubCard : ICreatable, IModifiable, IDeletable

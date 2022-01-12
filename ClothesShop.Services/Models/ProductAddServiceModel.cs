@@ -5,7 +5,7 @@
 
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.ProductConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ProductConstants;
 
     public class ProductAddServiceModel
     {
@@ -13,7 +13,7 @@
         [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
 
-        [ValidPrice(Zero, DecimalMaxValue)]
+        [Price(Zero, DecimalMaxValue)]
         public decimal Price { get; set; }
 
         [Range(MinQuantity, MaxQuantity)]

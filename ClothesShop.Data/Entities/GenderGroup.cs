@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.GenderGroupConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.GenderGroupConstants;
 
     public class GenderGroup
     {

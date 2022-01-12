@@ -2,15 +2,14 @@
 {
     using AutoMapper;
 
+    using ClothesShop.Controllers.Models.Category;
     using ClothesShop.Data.Entities;
-
-    using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class ControllerMappingProfile : Profile
     {
         public ControllerMappingProfile()
         {
-            CreateMap<ProductCategory, SelectListItem>()
+            CreateMap<ProductCategory, CategorySelectListItem>()
                 .ForMember(d => d.Value, cfg => cfg.MapFrom(src => src.Name))
                 .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Name));
         }

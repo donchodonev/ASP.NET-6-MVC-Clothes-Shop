@@ -2,9 +2,11 @@
 {
     using ClothesShop.Data.Interfaces;
 
+    using Miscellaneous;
+
     using System.ComponentModel.DataAnnotations;
 
-    using static Data.DataConstants.ProductCategoryConstants;
+    using static Data.Miscellaneous.DataConstants.ProductCategoryConstants;
 
     public class ProductCategory : ICreatable, IModifiable, IDeletable
     {

@@ -2,10 +2,13 @@
 {
     using ClothesShop.Data.Interfaces;
     using ClothesShop.Data.ValidationAttributes;
+
+    using Miscellaneous;
+
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static ClothesShop.Data.DataConstants.ProductConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ProductConstants;
 
     public class Product : ICreatable, IDeletable, IModifiable, IStockable
     {
@@ -22,7 +25,7 @@
         [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
 
-        [ValidPrice(Zero, DecimalMaxValue)]
+        [Price(Zero, DecimalMaxValue)]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
 

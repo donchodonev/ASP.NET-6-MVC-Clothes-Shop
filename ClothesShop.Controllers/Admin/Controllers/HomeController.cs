@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using static ClothesShop.Data.DataConstants.ClientConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ClientConstants;
 
     [Area("Admin")]
     [Authorize(Roles = AdminRoleName)]

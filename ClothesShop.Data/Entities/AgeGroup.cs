@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.DataConstants.AgeGroupConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.AgeGroupConstants;
 
     public class AgeGroup
     {

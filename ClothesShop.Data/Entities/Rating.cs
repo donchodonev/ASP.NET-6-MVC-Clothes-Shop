@@ -3,6 +3,8 @@
     using ClothesShop.Data.Enums;
     using ClothesShop.Data.Interfaces;
 
+    using Miscellaneous;
+
     using System;
     using System.ComponentModel.DataAnnotations;
 
