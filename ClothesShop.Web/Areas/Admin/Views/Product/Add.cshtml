@@ -42,12 +42,8 @@
 
     <div class="form-group">
         <label>Category</label>
-        <select asp-for=Category asp-items="Model.CategoryOptions" class="form-control placeholder="Category"></select>
-        <span class="text-center text-danger " asp-validation-for="Category"></span>
-    </div>
-    <div style="display:none">
-        <label>Category</label>
-        <input asp-for=Category class="form-control placeholder="Category" />
+        <select asp-items="Model.CategoryOptions" class="form-control placeholder="Category"></select>
+        <span class="text-center text-danger " asp-validation-for="CategoryOptions"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>

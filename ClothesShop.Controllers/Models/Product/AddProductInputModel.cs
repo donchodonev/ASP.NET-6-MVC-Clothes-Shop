@@ -34,9 +34,6 @@
         public IEnumerable<CategorySelectListItem> CategoryOptions { get; set; }
 
         [Required]
-        public string Category { get; set; }
-
-        [Required]
         public Size Size { get; set; }
 
         public GenderGroup GenderGroup { get; set; }
