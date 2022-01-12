@@ -10,7 +10,7 @@
         }
         public static class Error
         {
-            public static string InvalidPrice => $"Price must be greater than {Zero} and under {DecimalMaxValue}";
+            public static string InvalidPrice => $"Price must be greater than ${Zero} and under ${DecimalMaxValue}";
         }
     }
 }

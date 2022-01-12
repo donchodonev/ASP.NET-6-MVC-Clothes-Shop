@@ -3,36 +3,51 @@
     using ClothesShop.Data.Entities;
     using ClothesShop.Data.ValidationAttributes;
 
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.Miscellaneous.DataConstants.ProductConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.SizeConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ProductCategoryConstants;
 
     public class AddProductInputModel
     {
         [Required]
-        [MaxLength(ProductNameMaxLength)]
-        [MinLength(ProductNameMinLength)]
+        [MaxLength(ProductConstants.ProductNameMaxLength)]
+        [MinLength(ProductConstants.ProductNameMinLength)]
         public string Name { get; set; }
 
         [Required]
-        [Price(Zero, DecimalMaxValue)]
+        [Price(ProductConstants.Zero, ProductConstants.DecimalMaxValue)]
         public decimal Price { get; set; }
 
         [Required]
-        [Range(MinQuantity, MaxQuantity)]
+        [Range(ProductConstants.MinQuantity, ProductConstants.MaxQuantity)]
         public int Quantity { get; set; }
 
-        [Range(DescriptionMinLength, DescriptionMaxLength)]
+        [Required]
+        [MinLength(ProductConstants.DescriptionMinLength)]
+        [MaxLength(ProductConstants.DescriptionMaxLength)]
         public string Description { get; set; }
 
-        [Range(ManufacturerNameMinLength, ManufacturerNameMaxLength)]
+        [Required]
+        [MinLength(ProductConstants.ManufacturerNameMinLength)]
+        [MaxLength(ProductConstants.ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
-        [Required]
-        public IEnumerable<CategorySelectListItem> CategoryOptions { get; set; }
+        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
+        public List<CategorySelectListItem>? CategoryOptions { get; set; }
 
         [Required]
-        public IEnumerable<SizeSelectListItem> Size { get; set; }
+        public string Category { get; set; }
+
+        [StringLength(SizeNameMaxLength, MinimumLength = SizeNameMinLength)]
+        public List<SizeSelectListItem>? SizeOptions { get; set; }
+
+        [Required]
+        public string Size { get; set; }
 
         public GenderGroup GenderGroup { get; set; }
 

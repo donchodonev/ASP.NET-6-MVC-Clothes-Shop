@@ -25,12 +25,28 @@
             var model = new AddProductInputModel()
             {
                 CategoryOptions = await data.GetCategoriesAsync<CategorySelectListItem>(),
-                Size = await data.GetSizesAsync<SizeSelectListItem>()
+                SizeOptions = await data.GetSizesAsync<SizeSelectListItem>()
             };
 
-            model.CategoryOptions.First().Selected = true;
-
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddProductInputModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                ModelState.Clear();
+            }
+
+            if (TryValidateModel(model))
+            {
+                var modelState = ModelState;
+                var result = model;
+            }
+
+            return RedirectToAction(nameof(Add));
         }
     }
 }

@@ -35,9 +35,9 @@
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            decimal price = decimal.Parse(validationContext.ObjectInstance.ToString());
+            decimal price = decimal.Parse(value.ToString());
 
-            if (price >= MinValue && price <= MaxValue)
+            if (price > MinValue && price < MaxValue)
             {
                 return ValidationResult.Success;
             }
