@@ -1,13 +1,11 @@
-﻿using ClothesShop.Controllers;
-using ClothesShop.Data;
-using ClothesShop.Data.Entities;
-using ClothesShop.Services;
-
-using Microsoft.AspNetCore.Identity;
-
-
-namespace ClothesShop.Web.Infrastructure
+﻿namespace ClothesShop.Web.Infrastructure
 {
+    using ClothesShop.Controllers;
+    using ClothesShop.Data;
+    using ClothesShop.Data.Entities;
+    using ClothesShop.Services;
+
+    using Microsoft.AspNetCore.Identity;
     public static class ServiceCollectionExtensions
     {
         public static void AddDefaultIdentity(this IServiceCollection services)
