@@ -1,7 +1,10 @@
 ﻿jQuery.validator.addMethod("price",
     function (value, element, param) {
 
-        if (Number(value) <= 0 || Number(value) > 79228162514264337593543950335) {
+        let minPrice = Number(element.attributes["data-val-price-minprice"].value);
+        let maxPrice = Number(element.attributes["data-val-price-maxprice"].value);
+
+        if (Number(value) <= minPrice || Number(value) > maxPrice) {
             return false;
         }
         else {
