@@ -11,7 +11,7 @@
     {
         public Product()
         {
-            CreatedOn = DateTime.Now;
+            CreatedOn = DateTimeProvider.CurrentTime;
             Ratings = new HashSet<Rating>();
         }
 
@@ -53,6 +53,7 @@
         public virtual AgeGroup AgeGroup { get; set; }
 
         [Url]
+        [Required]
         public string ImageURL { get; set; }
 
         public virtual ICollection<Rating> Ratings { get; set; }

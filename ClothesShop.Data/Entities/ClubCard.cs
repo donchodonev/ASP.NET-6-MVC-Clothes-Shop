@@ -6,6 +6,11 @@
 
     public class ClubCard : ICreatable, IModifiable, IDeletable
     {
+        public ClubCard()
+        {
+            CreatedOn = DateTimeProvider.CurrentTime;
+        }
+
         [Required]
         public int Id { get; set; }
 
@@ -14,7 +19,6 @@
 
         [Required]
         public virtual Client Client { get; set; }
-
 
         public int ClubCardTierId { get; set; }
 

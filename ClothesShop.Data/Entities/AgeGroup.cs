@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static ClothesShop.Data.DataConstants.AgeGroupConstants;
+
     public class AgeGroup
     {
         public AgeGroup()
@@ -13,6 +15,7 @@
         [Required]
         public int Id { get; set; }
 
+        [Range(NameMinLength,NameMaxLength)]
         [Required]
         public string Name { get; set; }
 

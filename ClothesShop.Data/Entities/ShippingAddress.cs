@@ -8,6 +8,11 @@
 
     public class ShippingAddress : ICreatable, IModifiable, IDeletable
     {
+        public ShippingAddress()
+        {
+            CreatedOn = DateTimeProvider.CurrentTime;
+        }
+
         [Required]
         public int Id { get; set; }
 
@@ -23,6 +28,7 @@
         [Range(PostalCodeMinLength, PostalCodeMaxLength)]
         public string PostalCode { get; set; }
 
+        [Required]
         public string ClientId { get; set; }
 
         public Client Client { get; set; }

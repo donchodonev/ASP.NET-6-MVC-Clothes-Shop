@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using static ClothesShop.Data.DataConstants.GenderGroupConstants;
+
     public class GenderGroup
     {
         public GenderGroup()
@@ -13,6 +15,7 @@
         public int Id { get; set; }
 
         [Required]
+        [Range(NameMinLength,NameMaxLength)]
         public string Name { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

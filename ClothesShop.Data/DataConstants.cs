@@ -66,5 +66,23 @@
             public const int SizeNameMinLength = 2;
             public const int SizeNameMaxLength = 10;
         }
+
+        public class AgeGroupConstants
+        {
+            public const int NameMinLength = 4;
+            public const int NameMaxLength = 20;
+        }
+
+        public class ClubCardTierConstants
+        {
+            public const int NameMinLength = 4;
+            public const int NameMaxLength = 20;
+        }
+
+        public class GenderGroupConstants
+        {
+            public const int NameMinLength = 4;
+            public const int NameMaxLength = 20;
+        }
     }
 }

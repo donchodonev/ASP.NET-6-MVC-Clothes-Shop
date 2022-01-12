@@ -11,6 +11,7 @@
         public ProductCategory()
         {
             Products = new HashSet<Product>();
+            CreatedOn = DateTimeProvider.CurrentTime;
         }
 
         [Required]

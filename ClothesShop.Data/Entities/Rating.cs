@@ -8,12 +8,20 @@
 
     public class Rating : ICreatable, IModifiable, IDeletable
     {
+        public Rating()
+        {
+            CreatedOn = DateTimeProvider.CurrentTime;
+        }
+
         [Required]
         public int Id { get; set; }
 
         public RatingValue? Value { get; set; }
 
-        public Client Client { get; set; }
+        [Required]
+        public string ClientId { get; set; }
+
+        public virtual Client Client { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

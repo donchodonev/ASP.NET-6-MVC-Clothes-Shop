@@ -1,20 +1,23 @@
 ﻿namespace ClothesShop.Data.Entities
 {
+    using ClothesShop.Data.Interfaces;
     using ClothesShop.Data.ValidationAttributes;
 
     using Microsoft.AspNetCore.Identity;
 
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     using static DataConstants.ClientConstants;
     using static DataConstants.ProductConstants;
 
-    public class Client : IdentityUser
+    public class Client : IdentityUser, ICreatable, IModifiable, IDeletable
     {
         public Client()
         {
             Ratings = new HashSet<Rating>();
+            CreatedOn = DateTimeProvider.CurrentTime;
         }
 
 
@@ -41,8 +44,14 @@
 
         public virtual ICollection<Rating> Ratings { get; set; }
 
-        public int ShippingAddressId { get; set; }
+        public int? ShippingAddressId { get; set; }
 
         public virtual ShippingAddress ShippingAddress { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

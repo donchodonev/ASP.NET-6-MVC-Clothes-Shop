@@ -15,9 +15,8 @@
         public int Id { get; set; }
 
         [Required]
+        [Range(SizeNameMinLength, SizeNameMaxLength)]
         public string Value { get; set; }
-
-        [Range(SizeNameMinLength,SizeNameMaxLength)]
 
         public virtual ICollection<Product> Products { get; set; }
     }
