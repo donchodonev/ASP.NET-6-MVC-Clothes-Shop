@@ -57,6 +57,7 @@
                 await SeedAgeGroups(services);
                 await SeedAdministrator(services);
                 await SeedProductCategories(services);
+                await SeedProductSizes(services);
             }
         }
 
@@ -114,6 +115,53 @@
                     Name = "T-Shirt",
                 }
             );
+
+            await db.SaveChangesAsync();
+        }
+
+        private static async Task SeedProductSizes(IServiceProvider services)
+        {
+            var db = services.GetService<ShopDbContext>();
+
+            if (db.Sizes.Any())
+            {
+                return;
+            }
+
+            db.Sizes.AddRange(new[] {
+                new Size()
+                {
+                    Value = "XS"
+                },
+                new Size()
+                {
+                    Value = "S"
+                },
+                new Size()
+                {
+                    Value = "M"
+                },
+                new Size()
+                {
+                    Value = "L"
+                },
+                new Size()
+                {
+                    Value = "XXL"
+                },
+                new Size()
+                {
+                    Value = "XXL"
+                },
+                new Size()
+                {
+                    Value = "XXXL"
+                },
+                new Size()
+                {
+                    Value = "XXXXL"
+                },
+            });
 
             await db.SaveChangesAsync();
         }
