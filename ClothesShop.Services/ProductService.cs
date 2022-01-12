@@ -55,5 +55,32 @@
 
             return await query.ToListAsync();
         }
+
+        public async Task<IEnumerable<TModel>> GetCategoriesAsync<TModel>(bool withDeleted = false) where TModel : class
+        {
+            var query = db.ProductCategories.AsQueryable();
+
+            if (withDeleted)
+            {
+                query = query.Where(x => x.IsDeleted);
+            }
+
+            return await query
+                .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Size>> GetSizesAsync()
+        {
+            return await db.Sizes.ToListAsync();
+        }
+
+        public async Task<IEnumerable<TModel>> GetSizesAsync<TModel>() where TModel : class
+        {
+            return await db
+                .Sizes
+                .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
     }
 }

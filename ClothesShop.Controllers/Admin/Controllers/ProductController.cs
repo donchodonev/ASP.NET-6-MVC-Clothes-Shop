@@ -2,8 +2,7 @@
 {
     using AutoMapper;
 
-    using ClothesShop.Controllers.Models.Category;
-    using ClothesShop.Controllers.Models.Product;
+    using ClothesShop.Controllers.Models;
     using ClothesShop.Services;
 
     using Microsoft.AspNetCore.Authorization;
@@ -29,9 +28,9 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var categories = await data.GetCategoriesAsync();
+            var categoriesSelectList = await data.GetCategoriesAsync<CategorySelectListItem>();
 
-            var categoriesSelectList = mapper.Map<IEnumerable<CategorySelectListItem>>(categories);
+            var sizesSelectList = await data.GetSizesAsync<SizeSelectListItem>();
 
             categoriesSelectList.First().Selected = true;
 

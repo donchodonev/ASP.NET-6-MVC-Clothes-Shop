@@ -35,6 +35,8 @@
 
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
+        public DbSet<Size> Sizes { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Client>()

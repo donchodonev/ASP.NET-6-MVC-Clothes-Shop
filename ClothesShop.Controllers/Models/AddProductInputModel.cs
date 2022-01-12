@@ -1,13 +1,11 @@
-﻿namespace ClothesShop.Controllers.Models.Product
+﻿namespace ClothesShop.Controllers.Models
 {
-    using ClothesShop.Controllers.Models.Category;
     using ClothesShop.Data.Entities;
     using ClothesShop.Data.ValidationAttributes;
 
     using System.ComponentModel.DataAnnotations;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants.ProductConstants;
-    using static Data.Miscellaneous.DataConstants.ProductCategoryConstants;
 
     public class AddProductInputModel
     {
@@ -34,7 +32,7 @@
         public IEnumerable<CategorySelectListItem> CategoryOptions { get; set; }
 
         [Required]
-        public Size Size { get; set; }
+        public IEnumerable<SizeSelectListItem> Size { get; set; }
 
         public GenderGroup GenderGroup { get; set; }
 
