@@ -12,11 +12,13 @@
     [Authorize(Roles = AdminRoleName)]
     public class ProductController : Controller
     {
-        private readonly IProductService data;
+        private readonly IProductService products;
+        private readonly IGenderService genders;
 
-        public ProductController(IProductService data)
+        public ProductController(IProductService products, IGenderService genders)
         {
-            this.data = data;
+            this.products = products;
+            this.genders = genders;
         }
 
         [HttpGet]
@@ -24,8 +26,9 @@
         {
             var model = new AddProductInputModel()
             {
-                CategoryOptions = await data.GetCategoriesAsync<CategorySelectListItem>(),
-                SizeOptions = await data.GetSizesAsync<SizeSelectListItem>()
+                CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>(),
+                SizeOptions = await products.GetSizesAsync<SizeSelectListItem>(),
+                GenderGroupOptions = await genders.All<GenderGroupSelectListItem>()
             };
 
             return View(model);
@@ -37,13 +40,6 @@
 
             if (!ModelState.IsValid)
             {
-                ModelState.Clear();
-            }
-
-            if (TryValidateModel(model))
-            {
-                var modelState = ModelState;
-                var result = model;
             }
 
             return RedirectToAction(nameof(Add));

@@ -11,10 +11,10 @@
 
         public Task<IEnumerable<ProductCategory>> GetCategoriesAsync(bool withDeleted = false);
 
-        public Task<List<TModel>> GetCategoriesAsync<TModel>(bool withDeleted = false) where TModel : class;
+        public Task<IEnumerable<TModel>> GetCategoriesAsync<TModel>(bool withDeleted = false) where TModel : class;
 
         public Task<IEnumerable<Size>> GetSizesAsync();
 
-        public Task<List<TModel>> GetSizesAsync<TModel>() where TModel : class;
+        public Task<IEnumerable<TModel>> GetSizesAsync<TModel>() where TModel : class;
     }
 }

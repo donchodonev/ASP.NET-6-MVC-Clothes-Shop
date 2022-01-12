@@ -3,14 +3,11 @@
     using ClothesShop.Data.Entities;
     using ClothesShop.Data.ValidationAttributes;
 
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Rendering;
-
     using System.ComponentModel.DataAnnotations;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants;
-    using static ClothesShop.Data.Miscellaneous.DataConstants.SizeConstants;
     using static ClothesShop.Data.Miscellaneous.DataConstants.ProductCategoryConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.SizeConstants;
 
     public class AddProductInputModel
     {
@@ -38,18 +35,21 @@
         public string Manufacturer { get; set; }
 
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
-        public List<CategorySelectListItem>? CategoryOptions { get; set; }
+        public IEnumerable<CategorySelectListItem>? CategoryOptions { get; set; }
 
         [Required]
         public string Category { get; set; }
 
         [StringLength(SizeNameMaxLength, MinimumLength = SizeNameMinLength)]
-        public List<SizeSelectListItem>? SizeOptions { get; set; }
+        public IEnumerable<SizeSelectListItem>? SizeOptions { get; set; }
 
         [Required]
         public string Size { get; set; }
 
-        public GenderGroup GenderGroup { get; set; }
+        public IEnumerable<GenderGroupSelectListItem>? GenderGroupOptions { get; set; }
+
+        [Required(AllowEmptyStrings = false)]
+        public string Gender { get; set; }
 
         [Required]
         public AgeGroup AgeGroup { get; set; }

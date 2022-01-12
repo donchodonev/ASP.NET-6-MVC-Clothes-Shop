@@ -16,6 +16,10 @@
             CreateMap<Size, SizeSelectListItem>()
                 .ForMember(d => d.Value, cfg => cfg.MapFrom(src => src.Value))
                 .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Value));
+
+            CreateMap<GenderGroup, GenderGroupSelectListItem>()
+                .ForMember(d => d.Value, cfg => cfg.MapFrom(src => src.Name))
+                .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Name));
         }
     }
 }

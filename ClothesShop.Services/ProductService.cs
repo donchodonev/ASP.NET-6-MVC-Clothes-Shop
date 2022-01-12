@@ -58,7 +58,7 @@
             return await query.ToListAsync();
         }
 
-        public async Task<List<TModel>> GetCategoriesAsync<TModel>(bool withDeleted = false) where TModel : class
+        public async Task<IEnumerable<TModel>> GetCategoriesAsync<TModel>(bool withDeleted = false) where TModel : class
         {
             var query = db.ProductCategories.AsQueryable();
 
@@ -77,7 +77,7 @@
             return await db.Sizes.ToListAsync();
         }
 
-        public async Task<List<TModel>> GetSizesAsync<TModel>() where TModel : class
+        public async Task<IEnumerable<TModel>> GetSizesAsync<TModel>() where TModel : class
         {
             return await db
                 .Sizes

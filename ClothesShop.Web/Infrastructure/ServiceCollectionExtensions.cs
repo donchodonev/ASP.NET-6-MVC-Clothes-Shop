@@ -34,6 +34,7 @@ namespace ClothesShop.Web.Infrastructure
         public static void AddCustomServices(this IServiceCollection services)
         {
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IGenderService, GenderService>();
         }
     }
 }

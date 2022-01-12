@@ -58,6 +58,7 @@
                 await SeedAdministrator(services);
                 await SeedProductCategories(services);
                 await SeedProductSizes(services);
+                await SeedGenderGroups(services);
             }
         }
 
@@ -192,6 +193,30 @@
             var result = await userManager.CreateAsync(user, adminPassword);
 
             await userManager.AddToRoleAsync(user, role.Name);
+        }
+
+        private static async Task SeedGenderGroups(IServiceProvider services)
+        {
+            var db = services.GetService<ShopDbContext>();
+
+            if (db.GenderGroups.Any())
+            {
+                return;
+            }
+
+            db.GenderGroups.AddRange(new[]
+            {
+                new GenderGroup()
+                {
+                    Name = "Male"
+                },
+                new GenderGroup()
+                {
+                    Name = "Female"
+                }
+            });
+
+            await db.SaveChangesAsync();
         }
     }
 }
