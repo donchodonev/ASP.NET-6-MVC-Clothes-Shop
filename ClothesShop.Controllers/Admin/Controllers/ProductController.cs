@@ -22,15 +22,13 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var categoriesSelectList = await data.GetCategoriesAsync<CategorySelectListItem>();
+            var model = new AddProductInputModel()
+            {
+                CategoryOptions = await data.GetCategoriesAsync<CategorySelectListItem>(),
+                Size = await data.GetSizesAsync<SizeSelectListItem>()
+            };
 
-            var sizesSelectList = await data.GetSizesAsync<SizeSelectListItem>();
-
-            categoriesSelectList.First().Selected = true;
-
-            var model = new AddProductInputModel();
-
-            model.CategoryOptions = categoriesSelectList;
+            model.CategoryOptions.First().Selected = true;
 
             return View(model);
         }
