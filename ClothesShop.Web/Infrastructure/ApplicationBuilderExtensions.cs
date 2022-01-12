@@ -56,6 +56,7 @@
                 await Migrate(services);
                 await SeedAgeGroups(services);
                 await SeedAdministrator(services);
+                await SeedProductCategories(services);
             }
         }
 
@@ -87,13 +88,32 @@
                 },
                   new AgeGroup()
                 {
-                    Name = "Teenager",
+                    Name = "Teenagers",
                 },
                  new AgeGroup()
                 {
-                    Name = "Adult",
+                    Name = "Adults",
                 },
             });
+
+            await db.SaveChangesAsync();
+        }
+
+        private static async Task SeedProductCategories(IServiceProvider services)
+        {
+            var db = services.GetService<ShopDbContext>();
+
+            if (db.ProductCategories.Any())
+            {
+                return;
+            }
+
+            db.ProductCategories.Add(
+                new ProductCategory()
+                {
+                    Name = "T-Shirt",
+                }
+            );
 
             await db.SaveChangesAsync();
         }

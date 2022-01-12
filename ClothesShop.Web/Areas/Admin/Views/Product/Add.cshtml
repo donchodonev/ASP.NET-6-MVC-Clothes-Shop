@@ -12,16 +12,38 @@
 <form asp-area="Admin" asp-controller="Product" asp-action="Add" method="post">
     <div class="form-group">
         <label>Name</label>
-        <input asp-for=Name class="form-control" type="text" placeholder="Product name"  />
+        <input asp-for=Name class="form-control" type="text" placeholder="Product name" />
         <span class="text-center text-danger " asp-validation-for="Name"></span>
     </div>
+
     <div class="form-group">
         <label>Price</label>
-        <input asp-for=Name class="form-control" type="number"  placeholder="Product name"  />
+        <input asp-for=Price class="form-control" type="number" placeholder="Product price" />
     </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="form-group">
+        <label>Quantity</label>
+        <input asp-for=Quantity class="form-control" type="number" placeholder="Product quantity" />
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <input asp-for=Description class="form-control" type="text" placeholder="Product description" />
+    </div>
+
+    <div class="form-group">
+        <label>Manufacturer</label>
+        <input asp-for=Manufacturer class="form-control" type="text" placeholder="Product Manufacturer" />
+    </div>
+
+    <div class="form-group">
+        <label>Category</label>
+        <select asp-for=Category asp-items="Model.CategoryOptions" class="form-control placeholder="Category"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
 }

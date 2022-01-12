@@ -20,7 +20,7 @@
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<TModel>> All<TModel>(bool withDeleted = false) where TModel : class
+        public async Task<IEnumerable<TModel>> AllAsync<TModel>(bool withDeleted = false) where TModel : class
         {
             var query = db.Products.AsQueryable();
 
@@ -35,13 +35,25 @@
                 .ToListAsync();
         }
 
-        public async Task<int> Add(ProductAddServiceModel model)
+        public async Task<int> AddAsync(ProductAddServiceModel model)
         {
             var product = mapper.Map<Product>(model);
 
             db.Products.Add(product);
 
             return product.Id;
+        }
+
+        public async Task<IEnumerable<ProductCategory>> GetCategoriesAsync(bool withDeleted = false)
+        {
+            var query = db.ProductCategories.AsQueryable();
+
+            if (withDeleted)
+            {
+                query = query.Where(x => x.IsDeleted);
+            }
+
+            return await query.ToListAsync();
         }
     }
 }
