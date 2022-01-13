@@ -4,8 +4,8 @@
 
     public interface IGenderService
     {
-        public Task<IEnumerable<GenderGroupServiceModel>> All();
+        public Task<IEnumerable<GenderGroupServiceModel>> AllAsync();
 
-        public Task<IEnumerable<TModel>> All<TModel>() where TModel : class;
+        public Task<IEnumerable<TModel>> AllAsync<TModel>() where TModel : class;
     }
 }

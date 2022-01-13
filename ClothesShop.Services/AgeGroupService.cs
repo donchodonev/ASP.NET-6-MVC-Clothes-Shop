@@ -18,7 +18,7 @@
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<TModel>> All<TModel>() where TModel : class
+        public async Task<IEnumerable<TModel>> AllAsync<TModel>() where TModel : class
         {
             return await data
                 .AgeGroups

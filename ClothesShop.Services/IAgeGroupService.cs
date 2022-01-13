@@ -2,6 +2,6 @@
 {
     public interface IAgeGroupService
     {
-        public Task<IEnumerable<TModel>> All<TModel>() where TModel : class;
+        public Task<IEnumerable<TModel>> AllAsync<TModel>() where TModel : class;
     }
 }
