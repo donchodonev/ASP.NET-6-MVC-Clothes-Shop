@@ -11,6 +11,7 @@
     {
         public IActionResult Index()
         {
+            var check = this;
             return View();
         }
     }

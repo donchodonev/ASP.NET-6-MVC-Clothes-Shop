@@ -36,7 +36,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AgeGroups");
+                    b.ToTable("AgeGroups", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Client", b =>
@@ -166,7 +166,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ClubCardTierId");
 
-                    b.ToTable("ClubCards");
+                    b.ToTable("ClubCards", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.ClubCardTier", b =>
@@ -183,7 +183,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ClubCardTiers");
+                    b.ToTable("ClubCardTiers", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Discount", b =>
@@ -224,7 +224,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ProductCategoryId");
 
-                    b.ToTable("Discounts");
+                    b.ToTable("Discounts", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.GenderGroup", b =>
@@ -241,7 +241,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GenderGroups");
+                    b.ToTable("GenderGroups", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Product", b =>
@@ -316,7 +316,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.ProductCategory", b =>
@@ -342,7 +342,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Rating", b =>
@@ -378,7 +378,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("Ratings", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.ShippingAddress", b =>
@@ -423,7 +423,7 @@ namespace ClothesShop.Data.Migrations
                     b.HasIndex("ClientId")
                         .IsUnique();
 
-                    b.ToTable("ShippingAddresses");
+                    b.ToTable("ShippingAddresses", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.ShoppingCart", b =>
@@ -452,7 +452,7 @@ namespace ClothesShop.Data.Migrations
                     b.HasIndex("ClientId")
                         .IsUnique();
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Size", b =>
@@ -469,7 +469,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sizes");
+                    b.ToTable("Sizes", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -1,6 +1,7 @@
 ﻿namespace ClothesShop.Controllers.Models
 {
     using ClothesShop.Data.ValidationAttributes;
+    using ClothesShop.Services;
 
     using System.ComponentModel.DataAnnotations;
 
@@ -52,11 +53,21 @@
         public IEnumerable<AgeGroupSelectListItem>? AgeGroupOptions { get; set; }
 
         [Required]
-        [Range(1,int.MaxValue)]
+        [Range(1, int.MaxValue)]
         public int AgeGroupId { get; set; }
 
         [Url]
         [Required]
         public string ImageURL { get; set; }
+
+        public async Task<AddProductInputModel> CreateAsync(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
+        {
+            CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>();
+            SizeOptions = await products.GetSizesAsync<SizeSelectListItem>();
+            GenderGroupOptions = await genders.AllAsync<GenderGroupSelectListItem>();
+            AgeGroupOptions = await ageGroups.AllAsync<AgeGroupSelectListItem>();
+
+            return this;
+        }
     }
 }

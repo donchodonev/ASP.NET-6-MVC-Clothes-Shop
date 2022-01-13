@@ -13,6 +13,7 @@
 
     [Area("Admin")]
     [Authorize(Roles = AdminRoleName)]
+    [ResponseCache(NoStore = true)]
     public class ProductController : Controller
     {
         private readonly IProductService products;
@@ -34,29 +35,25 @@
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var model = new AddProductInputModel()
-            {
-                CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>(),
-                SizeOptions = await products.GetSizesAsync<SizeSelectListItem>(),
-                GenderGroupOptions = await genders.AllAsync<GenderGroupSelectListItem>(),
-                AgeGroupOptions = await ageGroups.AllAsync<AgeGroupSelectListItem>()
-            };
+            var model = await new AddProductInputModel().CreateAsync(products, genders, ageGroups);
 
             return View(model);
         }
 
         [HttpPost]
+        [ResponseCache(NoStore = true)]
         public async Task<IActionResult> Add(AddProductInputModel model)
         {
-
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Add", model);
             }
+
+            //check if product exists already
 
             await products.AddAsync(mapper.Map<ProductAddServiceModel>(model));
 
-            return RedirectToAction(nameof(Add));
+            return RedirectToAction("Index", "Home");
         }
     }
 }
