@@ -30,8 +30,8 @@
             {
                 CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>(),
                 SizeOptions = await products.GetSizesAsync<SizeSelectListItem>(),
-                GenderGroupOptions = await genders.All<GenderGroupSelectListItem>(),
-                AgeGroupOptions = await ageGroups.All<AgeGroupSelectListItem>()
+                GenderGroupOptions = await genders.AllAsync<GenderGroupSelectListItem>(),
+                AgeGroupOptions = await ageGroups.AllAsync<AgeGroupSelectListItem>()
             };
 
             return View(model);
