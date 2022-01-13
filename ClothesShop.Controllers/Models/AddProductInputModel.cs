@@ -1,6 +1,5 @@
 ﻿namespace ClothesShop.Controllers.Models
 {
-    using ClothesShop.Data.Entities;
     using ClothesShop.Data.ValidationAttributes;
 
     using System.ComponentModel.DataAnnotations;
@@ -51,8 +50,10 @@
         [Required(AllowEmptyStrings = false)]
         public string Gender { get; set; }
 
-        [Required]
-        public AgeGroup AgeGroup { get; set; }
+        public IEnumerable<AgeGroupSelectListItem>? AgeGroupOptions { get; set; }
+
+        [Required(AllowEmptyStrings = false)]
+        public string AgeGroup { get; set; }
 
         [Url]
         [Required]

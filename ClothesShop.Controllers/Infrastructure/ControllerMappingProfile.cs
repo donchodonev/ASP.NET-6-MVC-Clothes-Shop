@@ -20,6 +20,10 @@
             CreateMap<GenderGroup, GenderGroupSelectListItem>()
                 .ForMember(d => d.Value, cfg => cfg.MapFrom(src => src.Name))
                 .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Name));
+
+            CreateMap<AgeGroup, AgeGroupSelectListItem>()
+                .ForMember(d => d.Value, cfg => cfg.MapFrom(src => src.Name))
+                .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Name));
         }
     }
 }

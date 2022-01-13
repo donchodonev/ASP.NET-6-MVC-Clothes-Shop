@@ -14,11 +14,13 @@
     {
         private readonly IProductService products;
         private readonly IGenderService genders;
+        private readonly IAgeGroupService ageGroups;
 
-        public ProductController(IProductService products, IGenderService genders)
+        public ProductController(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
         {
             this.products = products;
             this.genders = genders;
+            this.ageGroups = ageGroups;
         }
 
         [HttpGet]
@@ -28,9 +30,10 @@
             {
                 CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>(),
                 SizeOptions = await products.GetSizesAsync<SizeSelectListItem>(),
-                GenderGroupOptions = await genders.All<GenderGroupSelectListItem>()
+                GenderGroupOptions = await genders.All<GenderGroupSelectListItem>(),
+                AgeGroupOptions = await ageGroups.All<AgeGroupSelectListItem>()
             };
-            //
+
             return View(model);
         }
 
@@ -40,6 +43,7 @@
 
             if (!ModelState.IsValid)
             {
+                return View(model);
             }
 
             return RedirectToAction(nameof(Add));

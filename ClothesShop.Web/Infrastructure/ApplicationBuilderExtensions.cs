@@ -73,12 +73,12 @@
         {
             var db = services.GetService<ShopDbContext>();
 
-            if (db.AgeGroups.Any())
+            if (await db.AgeGroups.AnyAsync())
             {
                 return;
             }
 
-            db.AgeGroups.AddRange(new[]
+            await db.AgeGroups.AddRangeAsync(new[]
             {
                 new AgeGroup()
                 {
@@ -204,7 +204,7 @@
                 return;
             }
 
-            db.GenderGroups.AddRange(new[]
+            await db.GenderGroups.AddRangeAsync(new[]
             {
                 new GenderGroup()
                 {

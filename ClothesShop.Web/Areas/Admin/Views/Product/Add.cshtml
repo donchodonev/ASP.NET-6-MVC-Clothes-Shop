@@ -12,19 +12,19 @@
 <form method="post">
     <div class="form-group">
         <label>Name</label>
-        <input asp-for=Name class="form-control" type="text" placeholder="Product name" />
+        <input asp-for=Name class="form-control" type="text" />
         <span class="text-center text-danger " asp-validation-for="Name"></span>
     </div>
 
     <div class="form-group">
         <label>Price</label>
-        <input asp-for=Price class="form-control" type="number" placeholder="Product price" />
+        <input asp-for=Price class="form-control" type="number" />
         <span class="text-center text-danger " asp-validation-for="Price"></span>
     </div>
 
     <div class="form-group">
         <label>Quantity</label>
-        <input asp-for=Quantity class="form-control" type="number" placeholder="Product quantity" />
+        <input asp-for=Quantity class="form-control" type="number" />
         <span class="text-center text-danger " asp-validation-for="Quantity"></span>
     </div>
 
@@ -42,7 +42,7 @@
 
     <div class="form-group">
         <label>Category</label>
-        <select asp-items="Model.CategoryOptions" asp-for=Category class="form-control placeholder="Category">
+        <select asp-items="Model.CategoryOptions" asp-for=Category class="form-control">
             <option selected value="">Please select a category</option>
 
         </select>
@@ -51,18 +51,32 @@
 
     <div class="form-group">
         <label>Size</label>
-        <select asp-items="Model.SizeOptions" asp-for=Size class="form-control placeholder="Category">
+        <select asp-items="Model.SizeOptions" asp-for=Size class="form-control">
             <option selected value="">Please select a size</option>
         </select>
         <span class="text-center text-danger " asp-validation-for="Size"></span>
     </div>
 
-        <div class="form-group">
-        <label>Size</label>
-        <select asp-items="Model.GenderGroupOptions" asp-for=Gender class="form-control placeholder="Category">
+    <div class="form-group">
+        <label>Gender Group</label>
+        <select asp-items="Model.GenderGroupOptions" asp-for=Gender class="form-control">
             <option selected value="">Please select a gender</option>
         </select>
         <span class="text-center text-danger" asp-validation-for="Gender"></span>
+    </div>
+
+    <div class="form-group">
+        <label>AgeGroup</label>
+        <select asp-items="Model.AgeGroupOptions" asp-for=AgeGroup class="form-control">
+            <option selected value="">Please select an age group</option>
+        </select>
+        <span class="text-center text-danger" asp-validation-for="AgeGroup"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Product Image URL</label>
+        <input asp-for=ImageURL class="form-control" type="url" placeholder="https://example-image.com/image123" />
+        <span class="text-center text-danger " asp-validation-for="ImageURL"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
