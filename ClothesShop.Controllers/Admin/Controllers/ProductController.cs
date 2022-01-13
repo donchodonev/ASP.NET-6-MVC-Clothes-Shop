@@ -1,7 +1,10 @@
 ﻿namespace ClothesShop.Web.Areas.Admin.Controllers
 {
+    using AutoMapper;
+
     using ClothesShop.Controllers.Models;
     using ClothesShop.Services;
+    using ClothesShop.Services.Models;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -15,12 +18,17 @@
         private readonly IProductService products;
         private readonly IGenderService genders;
         private readonly IAgeGroupService ageGroups;
+        private readonly IMapper mapper;
 
-        public ProductController(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
+        public ProductController(IProductService products,
+            IGenderService genders,
+            IAgeGroupService ageGroups,
+            IMapper mapper)
         {
             this.products = products;
             this.genders = genders;
             this.ageGroups = ageGroups;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -45,6 +53,8 @@
             {
                 return View(model);
             }
+
+            await products.AddAsync(mapper.Map<ProductAddServiceModel>(model));
 
             return RedirectToAction(nameof(Add));
         }

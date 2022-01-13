@@ -42,6 +42,9 @@
         [Range(ManufacturerNameMinLength, ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
+        [Required]
+        public int CategoryId { get; set; }
+
         public virtual ProductCategory Category { get; set; }
 
         [Required]
@@ -49,9 +52,13 @@
 
         public virtual Size Size { get; set; }
 
+        [Required]
         public int GenderGroupId { get; set; }
 
         public virtual GenderGroup GenderGroup { get; set; }
+
+        [Required]
+        public int AgeGroupId { get; set; }
 
         public virtual AgeGroup AgeGroup { get; set; }
 

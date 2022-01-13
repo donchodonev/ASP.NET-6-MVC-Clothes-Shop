@@ -5,8 +5,6 @@
     using System.ComponentModel.DataAnnotations;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants;
-    using static ClothesShop.Data.Miscellaneous.DataConstants.ProductCategoryConstants;
-    using static ClothesShop.Data.Miscellaneous.DataConstants.SizeConstants;
 
     public class AddProductInputModel
     {
@@ -33,27 +31,29 @@
         [MaxLength(ProductConstants.ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
-        [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
         public IEnumerable<CategorySelectListItem>? CategoryOptions { get; set; }
 
         [Required]
-        public string Category { get; set; }
+        [Range(1, int.MaxValue)]
+        public int CategoryId { get; set; }
 
-        [StringLength(SizeNameMaxLength, MinimumLength = SizeNameMinLength)]
         public IEnumerable<SizeSelectListItem>? SizeOptions { get; set; }
 
         [Required]
-        public string Size { get; set; }
+        [Range(1, int.MaxValue)]
+        public int SizeId { get; set; }
 
         public IEnumerable<GenderGroupSelectListItem>? GenderGroupOptions { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
-        public string Gender { get; set; }
+        [Required]
+        [Range(1, int.MaxValue)]
+        public int GenderGroupId { get; set; }
 
         public IEnumerable<AgeGroupSelectListItem>? AgeGroupOptions { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
-        public string AgeGroup { get; set; }
+        [Required]
+        [Range(1,int.MaxValue)]
+        public int AgeGroupId { get; set; }
 
         [Url]
         [Required]

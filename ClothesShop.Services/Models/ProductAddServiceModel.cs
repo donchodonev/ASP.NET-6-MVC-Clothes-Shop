@@ -1,37 +1,24 @@
 ﻿namespace ClothesShop.Services.Models
 {
-    using ClothesShop.Data.Entities;
-    using ClothesShop.Data.ValidationAttributes;
-
-    using System.ComponentModel.DataAnnotations;
-
-    using static ClothesShop.Data.Miscellaneous.DataConstants.ProductConstants;
-
     public class ProductAddServiceModel
     {
-        [MaxLength(ProductNameMaxLength)]
-        [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
 
-        [Price(Zero, DecimalMaxValue)]
         public decimal Price { get; set; }
 
-        [Range(MinQuantity, MaxQuantity)]
         public int Quantity { get; set; }
 
-        [Range(DescriptionMinLength, DescriptionMaxLength)]
         public string Description { get; set; }
 
-        [Range(ManufacturerNameMinLength, ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
-        public ProductCategory Category { get; set; }
+        public int CategoryId { get; set; }
 
-        public Size Size { get; set; }
+        public int SizeId { get; set; }
 
-        public GenderGroup GenderGroup { get; set; }
+        public int GenderGroupId { get; set; }
 
-        public AgeGroup AgeGroup { get; set; }
+        public int AgeGroupId { get; set; }
 
         public string ImageURL { get; set; }
     }

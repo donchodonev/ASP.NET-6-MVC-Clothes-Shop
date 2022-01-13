@@ -12,7 +12,6 @@
             this.CreateMap<Product, ProductAllServiceModel>().ReverseMap();
 
             this.CreateMap<ProductAddServiceModel, Product>().ReverseMap();
-
         }
     }
 }
