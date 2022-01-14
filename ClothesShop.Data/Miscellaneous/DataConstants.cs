@@ -83,6 +83,9 @@
         {
             public const int NameMinLength = 4;
             public const int NameMaxLength = 20;
+
+            public const int DescriptionMinLength = 15;
+            public const int DescriptionMaxLength = 300;
         }
     }
 }

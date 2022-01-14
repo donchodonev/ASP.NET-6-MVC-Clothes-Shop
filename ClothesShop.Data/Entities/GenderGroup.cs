@@ -18,6 +18,15 @@
         [Range(NameMinLength,NameMaxLength)]
         public string Name { get; set; }
 
+        [Required]
+        [Url]
+        public string ImageURL { get; set; }
+
+        [Required]
+        [MinLength(DescriptionMinLength)]
+        [MaxLength(DescriptionMaxLength)]
+        public string Description { get; set; }
+
         public virtual ICollection<Product> Products { get; set; }
     }
 }
