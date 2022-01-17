@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Web.Areas.Admin.Controllers
+﻿namespace ClothesShop.Web.Areas.Admin
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;

@@ -20,11 +20,15 @@
 
                 endpoints.MapControllerRoute(
                     name: "AdminArea_Product_Add",
-                    pattern: "{area:exists}/{controller=Product}/{action=Add}/{id?}");
+                    pattern: "{area:exists}/{controller=Products}/{action=Add}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "All Products",
+                    pattern: "{controller=Products}/{action=All}/{id?}");
 
                 endpoints.MapRazorPages();
             });

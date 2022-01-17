@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Web.Areas.Admin.Controllers
+﻿namespace ClothesShop.Web.Areas.Admin
 {
     using AutoMapper;
 
@@ -13,15 +13,14 @@
 
     [Area("Admin")]
     [Authorize(Roles = AdminRoleName)]
-    [ResponseCache(NoStore = true)]
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         private readonly IProductService products;
         private readonly IGenderService genders;
         private readonly IAgeGroupService ageGroups;
         private readonly IMapper mapper;
 
-        public ProductController(IProductService products,
+        public ProductsController(IProductService products,
             IGenderService genders,
             IAgeGroupService ageGroups,
             IMapper mapper)
@@ -33,6 +32,9 @@
         }
 
         [HttpGet]
+        [ResponseCache(Duration = 0,
+            Location = ResponseCacheLocation.None,
+            NoStore = true)]
         public async Task<IActionResult> Add()
         {
             var model = await new AddProductInputModel().CreateAsync(products, genders, ageGroups);
@@ -41,7 +43,9 @@
         }
 
         [HttpPost]
-        [ResponseCache(NoStore = true)]
+        [ResponseCache(Duration = 0,
+            Location = ResponseCacheLocation.None,
+            NoStore = true)]
         public async Task<IActionResult> Add(AddProductInputModel model)
         {
             if (!ModelState.IsValid)
