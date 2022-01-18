@@ -38,12 +38,6 @@
         [Range(1, int.MaxValue)]
         public int CategoryId { get; set; }
 
-        public IEnumerable<SizeSelectListItem>? SizeOptions { get; set; }
-
-        [Required]
-        [Range(1, int.MaxValue)]
-        public int SizeId { get; set; }
-
         public IEnumerable<GenderGroupSelectListItem>? GenderGroupOptions { get; set; }
 
         [Required]
@@ -63,7 +57,6 @@
         public async Task<AddProductInputModel> CreateAsync(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
         {
             CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>();
-            SizeOptions = await products.GetSizesAsync<SizeSelectListItem>();
             GenderGroupOptions = await genders.AllAsync<GenderGroupSelectListItem>();
             AgeGroupOptions = await ageGroups.AllAsync<AgeGroupSelectListItem>();
 

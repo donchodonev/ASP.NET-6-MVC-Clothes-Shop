@@ -50,13 +50,41 @@
         <span class="text-center text-danger " asp-validation-for="CategoryId"></span>
     </div>
 
-    <div class="form-group">
-        <label>Size</label>
-        <select asp-items="Model.SizeOptions" asp-for=SizeId class="form-control">
-            <option selected value="">Please select a size</option>
-        </select>
-        <span class="text-center text-danger " asp-validation-for="SizeId"></span>
+    <div class="row">
+        <div class="col-lg-2 col-md-6 form-group">
+            <label>XS</label>
+            <input class="form-control" type="number" value=0 />
+        </div>
+
+        <div class="col-lg-2 col-md-6 form-group">
+            <label>S</label>
+            <input class="form-control" type="number" value=0 />
+        </div>
+
+        <div class="col-lg-2 col-md-6 form-group">
+            <label>M</label>
+            <input class="form-control" type="number" value=0 />
+        </div>
+
+        <div class="col-lg-2 col-md-6 form-group">
+            <label>L</label>
+            <input class="form-control" type="number" value=0 />
+        </div>
+
+        <div class="col-lg-2 col-md-6 form-group">
+            <label>XL</label>
+            <input class="form-control" type="number" value=0 />
+        </div>
+
+        <div class="col-lg-2 col-md-6 form-group">
+            <label>XXL</label>
+            <input class="form-control" type="number" value=0 />
+        </div>
     </div>
+
+    <span class="text-center text-danger">
+        <p></p>
+    </span>
 
     <div class="form-group">
         <label>Gender Group</label>
