@@ -30,8 +30,8 @@
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
 
-        [Range(MinQuantity,MaxQuantity)]
-        public int Quantity { get; set; }
+        [NotMapped]
+        public int Quantity => Sizes.Sum(x => x.Count);
 
         [Range(DescriptionMinLength,DescriptionMaxLength)]
         public string Description { get; set; }

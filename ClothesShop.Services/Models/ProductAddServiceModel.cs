@@ -1,12 +1,17 @@
 ﻿namespace ClothesShop.Services.Models
 {
+    using ClothesShop.Data.Entities;
+
     public class ProductAddServiceModel
     {
+        public ProductAddServiceModel()
+        {
+            Sizes = new HashSet<Size>();
+        }
+
         public string Name { get; set; }
 
         public decimal Price { get; set; }
-
-        public int Quantity { get; set; }
 
         public string Description { get; set; }
 
@@ -14,7 +19,7 @@
 
         public int CategoryId { get; set; }
 
-        public int SizeId { get; set; }
+        public ICollection<Size> Sizes { get; set; }
 
         public int GenderGroupId { get; set; }
 

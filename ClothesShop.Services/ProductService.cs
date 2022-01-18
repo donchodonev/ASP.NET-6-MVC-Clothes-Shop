@@ -37,6 +37,10 @@
 
         public async Task<int> AddAsync(ProductAddServiceModel model)
         {
+            var zeroCountSizes = model.Sizes.Where(x => x.Count == 0);
+
+            model.Sizes = model.Sizes.Except(zeroCountSizes).ToList();
+
             var product = mapper.Map<Product>(model);
 
             await db.Products.AddAsync(product);

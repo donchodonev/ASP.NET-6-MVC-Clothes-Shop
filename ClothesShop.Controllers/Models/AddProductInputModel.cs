@@ -20,10 +20,6 @@
         public decimal Price { get; set; }
 
         [Required]
-        [Range(ProductConstants.MinQuantity, ProductConstants.MaxQuantity)]
-        public int Quantity { get; set; }
-
-        [Required]
         [MinLength(ProductConstants.DescriptionMinLength)]
         [MaxLength(ProductConstants.DescriptionMaxLength)]
         public string Description { get; set; }
