@@ -30,10 +30,11 @@
         [Range(PostalCodeMinLength, PostalCodeMaxLength)]
         public string PostalCode { get; set; }
 
-        [Required]
         public string ClientId { get; set; }
 
         public Client Client { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

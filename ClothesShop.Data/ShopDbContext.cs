@@ -33,9 +33,9 @@
 
         public DbSet<ShippingAddress> ShippingAddresses { get; set; }
 
-        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-
         public DbSet<Size> Sizes { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -45,14 +45,15 @@
                 .HasForeignKey<ClubCard>(client => client.ClientId);
 
             builder.Entity<Client>()
-                .HasOne(client => client.ShoppingCart)
-                .WithOne(shoppingCart => shoppingCart.Client)
-                .HasForeignKey<ShoppingCart>(client => client.ClientId);
-
-                        builder.Entity<Client>()
                 .HasOne(client => client.ShippingAddress)
                 .WithOne(shippingAddress => shippingAddress.Client)
                 .HasForeignKey<ShippingAddress>(client => client.ClientId);
+
+            builder.Entity<Order>()
+                .HasOne(sa => sa.ShippingAddress)
+                .WithMany(sa => sa.Orders)
+                .HasForeignKey(order => order.ShippingAddressId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }

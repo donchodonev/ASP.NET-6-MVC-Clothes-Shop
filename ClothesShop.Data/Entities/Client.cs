@@ -18,6 +18,7 @@
         public Client()
         {
             Ratings = new HashSet<Rating>();
+            Orders = new HashSet<Order>();
             CreatedOn = DateTimeProvider.CurrentTime;
         }
 
@@ -29,8 +30,6 @@
         public int? CardId { get; set; }
 
         public virtual ClubCard Card { get; set; }
-
-        public virtual ShoppingCart ShoppingCart { get; set; }
 
         [Range(MinAge,MaxAge)]
         public int? Age { get; set; }
@@ -44,6 +43,8 @@
         public virtual GenderGroup Gender{ get; set; }
 
         public virtual ICollection<Rating> Ratings { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
 
         public int? ShippingAddressId { get; set; }
 
