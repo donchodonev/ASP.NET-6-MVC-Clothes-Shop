@@ -10,7 +10,7 @@
     <h1 class="display-4">Add Product</h1>
 </div>
 
-<form id="addProduct" method="post" asp-area="Admin" asp-action="Add" asp-controller="Product">
+<form id="addProduct" method="post" asp-area="Admin" asp-action="Add" asp-controller="Products">
     <div class="form-group">
         <label>Name</label>
         <input asp-for=Name class="form-control" type="text" />
@@ -45,7 +45,6 @@
         <label>Category</label>
         <select asp-items="Model.CategoryOptions" asp-for=CategoryId class="form-control">
             <option selected value="">Please select a category</option>
-
         </select>
         <span class="text-center text-danger " asp-validation-for="CategoryId"></span>
     </div>
@@ -53,38 +52,47 @@
     <div class="row">
         <div class="col-lg-2 col-md-6 form-group">
             <label>XS</label>
-            <input class="form-control" type="number" value=0 />
+            <input onchange="onChange()" asp-for=SizeXS class="form-control sizeInput" type="number" placeholder=0 />
+            <span class="text-center text-danger" asp-validation-for="SizeXS"></span>
+
         </div>
 
         <div class="col-lg-2 col-md-6 form-group">
             <label>S</label>
-            <input class="form-control" type="number" value=0 />
+            <input onchange="onChange()" asp-for=SizeS class="form-control sizeInput" type="number" placeholder=0 />
+            <span class="text-center text-danger" asp-validation-for="SizeS"></span>
+
         </div>
 
         <div class="col-lg-2 col-md-6 form-group">
             <label>M</label>
-            <input class="form-control" type="number" value=0 />
+            <input onchange="onChange()" asp-for=SizeM class="form-control sizeInput" type="number" placeholder=0 />
+            <span class="text-center text-danger" asp-validation-for="SizeM"></span>
+
         </div>
 
         <div class="col-lg-2 col-md-6 form-group">
             <label>L</label>
-            <input class="form-control" type="number" value=0 />
+            <input onchange="onChange()" asp-for=SizeL class="form-control sizeInput" type="number" placeholder=0 />
+            <span class="text-center text-danger" asp-validation-for="SizeL"></span>
+
         </div>
 
         <div class="col-lg-2 col-md-6 form-group">
             <label>XL</label>
-            <input class="form-control" type="number" value=0 />
+            <input onchange="onChange()" asp-for=SizeXL class="form-control sizeInput" type="number" placeholder=0 />
+            <span class="text-center text-danger" asp-validation-for="SizeXL"></span>
+
         </div>
 
         <div class="col-lg-2 col-md-6 form-group">
             <label>XXL</label>
-            <input class="form-control" type="number" value=0 />
+            <input onchange="onChange()" asp-for=SizeXXL class="form-control sizeInput" type="number" placeholder=0 />
+            <span class="text-center text-danger" asp-validation-for="SizeXXL"></span>
         </div>
     </div>
 
-    <span class="text-center text-danger">
-        <p></p>
-    </span>
+    <span id=quantitySpan class="text-center text-danger" asp-validation-for="IsSizeCountValid"></span>
 
     <div class="form-group">
         <label>Gender Group</label>
@@ -116,9 +124,8 @@
 <script src="~/js/custom-attribute-client-side-validation.js"></script>
 
 <script>
-        $( document ).ready(function() {
-        $('#addProduct')[0].reset();
-    });
-</script>
 
+
+
+</script>
 }

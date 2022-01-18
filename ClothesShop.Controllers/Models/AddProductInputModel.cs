@@ -6,6 +6,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants;
+    using static ClothesShop.Data.Miscellaneous.HelpMessages.Error;
 
     public class AddProductInputModel
     {
@@ -54,7 +55,34 @@
         [Required]
         public string ImageURL { get; set; }
 
-        public async Task<AddProductInputModel> CreateAsync(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
+        [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
+        public int SizeXS { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
+        public int SizeS { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
+        public int SizeM { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
+        public int SizeL { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
+        public int SizeXL { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
+        public int SizeXXL { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = InvalidProductSizeCount)]
+        public int IsSizeCountValid =>
+            SizeXS +
+            SizeS +
+            SizeM +
+            SizeL +
+            SizeXL +
+            SizeXXL;
+
+        public async Task<AddProductInputModel> CreateOptionsAsync(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
         {
             CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>();
             GenderGroupOptions = await genders.AllAsync<GenderGroupSelectListItem>();

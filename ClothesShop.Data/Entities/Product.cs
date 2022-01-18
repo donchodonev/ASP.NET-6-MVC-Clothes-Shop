@@ -10,7 +10,7 @@
 
     using static ClothesShop.Data.Miscellaneous.DataConstants.ProductConstants;
 
-    public class Product : ICreatable, IDeletable, IModifiable, IStockable
+    public class Product : ICreatable, IDeletable, IModifiable
     {
         public Product()
         {
@@ -32,9 +32,6 @@
 
         [Range(MinQuantity,MaxQuantity)]
         public int Quantity { get; set; }
-
-        [NotMapped]
-        public bool InStock => Quantity > 0;
 
         [Range(DescriptionMinLength,DescriptionMaxLength)]
         public string Description { get; set; }

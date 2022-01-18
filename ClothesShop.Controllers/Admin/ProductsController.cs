@@ -37,7 +37,7 @@
             NoStore = true)]
         public async Task<IActionResult> Add()
         {
-            var model = await new AddProductInputModel().CreateAsync(products, genders, ageGroups);
+            var model = await new AddProductInputModel().CreateOptionsAsync(products, genders, ageGroups);
 
             return View(model);
         }
@@ -50,7 +50,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return View("Add", model);
+                return View("Add", await model.CreateOptionsAsync(products,genders,ageGroups));
             }
 
             //check if product exists already

@@ -4,13 +4,17 @@
 
     public static class HelpMessages
     {
-        public static class Success
+        public class Success
         {
 
         }
-        public static class Error
+        public class Error
         {
-            public static string InvalidPrice => $"Price must be greater than ${Zero} and under ${DecimalMaxValue}";
+            public const string InvalidPrice = $"Price must be greater than ${Zero} and under ${DecimalMaxValue}";
+
+            public const string NegativeProductSizeQuantity = "Quantity cannot be less than 0";
+
+            public const string InvalidProductSizeCount = "The overall size types' total quantity count must be greater than 0. Please ensure your data is correct and re-submit it";
         }
     }
 }
