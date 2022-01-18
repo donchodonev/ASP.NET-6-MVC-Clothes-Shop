@@ -13,5 +13,10 @@
         {
             return View();
         }
+
+        public async Task<IActionResult> Details()
+        {
+            return View();
+        }
     }
 }

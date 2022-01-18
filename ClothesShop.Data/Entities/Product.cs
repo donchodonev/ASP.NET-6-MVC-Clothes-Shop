@@ -16,6 +16,7 @@
         {
             CreatedOn = DateTimeProvider.CurrentTime;
             Ratings = new HashSet<Rating>();
+            Sizes = new HashSet<Size>();
         }
 
         [Required]
@@ -47,10 +48,7 @@
 
         public virtual ProductCategory Category { get; set; }
 
-        [Required]
-        public int SizeId { get; set; }
-
-        public virtual Size Size { get; set; }
+        public virtual ICollection<Size> Sizes { get; set; }
 
         [Required]
         public int GenderGroupId { get; set; }

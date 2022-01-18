@@ -1,14 +1,17 @@
 ﻿namespace ClothesShop.Data.Entities
 {
+    using ClothesShop.Data.Interfaces;
+    using ClothesShop.Data.Miscellaneous;
+
     using System.ComponentModel.DataAnnotations;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants.SizeConstants;
 
-    public class Size
+    public class Size : ICreatable, IModifiable, IDeletable
     {
         public Size()
         {
-            Products = new HashSet<Product>();
+            CreatedOn = DateTimeProvider.CurrentTime;
         }
 
         [Required]
@@ -18,6 +21,13 @@
         [Range(SizeNameMinLength, SizeNameMaxLength)]
         public string Value { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        [Required]
+        public int Count { get; set; }
+
+        public bool? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

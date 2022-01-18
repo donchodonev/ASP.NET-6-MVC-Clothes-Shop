@@ -30,6 +30,10 @@
                     name: "All Products",
                     pattern: "{controller=Products}/{action=All}/{id?}");
 
+                endpoints.MapControllerRoute(
+                    name: "Product Details",
+                    pattern: "{controller=Products}/{action=Details}/{id?}");
+
                 endpoints.MapRazorPages();
             });
         }
