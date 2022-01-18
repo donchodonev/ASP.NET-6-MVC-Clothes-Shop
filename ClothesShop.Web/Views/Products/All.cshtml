@@ -4,20 +4,47 @@
 
 @model IEnumerable<AllProductViewModel>;
 
-<div class="container-fluid text-center">
-    <div class="row justify-content-center">
-        @foreach (var product in Model)
-        {
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand">Filter</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bottom-navbar" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="bottom-navbar" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            @*filters go here*@
+            <p>hihi</p>
+        </div>
+    </div>
+</nav>
 
-            <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-12 m-2 border-0 shadow rounded" style="width: 20rem;">
-                <img src=@product.ImageURL class="card-img-top img">
-                <div class="card-body">
-                    <div class="row">
-                        <h4 class="col-6 card-title">$@product.Price.ToString("F2")</h4>
-                        <button type="submit" class="col-6 btn btn-primary rounded-pill">Add to cart</button>
-                    </div>
-                </div>
+<div class="row text-center">
+
+    <div class="col-xl-1 col-lg-3 col-md-3 col-sm-12 mt-2">
+        <div class="row">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="col btn-sm btn-secondary border-right-custom p-1">Male</button>
+                <button type="button" class="col btn-sm btn-secondary p-1">Female</button>
             </div>
-        }
+        </div>
+    </div>
+
+    <div class="col-xl-11 col-lg-9 col-md-9 col-sm-12">
+        <div class="container-fluid text-center">
+            <div class="row justify-content-center mt-2">
+                @foreach (var product in Model)
+                {
+                    <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-12 m-4 border-0 shadow rounded" style="width: 20rem;">
+                        <img src=@product.ImageURL class="card-img-top img">
+                        <div class="card-body">
+                            <div class="row">
+                                <h4 class="col-6 card-title">$@product.Price.ToString("F2")</h4>
+                                <button type="submit" class="col-6 btn btn-primary rounded-pill">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>

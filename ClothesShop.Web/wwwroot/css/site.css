@@ -34,3 +34,9 @@ body {
 .sizeInput{
 
 }
+
+.border-right-custom {
+    border-right-width: 2px;
+    border-right-color: white;
+    border-right-style: dashed;
+}
