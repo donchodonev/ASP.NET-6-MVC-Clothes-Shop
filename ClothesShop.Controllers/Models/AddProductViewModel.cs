@@ -8,7 +8,7 @@
     using static ClothesShop.Data.Miscellaneous.DataConstants;
     using static ClothesShop.Data.Miscellaneous.HelpMessages.Error;
 
-    public class AddProductInputModel
+    public class AddProductViewModel
     {
         [Required]
         [MaxLength(ProductConstants.ProductNameMaxLength)]
@@ -78,7 +78,7 @@
             SizeXL +
             SizeXXL;
 
-        public async Task<AddProductInputModel> CreateOptionsAsync(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
+        public async Task<AddProductViewModel> CreateOptionsAsync(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
         {
             CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>();
             GenderGroupOptions = await genders.AllAsync<GenderGroupSelectListItem>();

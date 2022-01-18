@@ -24,9 +24,9 @@
         {
             var query = db.Products.AsQueryable();
 
-            if (withDeleted)
+            if (!withDeleted)
             {
-                query = query.Where(x => x.IsDeleted);
+                query = query.Where(x => !x.IsDeleted);
             }
 
             return await query

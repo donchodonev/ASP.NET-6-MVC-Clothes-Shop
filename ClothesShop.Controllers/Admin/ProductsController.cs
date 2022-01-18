@@ -37,7 +37,7 @@
             NoStore = true)]
         public async Task<IActionResult> Add()
         {
-            var model = await new AddProductInputModel().CreateOptionsAsync(products, genders, ageGroups);
+            var model = await new AddProductViewModel().CreateOptionsAsync(products, genders, ageGroups);
 
             return View(model);
         }
@@ -46,7 +46,7 @@
         [ResponseCache(Duration = 0,
             Location = ResponseCacheLocation.None,
             NoStore = true)]
-        public async Task<IActionResult> Add(AddProductInputModel model)
+        public async Task<IActionResult> Add(AddProductViewModel model)
         {
             if (!ModelState.IsValid)
             {
