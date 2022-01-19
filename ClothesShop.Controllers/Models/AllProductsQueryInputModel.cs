@@ -3,10 +3,10 @@
     using ClothesShop.Data.Enums;
     using ClothesShop.Services;
 
-    using System.ComponentModel.DataAnnotations;
-
     public class AllProductsQueryInputModel
     {
+        private int currentPage;
+
         public AllProductsQueryInputModel()
         {
             CurrentPage = 1;
@@ -28,11 +28,23 @@
 
         public bool WithDeleted { get; set; }
 
-        [Range(1, int.MaxValue)]
-        public int CurrentPage { get; set; }
+        public int CurrentPage
+        {
+            get { return currentPage; }
+            set
+            {
+                if (value >= 1)
+                {
+                    currentPage = value;
+                }
+                else
+                {
+                    currentPage = 1;
+                }
+            }
+        }
 
-        [Range(1, int.MaxValue)]
-        public int ItemsPerPage { get; set; }
+        public int ItemsPerPage { get; }
 
         public int TotalItemCount { get; set; }
 
