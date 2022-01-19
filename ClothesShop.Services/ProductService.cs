@@ -30,7 +30,7 @@
             query = filter.AgeGroupId == 0 ? query : query.Where(x => x.AgeGroupId == filter.AgeGroupId);
             query = filter.CategoryId == 0 ? query : query.Where(x => x.CategoryId == filter.CategoryId);
             query = filter.GenderId == 0 ? query : query.Where(x => x.GenderGroupId == filter.GenderId);
-            query = filter.RatingValue == 0 ? query : query.Where(x => x.Ratings.Average(y => (int)y.Value.Value) >= filter.RatingValue);
+            query = filter.RatingValue == 0 ? query : query.Where(x => (int)x.Ratings.Average(y => (int)y.Value.Value) >= filter.RatingValue);
 
             switch (filter.PriceOrder)
             {
