@@ -21,29 +21,27 @@
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<TModel>> AllAsync<TModel>(ProductsServiceQueryFilter filter) where TModel : class
+        public async Task<IEnumerable<TModel>> AllAsync<TModel>(bool withDeleted = false) where TModel : class
+        {
+            return await db
+                .Products
+                .Where(x => x.IsDeleted == withDeleted)
+                .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<TModel>> AllAsync<TModel>(
+            ProductsServiceQueryFilter filter,
+            int itemsPerPage,
+            int currentPage) where TModel : class
         {
             var query = db.Products.AsQueryable();
 
-            query = query.Where(x => x.IsDeleted == filter.WithDeleted);
+            query = FilterResults(query, filter);
 
-            query = filter.AgeGroupId == 0 ? query : query.Where(x => x.AgeGroupId == filter.AgeGroupId);
-            query = filter.CategoryId == 0 ? query : query.Where(x => x.CategoryId == filter.CategoryId);
-            query = filter.GenderId == 0 ? query : query.Where(x => x.GenderGroupId == filter.GenderId);
-            query = filter.RatingValue == 0 ? query : query.Where(x => (int)x.Ratings.Average(y => (int)y.Value.Value) >= filter.RatingValue);
+            query = SortResults(query, filter.PriceOrder);
 
-            switch (filter.PriceOrder)
-            {
-                case PriceOrder.Price:
-                    query = query.OrderByDescending(x => x.CreatedOn);
-                    break;
-                case PriceOrder.Ascending:
-                    query = query.OrderBy(x => x.Price);
-                    break;
-                case PriceOrder.Descending:
-                    query = query.OrderByDescending(x => x.Price);
-                    break;
-            }
+            query = ApplyPagination(query, itemsPerPage, currentPage);
 
             return await query
                 .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
@@ -102,6 +100,49 @@
                 .Sizes
                 .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
+        }
+
+        private IQueryable<TModel> ApplyPagination<TModel>(IQueryable<TModel> entitiesQuery,
+            int itemsPerPage,
+            int currentpage) where TModel : class
+        {
+            return entitiesQuery
+                .Skip((currentpage - 1) * itemsPerPage)
+                .Take(itemsPerPage);
+        }
+
+        private IQueryable<Product> FilterResults(
+            IQueryable<Product> query,
+            ProductsServiceQueryFilter filter)
+        {
+            query = query.Where(x => x.IsDeleted == filter.WithDeleted);
+
+            query = filter.AgeGroupId == 0 ? query : query.Where(x => x.AgeGroupId == filter.AgeGroupId);
+            query = filter.CategoryId == 0 ? query : query.Where(x => x.CategoryId == filter.CategoryId);
+            query = filter.GenderId == 0 ? query : query.Where(x => x.GenderGroupId == filter.GenderId);
+            query = filter.RatingValue == 0 ? query : query.Where(x => (int)x.Ratings.Average(y => (int)y.Value.Value) >= filter.RatingValue);
+
+            return query;
+        }
+
+        private IQueryable<Product> SortResults(
+    IQueryable<Product> query,
+    PriceOrder filter)
+        {
+            switch (filter)
+            {
+                case PriceOrder.Price:
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+                case PriceOrder.Ascending:
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case PriceOrder.Descending:
+                    query = query.OrderByDescending(x => x.Price);
+                    break;
+            }
+
+            return query;
         }
     }
 }

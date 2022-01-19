@@ -13,7 +13,7 @@
         private readonly IProductService products;
         private readonly IMapper mapper;
 
-        public ProductsController(IProductService products,IMapper mapper)
+        public ProductsController(IProductService products, IMapper mapper)
         {
             this.products = products;
             this.mapper = mapper;
@@ -21,13 +21,16 @@
 
         public async Task<IActionResult> All(AllProductsQueryInputModel inputModel)
         {
-            inputModel.Filter ??= new ProductsControllerQueryFilter();
-
             var queryFilter = mapper.Map<ProductsServiceQueryFilter>(inputModel.Filter);
 
             await inputModel.Filter.CreateOptionsAsync(products);
 
-            inputModel.Products = await products.AllAsync<AllProductViewModel>(queryFilter);
+            inputModel.Products = await products.AllAsync<AllProductViewModel>(
+                queryFilter,
+                inputModel.ItemsPerPage,
+                inputModel.CurrentPage);
+
+            inputModel.TotalItemCount = inputModel.Products.Count();
 
             return View(inputModel);
         }

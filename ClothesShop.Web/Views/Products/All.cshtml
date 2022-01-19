@@ -17,7 +17,6 @@
 
         <div id="bottom-navbar" class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
             <form method="get" class="d-sm-inline-flex justify-content-center">
-
                 <a asp-action="All" type="submit" class="btn-sm btn-danger m-1 text-decoration-none">Clear filter</a>
 
                 <select asp-for="Filter.PriceOrder" asp-items="@Html.GetEnumSelectList<PriceOrder>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
@@ -42,3 +41,18 @@
 </nav>
 
 <partial name="_AllProductsPartial" model="@Model.Products"></partial>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a asp-controller="Products" asp-action="All" asp-route-currentPage=11 class="page-link" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+

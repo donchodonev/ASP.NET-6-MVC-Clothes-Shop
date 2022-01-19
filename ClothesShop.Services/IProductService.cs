@@ -5,7 +5,9 @@
 
     public interface IProductService
     {
-        public Task<IEnumerable<TModel>> AllAsync<TModel>(ProductsServiceQueryFilter filter) where TModel : class;
+        public Task<IEnumerable<TModel>> AllAsync<TModel>(bool withDeleted = false) where TModel : class;
+
+        public Task<IEnumerable<TModel>> AllAsync<TModel>(ProductsServiceQueryFilter filter,int itemsPerPage,int currentPage) where TModel : class;
 
         public Task<int> AddAsync(ProductAddServiceModel model);
 
