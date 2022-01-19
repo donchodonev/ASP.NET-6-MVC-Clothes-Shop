@@ -51,17 +51,27 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : string.Empty)">
-            <a asp-controller="Products" 
-            asp-action="All"
-            asp-route-currentPage="@(Model.CurrentPage - 1)"
-            class="page-link" tabindex="-1">Previous</a>
+            <a asp-controller="Products"
+               asp-action="All"
+               asp-route-currentPage="@(Model.CurrentPage - 1)"
+               asp-route-priceOrder=@Model.PriceOrder
+               asp-route-genderOptions=@Model.GenderOptions
+               asp-route-ageOptions=@Model.AgeOptions
+               asp-route-ratingOptions=@Model.RatingOptions
+               asp-route-categoryId=@Model.CategoryId
+               class="page-link" tabindex="-1">Previous</a>
         </li>
 
         <li class="page-item @(isLastPage || !isProductListEmpty ? "disabled" : string.Empty)">
-            <a a asp-controller="Products" 
-            asp-action="All"
-            asp-route-currentPage="@(Model.CurrentPage + 1)"
-            class="page-link">Next</a>
+            <a a asp-controller="Products"
+               asp-action="All"
+               asp-route-currentPage="@(Model.CurrentPage + 1)"
+               asp-route-priceOrder=@Model.PriceOrder
+               asp-route-genderOptions=@Model.GenderOptions
+               asp-route-ageOptions=@Model.AgeOptions
+               asp-route-ratingOptions=@Model.RatingOptions
+               asp-route-categoryId=@Model.CategoryId
+               class="page-link">Next</a>
         </li>
     </ul>
 </nav>
