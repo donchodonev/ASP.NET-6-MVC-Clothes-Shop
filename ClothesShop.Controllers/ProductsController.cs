@@ -14,11 +14,14 @@
             this.products = products;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(AllProductsQueryInputModel inputModel)
         {
-            var model = await products.AllAsync<AllProductViewModel>();
+            inputModel.Filter ??= new ProductsQueryFilter();
+            await inputModel.Filter.CreateOptionsAsync(products);
 
-            return View(model);
+            inputModel.Products = await products.AllAsync<AllProductViewModel>();
+
+            return View(inputModel);
         }
 
         public async Task<IActionResult> Details()

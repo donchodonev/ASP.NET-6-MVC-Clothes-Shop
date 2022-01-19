@@ -36,6 +36,7 @@
                     new Size() {Value = "SizeXL",Count = src.SizeXL},
                     new Size() {Value = "SizeXXL",Count = src.SizeXXL}
                 }));
+
             CreateMap<Product, AllProductViewModel>();
         }
     }

@@ -2,6 +2,7 @@
 {
     public enum RatingValue
     {
+        Rating = 0,
         Negative = 1,
         MostlyNegative = 2,
         Neutral = 3,
