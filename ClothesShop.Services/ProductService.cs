@@ -5,6 +5,7 @@
 
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
+    using ClothesShop.Data.Enums;
     using ClothesShop.Services.Models;
 
     using Microsoft.EntityFrameworkCore;
@@ -20,17 +21,31 @@
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<TModel>> AllAsync<TModel>(bool withDeleted = false) where TModel : class
+        public async Task<IEnumerable<TModel>> AllAsync<TModel>(ProductsServiceQueryFilter filter) where TModel : class
         {
             var query = db.Products.AsQueryable();
 
-            if (!withDeleted)
+            query = query.Where(x => x.IsDeleted == filter.WithDeleted);
+
+            query = filter.AgeGroupId == 0 ? query : query.Where(x => x.AgeGroupId == filter.AgeGroupId);
+            query = filter.CategoryId == 0 ? query : query.Where(x => x.CategoryId == filter.CategoryId);
+            query = filter.GenderId == 0 ? query : query.Where(x => x.GenderGroupId == filter.GenderId);
+            query = filter.RatingValue == 0 ? query : query.Where(x => x.Ratings.Average(y => (int)y.Value.Value) >= filter.RatingValue);
+
+            switch (filter.PriceOrder)
             {
-                query = query.Where(x => !x.IsDeleted);
+                case PriceOrder.Price:
+                    query = query.OrderByDescending(x => x.CreatedOn);
+                    break;
+                case PriceOrder.Ascending:
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                case PriceOrder.Descending:
+                    query = query.OrderByDescending(x => x.Price);
+                    break;
             }
 
             return await query
-                .OrderByDescending(x => x.CreatedOn)
                 .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
                 .ToListAsync();
         }

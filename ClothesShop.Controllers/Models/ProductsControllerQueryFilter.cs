@@ -5,7 +5,7 @@
 
     using System.ComponentModel.DataAnnotations;
 
-    public class ProductsQueryFilter
+    public class ProductsControllerQueryFilter
     {
         public PriceOrder PriceOrder { get; set; }
 
@@ -18,11 +18,13 @@
 
         public IEnumerable<CategorySelectListItem> CategoryOptions { get; set; }
 
-        public int CategoryId{ get; set; }
+        public int CategoryId { get; set; }
 
         public async Task CreateOptionsAsync(IProductService products)
         {
             CategoryOptions = await products.GetCategoriesAsync<CategorySelectListItem>();
         }
+
+        public bool WithDeleted { get; set; }
     }
 }

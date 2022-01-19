@@ -38,6 +38,12 @@
                 }));
 
             CreateMap<Product, AllProductViewModel>();
+
+            CreateMap<ProductsControllerQueryFilter, ProductsServiceQueryFilter>()
+                .ForMember(d => d.GenderId,cfg => cfg.MapFrom(src => (int)src.GenderOptions))
+                .ForMember(d => d.AgeGroupId,cfg => cfg.MapFrom(src => (int)src.AgeOptions))
+                .ForMember(d => d.RatingValue,cfg => cfg.MapFrom(src => (int)src.RatingOptions));
+
         }
     }
 }

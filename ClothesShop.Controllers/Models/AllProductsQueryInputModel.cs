@@ -4,6 +4,6 @@
     {
         public IEnumerable<AllProductViewModel> Products { get; set; }
 
-        public ProductsQueryFilter Filter { get; set; }
+        public ProductsControllerQueryFilter Filter { get; set; }
     }
 }
