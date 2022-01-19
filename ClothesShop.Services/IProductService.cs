@@ -7,7 +7,7 @@
     {
         public Task<IEnumerable<TModel>> AllAsync<TModel>(bool withDeleted = false) where TModel : class;
 
-        public Task<IEnumerable<TModel>> AllAsync<TModel>(ProductsServiceQueryFilter filter,int itemsPerPage,int currentPage) where TModel : class;
+        public Task<IEnumerable<TModel>> AllAsyncPaginated<TModel>(ProductsServiceQueryFilter filter,int itemsPerPage,int currentPage) where TModel : class;
 
         public Task<int> AddAsync(ProductAddServiceModel model);
 
@@ -18,5 +18,7 @@
         public Task<IEnumerable<Size>> GetSizesAsync();
 
         public Task<IEnumerable<TModel>> GetSizesAsync<TModel>() where TModel : class;
+
+        public Task<int> CountFilteredAsync(ProductsServiceQueryFilter filter);
     }
 }

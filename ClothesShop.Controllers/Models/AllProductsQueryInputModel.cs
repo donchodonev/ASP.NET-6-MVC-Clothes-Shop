@@ -2,6 +2,7 @@
 {
     using ClothesShop.Data.Enums;
     using ClothesShop.Services;
+    using ClothesShop.Services.Models;
 
     public class AllProductsQueryInputModel
     {
@@ -10,7 +11,7 @@
         public AllProductsQueryInputModel()
         {
             CurrentPage = 1;
-            ItemsPerPage = 12;
+            ItemsPerPage = 3;
         }
         public IEnumerable<AllProductViewModel> Products { get; set; }
 
@@ -46,7 +47,7 @@
 
         public int ItemsPerPage { get; }
 
-        public int TotalItemCount { get; set; }
+        public int TotalProductCount { get; set; }
 
         public async Task CreateOptionsAsync(IProductService products)
         {
@@ -64,6 +65,11 @@
                 CategoryOptions = this.CategoryOptions,
                 CategoryId = this.CategoryId
             };
+        }
+
+        public async Task GetTotalProductCountAsync(IProductService products,ProductsServiceQueryFilter filter)
+        {
+            TotalProductCount = await products.CountFilteredAsync(filter);
         }
     }
 }

@@ -30,7 +30,18 @@
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<TModel>> AllAsync<TModel>(
+        public async Task<int> CountFilteredAsync(ProductsServiceQueryFilter filter)
+        {
+            var query = db.Products.AsQueryable();
+
+            query = FilterResults(query, filter);
+
+            query = SortResults(query, filter.PriceOrder);
+
+            return await query.CountAsync();
+        }
+
+        public async Task<IEnumerable<TModel>> AllAsyncPaginated<TModel>(
             ProductsServiceQueryFilter filter,
             int itemsPerPage,
             int currentPage) where TModel : class

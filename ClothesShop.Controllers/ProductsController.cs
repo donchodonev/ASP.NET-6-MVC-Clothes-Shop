@@ -27,15 +27,12 @@
 
             await inputModel.CreateOptionsAsync(products);
 
-            inputModel.Products = await products
-                .AllAsync<AllProductViewModel>(
+            await inputModel.GetTotalProductCountAsync(products, queryFilter);
+
+            inputModel.Products = await products.AllAsyncPaginated<AllProductViewModel>(
                 queryFilter,
                 inputModel.ItemsPerPage,
                 inputModel.CurrentPage);
-
-            inputModel.TotalItemCount = inputModel
-                .Products
-                .Count();
 
             return View(inputModel);
         }
