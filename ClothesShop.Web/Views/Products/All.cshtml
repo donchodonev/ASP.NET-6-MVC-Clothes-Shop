@@ -19,19 +19,19 @@
             <form method="get" class="d-sm-inline-flex justify-content-center">
                 <a asp-action="All" type="submit" class="btn-sm btn-danger m-1 text-decoration-none">Clear filter</a>
 
-                <select asp-for="Filter.PriceOrder" asp-items="@Html.GetEnumSelectList<PriceOrder>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
+                <select asp-for="PriceOrder" asp-items="@Html.GetEnumSelectList<PriceOrder>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
                 </select>
 
-                <select asp-for="Filter.GenderOptions" asp-items="@Html.GetEnumSelectList<Gender>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
+                <select asp-for="GenderOptions" asp-items="@Html.GetEnumSelectList<Gender>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
                 </select>
 
-                <select asp-for="Filter.CategoryId" asp-items="@Model.Filter.CategoryOptions" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
+                <select asp-for="CategoryId" asp-items="@Model.CategoryOptions" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
                 </select>
 
-                <select asp-for="Filter.AgeOptions" asp-items="@Html.GetEnumSelectList<AgeGroup>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
+                <select asp-for="AgeOptions" asp-items="@Html.GetEnumSelectList<AgeGroup>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
                 </select>
 
-                <select asp-for="Filter.RatingOptions" asp-items="@Html.GetEnumSelectList<RatingValue>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
+                <select asp-for="RatingOptions" asp-items="@Html.GetEnumSelectList<RatingValue>()" class="m-1 form-select-sm bg-dark text-white rounded p-1" aria-label="Default select example">
                 </select>
                 <button type="submit" class="btn-sm btn-primary m-1">Apply filter</button>
             </form>

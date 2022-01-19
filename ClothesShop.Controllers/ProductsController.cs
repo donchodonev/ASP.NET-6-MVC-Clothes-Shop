@@ -21,16 +21,21 @@
 
         public async Task<IActionResult> All(AllProductsQueryInputModel inputModel)
         {
-            var queryFilter = mapper.Map<ProductsServiceQueryFilter>(inputModel.Filter);
+            var sourceFilter = inputModel.ExtractFilter();
 
-            await inputModel.Filter.CreateOptionsAsync(products);
+            var queryFilter = mapper.Map<ProductsServiceQueryFilter>(sourceFilter);
 
-            inputModel.Products = await products.AllAsync<AllProductViewModel>(
+            await inputModel.CreateOptionsAsync(products);
+
+            inputModel.Products = await products
+                .AllAsync<AllProductViewModel>(
                 queryFilter,
                 inputModel.ItemsPerPage,
                 inputModel.CurrentPage);
 
-            inputModel.TotalItemCount = inputModel.Products.Count();
+            inputModel.TotalItemCount = inputModel
+                .Products
+                .Count();
 
             return View(inputModel);
         }
