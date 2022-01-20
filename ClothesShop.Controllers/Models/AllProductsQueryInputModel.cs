@@ -11,7 +11,7 @@
         public AllProductsQueryInputModel()
         {
             CurrentPage = 1;
-            ItemsPerPage = 3;
+            ItemsPerPage = 12;
         }
         public IEnumerable<AllProductViewModel> Products { get; set; }
 
