@@ -44,7 +44,7 @@ body {
 .dot {
     height: 28px;
     width: 28px;
-    background-color: lightcoral;
+    background-color: lightgreen;
     border-radius: 50%;
     display: inline-block;
 }

@@ -9,7 +9,6 @@
     using static Infrastructure.ControllerBaseExtensions;
 
     [ApiController]
-    [Route("api/cart")]
     public class CartApiController : ControllerBase
     {
         private readonly IMapper mapper;
@@ -19,6 +18,7 @@
             this.mapper = mapper;
         }
 
+        [Route("api/cart")]
         [HttpGet]
         public ActionResult<Dictionary<int, ProductCartModel>> Get()
         {
@@ -32,20 +32,39 @@
             return this.GetCart();
         }
 
+        [Route("api/cart/count")]
+        [HttpGet]
+        public ActionResult<Dictionary<int, ProductCartModel>> GetCount()
+        {
+            if (!this.CartExists())
+            {
+                this.CreateCart();
+
+                return this.Redirect("/");
+            }
+
+            var sumOfCurrentCartProductsCount = this.GetCart().Values.Sum(x => x.Count);
+
+            return this.Ok(sumOfCurrentCartProductsCount);
+        }
+
+        [Route("api/cart")]
         [HttpPost]
         public ActionResult Post([FromBody]AllProductViewModel product)
         {
             if (!this.CartExists())
             {
                 this.CreateCart();
-                return this.Ok();
+                return this.RedirectToAction("/");
             }
 
             var cartProduct = mapper.Map<ProductCartModel>(product);
 
             this.AddToCart(cartProduct);
 
-            return this.Ok(product);
+            var sumOfCurrentCartProductsCount = this.GetCart().Values.Sum(x => x.Count);
+
+            return this.Ok(sumOfCurrentCartProductsCount + 1);
         }
     }
 }
