@@ -8,6 +8,8 @@
 
     using Microsoft.AspNetCore.Mvc;
 
+    using static Infrastructure.ControllerExtensions;
+
     public class ProductsController : Controller
     {
         private readonly IProductService products;
@@ -26,6 +28,8 @@
             var queryFilter = mapper.Map<ProductsServiceQueryFilter>(sourceFilter);
 
             await inputModel.CreateOptionsAsync(products);
+
+            this.AddToCart(new AllProductViewModel() { Id = 1, ImageURL = "https://someurl.com", Price = 1000 });
 
             await inputModel.GetTotalProductCountAsync(products, queryFilter);
 
