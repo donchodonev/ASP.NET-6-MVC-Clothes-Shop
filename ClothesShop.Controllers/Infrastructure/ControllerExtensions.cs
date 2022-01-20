@@ -1,5 +1,7 @@
 ﻿namespace ClothesShop.Controllers.Infrastructure
 {
+    using ClothesShop.Controllers.Models;
+
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +9,9 @@
 
     public static class ControllerExtensions
     {
-        public static void AddToCart(this Controller controller,object value)
+        private const string CookieKey = "ClothesShopShoppingCart";
+
+        public static void AddToCart(this Controller controller, object value)
         {
             var cookieOptions = new CookieOptions
             {
@@ -25,11 +29,14 @@
                 SameSite = SameSiteMode.Lax
             };
 
-            var cookieKey = "ClothesShopShoppingCart";
-
             var objectJson = JsonSerializer.Serialize(value);
 
-            controller.Response.Cookies.Append(cookieKey, objectJson, cookieOptions);
+            controller.Response.Cookies.Append(CookieKey, objectJson, cookieOptions);
+        }
+
+        public static AllProductViewModel GetCart(this Controller controller)
+        {
+            return JsonSerializer.Deserialize<AllProductViewModel>(controller.Request.Cookies[CookieKey]);
         }
     }
 }
