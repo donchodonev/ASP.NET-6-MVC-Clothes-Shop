@@ -15,28 +15,21 @@
         {
             var cookieOptions = new CookieOptions
             {
-                // Set the secure flag, which Chrome's changes will require for SameSite none.
-                // Note this will also require you to be running on HTTPS.
                 Secure = true,
-
-                // Set the cookie to HTTP only which is good practice unless you really do need
-                // to access it client side in scripts.
                 HttpOnly = true,
-
-                // Add the SameSite attribute, this will emit the attribute with a value of none.
-                // To not emit the attribute at all set
-                // SameSite = (SameSiteMode)(-1)
                 SameSite = SameSiteMode.Lax
             };
 
-            var objectJson = JsonSerializer.Serialize(value);
+            var product = (ProductCartModel)value;
+
+            var objectJson = JsonSerializer.Serialize(new Dictionary<int, ProductCartModel>() { { product.Id, product } });
 
             controller.Response.Cookies.Append(CookieKey, objectJson, cookieOptions);
         }
 
-        public static AllProductViewModel GetCart(this Controller controller)
+        public static Dictionary<int, ProductCartModel> GetCart(this Controller controller)
         {
-            return JsonSerializer.Deserialize<AllProductViewModel>(controller.Request.Cookies[CookieKey]);
+            return JsonSerializer.Deserialize<Dictionary<int, ProductCartModel>>(controller.Request.Cookies[CookieKey]);
         }
     }
 }

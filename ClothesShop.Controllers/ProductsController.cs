@@ -29,6 +29,8 @@
 
             await inputModel.CreateOptionsAsync(products);
 
+            var model = this.GetCart();
+
             await inputModel.GetTotalProductCountAsync(products, queryFilter);
 
             inputModel.Products = await products.AllAsyncPaginated<AllProductViewModel>(
