@@ -7,7 +7,7 @@
 
     using System.Text.Json;
 
-    public static class ControllerExtensions
+    public static class ControllerBaseExtensions
     {
         private const string CookieKey = "ClothesShopShoppingCart";
 
@@ -18,19 +18,19 @@
             SameSite = SameSiteMode.Lax
         };
 
-        public static void CreateCart(this Controller controller)
+        public static void CreateCart(this ControllerBase controller)
         {
             var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<int, ProductCartModel>());
 
             controller.Response.Cookies.Append(CookieKey, emptyJsonObject, CookieOptions);
         }
 
-        public static Dictionary<int, ProductCartModel> GetCart(this Controller controller)
+        public static Dictionary<int, ProductCartModel> GetCart(this ControllerBase controller)
         {
             return JsonSerializer.Deserialize<Dictionary<int, ProductCartModel>>(controller.Request.Cookies[CookieKey]);
         }
 
-        public static void AddToCart(this Controller controller, ProductCartModel product)
+        public static void AddToCart(this ControllerBase controller, ProductCartModel product)
         {
             var cart = GetCart(controller);
 
@@ -47,7 +47,7 @@
             controller.Response.Cookies.Append(CookieKey, JsonSerializer.Serialize(cart), CookieOptions);
         }
 
-        public static bool CartExists(this Controller controller)
+        public static bool CartExists(this ControllerBase controller)
         {
             return controller.Request.Cookies.ContainsKey(CookieKey);
         }

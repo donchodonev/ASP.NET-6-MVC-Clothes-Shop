@@ -7,9 +7,6 @@
     using ClothesShop.Services.Models;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using static Infrastructure.ControllerExtensions;
-
     public class ProductsController : Controller
     {
         private readonly IProductService products;
