@@ -44,6 +44,7 @@
                 .ForMember(d => d.AgeGroupId,cfg => cfg.MapFrom(src => (int)src.AgeOptions))
                 .ForMember(d => d.RatingValue,cfg => cfg.MapFrom(src => (int)src.RatingOptions));
 
+            CreateMap<AllProductViewModel, ProductCartModel>();
         }
     }
 }
