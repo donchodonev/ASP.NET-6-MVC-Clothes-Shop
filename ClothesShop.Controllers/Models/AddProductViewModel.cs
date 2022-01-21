@@ -52,31 +52,31 @@
         public string ImageURL { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
-        public int SizeXS { get; set; }
+        public int XS { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
-        public int SizeS { get; set; }
+        public int S { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
-        public int SizeM { get; set; }
+        public int M { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
-        public int SizeL { get; set; }
+        public int L { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
-        public int SizeXL { get; set; }
+        public int XL { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = NegativeProductSizeQuantity)]
-        public int SizeXXL { get; set; }
+        public int XXL { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = InvalidProductSizeCount)]
         public int IsSizeCountValid =>
-            SizeXS +
-            SizeS +
-            SizeM +
-            SizeL +
-            SizeXL +
-            SizeXXL;
+            XS +
+            S +
+            M +
+            L +
+            XL +
+            XXL;
 
         public async Task<AddProductViewModel> CreateOptionsAsync(IProductService products, IGenderService genders, IAgeGroupService ageGroups)
         {

@@ -29,12 +29,12 @@
             CreateMap<AddProductViewModel, ProductAddServiceModel>()
                 .ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => new HashSet<Size>()
                 {
-                    new Size() {Value = "SizeXS",Count = src.SizeXS},
-                    new Size() {Value = "SizeS",Count = src.SizeS},
-                    new Size() {Value = "SizeM",Count = src.SizeM},
-                    new Size() {Value = "SizeL",Count = src.SizeL},
-                    new Size() {Value = "SizeXL",Count = src.SizeXL},
-                    new Size() {Value = "SizeXXL",Count = src.SizeXXL}
+                    new Size() {Value = "XS",Count = src.XS},
+                    new Size() {Value = "S",Count = src.S},
+                    new Size() {Value = "M",Count = src.M},
+                    new Size() {Value = "L",Count = src.L},
+                    new Size() {Value = "XL",Count = src.XL},
+                    new Size() {Value = "XXL",Count = src.XXL}
                 }));
 
             CreateMap<Product, AllProductViewModel>();
