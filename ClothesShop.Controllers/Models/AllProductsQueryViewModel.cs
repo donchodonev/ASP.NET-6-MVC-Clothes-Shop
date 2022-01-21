@@ -4,11 +4,11 @@
     using ClothesShop.Services;
     using ClothesShop.Services.Models;
 
-    public class AllProductsQueryInputModel
+    public class AllProductsQueryViewModel
     {
         private int currentPage;
 
-        public AllProductsQueryInputModel()
+        public AllProductsQueryViewModel()
         {
             CurrentPage = 1;
             ItemsPerPage = 12;

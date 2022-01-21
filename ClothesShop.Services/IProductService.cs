@@ -5,6 +5,8 @@
 
     public interface IProductService
     {
+        public Task<TModel> GetByIdAsync<TModel>(int id) where TModel : class;
+
         public Task<IEnumerable<TModel>> AllAsync<TModel>(bool withDeleted = false) where TModel : class;
 
         public Task<IEnumerable<TModel>> AllAsyncPaginated<TModel>(ProductsServiceQueryFilter filter,int itemsPerPage,int currentPage) where TModel : class;

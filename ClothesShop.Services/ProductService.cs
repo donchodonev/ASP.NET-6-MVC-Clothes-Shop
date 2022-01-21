@@ -30,6 +30,15 @@
                 .ToListAsync();
         }
 
+        public async Task<TModel> GetByIdAsync<TModel>(int id) where TModel : class
+        {
+            return await db
+                .Products
+                .Where(x => x.Id == id)
+                .ProjectTo<TModel>(this.mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<int> CountFilteredAsync(ProductsServiceQueryFilter filter)
         {
             var query = db.Products.AsQueryable();

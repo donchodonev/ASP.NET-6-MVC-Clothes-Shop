@@ -18,7 +18,7 @@
             this.mapper = mapper;
         }
 
-        public async Task<IActionResult> All(AllProductsQueryInputModel inputModel)
+        public async Task<IActionResult> All(AllProductsQueryViewModel inputModel)
         {
             var sourceFilter = inputModel.ExtractFilter();
 
@@ -36,9 +36,11 @@
             return View(inputModel);
         }
 
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(int productId)
         {
-            return View();
+            var model = await products.GetByIdAsync<ProductDetailsViewModel>(productId);
+
+            return View(model);
         }
     }
 }

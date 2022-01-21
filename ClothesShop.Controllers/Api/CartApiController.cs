@@ -50,7 +50,7 @@
 
         [Route("api/cart")]
         [HttpPost]
-        public ActionResult Post([FromBody]AllProductViewModel product)
+        public ActionResult Post([FromBody] ProductCartModel product)
         {
             if (!this.CartExists())
             {
@@ -58,9 +58,7 @@
                 return this.RedirectToAction("/");
             }
 
-            var cartProduct = mapper.Map<ProductCartModel>(product);
-
-            this.AddToCart(cartProduct);
+            this.AddToCart(product);
 
             var sumOfCurrentCartProductsCount = this.GetCart().Values.Sum(x => x.Count);
 

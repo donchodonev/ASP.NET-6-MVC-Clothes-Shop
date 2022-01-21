@@ -1,32 +1,46 @@
-﻿<div class="row text-center">
+﻿@model ProductDetailsViewModel;
+
+<div class="row text-center">
     <div class="col-md-6 col-sm-12 mt-3">
-        <img src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/2112ae64-2432-40f8-9d3c-68c3256b04fe/club-skirt-regular-tennis-skirt-F9bHhm.png" class="card-img-top img-lg shadow">
+        <img src=@Model.ImageURL class="card-img-top img-lg shadow">
     </div>
 
     <div class="col-md-6 col-sm-12 mt-3">
-        <h3>{Super tiny skirt} by <i>{Ralph Lauren}</i></h3>
-        <p class="mt-5 mb-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        <h3>@Model.Name</h3>
+        <p class="mt-5 mb-5">@Model.Description</p>
+
+        <div class="row input-group mt-5 mb-5 text-center">
+            <h4 class="col-6">Brand</h4>
+            <p class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">@Model.Manufacturer</p>
+        </div>
 
         <div class="row input-group mt-5 mb-5 text-center">
             <h4 class="col-6">Choose a size</h4>
-            <select class="col-6 text-center form-control border-2 rounded" style="border-color:green;">
-                <option selected value="">S</option>
-                <option value="">M</option>
-                <option value="">L</option>
+            <select asp-for=SizeId asp-items=@Model.Sizes class="col-6 text-center form-control border-2 rounded" style="border-color:green;">
             </select>
         </div>
 
         <div class="row input-group mt-5 mb-5 text-center">
             <h4 class="col-6">Quantity</h4>
-            <input type="number" class="col-6 text-center form-control border-2 rounded" style="border-color:green;" placeholder=0 />
+            <input asp-for=Quantity type="number" class="col-6 text-center form-control border-2 rounded" style="border-color:green;" placeholder=0 />
         </div>
 
-        <div class="m-2">
+        <div class="row input-group mt-5 mb-5 text-center">
+            <h4 class="col-6">Price per unit</h4>
+            <p class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">$@Model.Price.ToString("F2")</p>
+        </div>
+
+        <div class="row input-group mt-5 mb-5 text-center">
+            <h4 class="col-6">Total</h4>
+            <p class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">$0.00</p>
+        </div>
+
+        <div>
             <button type="submit" class="shadow btn-lg btn-primary">Add to cart</button>
         </div>
 
-        <div class="mt-5 p-4 alert alert-success text-center">
-                This is a success alert—check it out!
+        <div class="mt-3 p-4 alert-sm alert-success text-center">
+            This is a success alert—check it out!
         </div>
     </div>
 </div>

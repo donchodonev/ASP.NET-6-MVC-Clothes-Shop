@@ -1,19 +1,18 @@
-﻿@using System.Text.Json
-@{
+﻿@{
     ViewData["Title"] = "Browse products";
 }
 
 @model IEnumerable<AllProductViewModel>
 
 <div class="row justify-content-center mt-2">
-    @foreach (var product in @Model)
+    @foreach (var product in Model)
     {
         <div class="card col-xl-2 col-lg-3 col-md-4 col-sm-12 m-4 border-0 shadow rounded" style="width: 20rem;">
             <img src=@product.ImageURL class="card-img-top img">
             <div class="card-body">
                 <div class="row">
                     <h4 class="col-6 card-title">$@product.Price.ToString("F2")</h4>
-                    <button onClick="addToCart(@JsonSerializer.Serialize(@product))" type="submit" asp class="col-6 btn btn-primary rounded-pill">Add to cart</button>
+                    <a asp-action="Details" asp-route-productId="@product.Id"  class="col-6 btn btn-primary rounded-pill">Details</a>
                 </div>
             </div>
         </div>

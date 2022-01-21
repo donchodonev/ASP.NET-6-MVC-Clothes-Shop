@@ -45,6 +45,12 @@
                 .ForMember(d => d.RatingValue,cfg => cfg.MapFrom(src => (int)src.RatingOptions));
 
             CreateMap<AllProductViewModel, ProductCartModel>();
+
+            CreateMap<Size, SizeWithQuantitySelectListItem>()
+                .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Value));
+
+            CreateMap<Product, ProductDetailsViewModel>()
+                .ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => src.Sizes));
         }
     }
 }
