@@ -13,26 +13,26 @@
             <h4 class="col-6">Brand</h4>
             <p class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">@Model.Manufacturer</p>
         </div>
+        <form>
+            <div class="row input-group mt-5 mb-5 text-center">
+                <h4 class="col-6">Choose a size</h4>
+                <select asp-for=SizeId asp-items=@Model.Sizes class="col-6 text-center form-control border-2 rounded" style="border-color:green;">
+                </select>
+            </div>
 
-        <div class="row input-group mt-5 mb-5 text-center">
-            <h4 class="col-6">Choose a size</h4>
-            <select asp-for=SizeId asp-items=@Model.Sizes class="col-6 text-center form-control border-2 rounded" style="border-color:green;">
-            </select>
-        </div>
-
-        <div class="row input-group mt-5 mb-5 text-center">
-            <h4 class="col-6">Quantity</h4>
-            <input id="productQuantity" asp-for=Quantity type="number" class="col-6 text-center form-control border-2 rounded" style="border-color:green;" placeholder=0 />
-        </div>
-
-        <div class="row input-group mt-5 mb-5 text-center">
-            <h4 class="col-6">Price per unit</h4>
-            <p id='pricePerOneUnit' class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">$@Model.Price.ToString("F2")</p>
-        </div>
-
+            <div class="row input-group mt-5 mb-5 text-center">
+                <h4 class="col-6">Quantity</h4>
+                <input id="productQuantity" asp-for=QuantityValue type="number" value=@Model.QuantityValue class="col-6 text-center form-control border-2 rounded" style="border-color:green;" placeholder=0 />
+            </div>
+            <span asp-validation-for=QuantityValue></span>
+            <div class="row input-group mt-5 mb-5 text-center">
+                <h4 class="col-6">Price per unit</h4>
+                <p id='pricePerOneUnit' class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">$@Model.Price.ToString("F2")</p>
+            </div>
+        </form>
         <div class="row input-group mt-5 mb-5 text-center">
             <h4 class="col-6">Total</h4>
-            <p id="totalPrice" class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">$0.00</p>
+            <p id="totalPrice" class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">$@Model.Total.ToString("F2")</p>
         </div>
         <div class="row"></div>
         <div>
@@ -46,15 +46,18 @@
 </div>
 
 @section Scripts{
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/custom-attribute-client-side-validation.js"></script>
 <script type="text/javascript">
 
 document.getElementById('productQuantity').addEventListener('input', (event) => {
-    let price = document.getElementById('pricePerOneUnit').textContent.slice(1);
     let quantity = document.getElementById('productQuantity').value;
+    if(isInt(quantity) && quantity >= 0){
+                let price = document.getElementById('pricePerOneUnit').textContent.slice(1);
     let totalPrice = price * quantity;
     document.getElementById('totalPrice').textContent = `$${totalPrice.toFixed(2)}`;
+    }
 });
 
 </script>
 }
-
