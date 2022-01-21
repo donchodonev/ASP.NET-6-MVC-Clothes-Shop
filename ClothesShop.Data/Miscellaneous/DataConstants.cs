@@ -8,9 +8,9 @@
 
             public const int ProductNameMinLength = 10;
 
-            public const double ProductMinPrice = 0.0;
+            public const string ProductMinPrice = "0.01";
 
-            public const string DecimalMaxValue = "79228162514264337593543950335";
+            public const string ProductMaxPrice = "79228162514264337593543950335";
 
             public const string Zero = "0";
 

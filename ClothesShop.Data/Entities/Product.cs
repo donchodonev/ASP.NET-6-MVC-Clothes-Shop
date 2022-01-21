@@ -26,7 +26,7 @@
         [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
 
-        [Price(Zero, DecimalMaxValue)]
+        [Price(ProductMinPrice, ProductMaxPrice)]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
 

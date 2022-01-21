@@ -16,7 +16,7 @@
         public string Name { get; set; }
 
         [Required]
-        [Price(ProductConstants.Zero, ProductConstants.DecimalMaxValue)]
+        [Price(ProductConstants.ProductMinPrice, ProductConstants.ProductMaxPrice)]
         public decimal Price { get; set; }
 
         [Required]

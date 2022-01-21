@@ -34,9 +34,12 @@
             <h4 class="col-6">Total</h4>
             <p id="totalPrice" class="col-6 text-center form-control border-2 rounded text" style="border-color:lightblue;font-weight:bold">$@Model.Total.ToString("F2")</p>
         </div>
-        <div class="row"></div>
+
         <div>
-            <button type="submit" class="shadow btn-lg btn-primary">Add to cart</button>
+            <button onclick="addToCart(getProductData())"
+                    type="submit" class="shadow btn-lg btn-primary">
+                Add to cart
+            </button>
         </div>
 
         <div class="mt-3 p-4 alert-sm alert-success text-center">
@@ -48,16 +51,28 @@
 @section Scripts{
 <partial name="_ValidationScriptsPartial" />
 <script src="~/js/custom-attribute-client-side-validation.js"></script>
+
 <script type="text/javascript">
 
-document.getElementById('productQuantity').addEventListener('input', (event) => {
-    let quantity = document.getElementById('productQuantity').value;
-    if(isInt(quantity) && quantity >= 0){
-                let price = document.getElementById('pricePerOneUnit').textContent.slice(1);
-    let totalPrice = price * quantity;
-    document.getElementById('totalPrice').textContent = `$${totalPrice.toFixed(2)}`;
-    }
-});
+    function getProductData () {
+
+    let id = @Model.Id;
+    let imageUrl = `@Model.ImageURL.ToString()`
+    let price = document.getElementById('pricePerOneUnit').textContent.slice(1);
+    let count = document.getElementById('productQuantity').value;
+    let total = price * count;
+
+    return {id : id,imageUrl : imageUrl,price : price,count : count,total : total };
+}
+
+    document.getElementById('productQuantity').addEventListener('input', (event) => {
+        let quantity = document.getElementById('productQuantity').value;
+        if(isInt(quantity) && quantity >= 0){
+                    let price = document.getElementById('pricePerOneUnit').textContent.slice(1);
+        let totalPrice = price * quantity;
+        document.getElementById('totalPrice').textContent = `$${totalPrice.toFixed(2)}`;
+        }
+    });
 
 </script>
 }

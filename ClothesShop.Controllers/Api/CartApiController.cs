@@ -62,7 +62,7 @@
 
             var sumOfCurrentCartProductsCount = this.GetCart().Values.Sum(x => x.Count);
 
-            return this.Ok(sumOfCurrentCartProductsCount + 1);
+            return this.Ok(sumOfCurrentCartProductsCount + product.Count);
         }
     }
 }

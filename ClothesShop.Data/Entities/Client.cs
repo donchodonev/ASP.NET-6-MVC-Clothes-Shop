@@ -23,7 +23,7 @@
         }
 
 
-        [Price(Zero,DecimalMaxValue)]
+        [Price(ProductMinPrice, ProductMaxPrice)]
         [Column(TypeName = "decimal(18,4)")]
         public decimal MoneySpent { get; set; }
 

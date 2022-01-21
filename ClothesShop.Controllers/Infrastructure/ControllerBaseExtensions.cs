@@ -36,11 +36,11 @@
 
             if (cart.ContainsKey(product.Id))
             {
-                cart[product.Id].Count++;
+                cart[product.Id].Count+=product.Count;
+                cart[product.Id].Total += product.Total;
             }
             else
             {
-                product.Count = 1;
                 cart.Add(product.Id, product);
             }
 

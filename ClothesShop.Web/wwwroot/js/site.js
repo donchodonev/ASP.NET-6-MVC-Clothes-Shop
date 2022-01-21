@@ -47,3 +47,11 @@ function getCartCount() {
 function isInt(n) {
     return n % 1 === 0;
 }
+
+let millisecondsToWait = 200;
+
+setTimeout(function () {
+    getCartCount();
+}, millisecondsToWait);
+
+

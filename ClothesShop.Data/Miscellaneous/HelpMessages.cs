@@ -10,7 +10,7 @@
         }
         public class Error
         {
-            public const string InvalidPrice = $"Price must be greater than ${Zero} and under ${DecimalMaxValue}";
+            public const string InvalidPrice = $"Price must be greater than ${ProductMinPrice} and under ${ProductMaxPrice}";
 
             public const string NegativeProductSizeQuantity = "Quantity cannot be less than 0";
 

@@ -16,7 +16,7 @@
         [MinLength(ProductNameMinLength)]
         public string Name { get; set; }
 
-        [Price(Zero, DecimalMaxValue)]
+        [Price(ProductMinPrice, ProductMaxPrice)]
         public decimal Price { get; set; }
 
         [Range(MinQuantity, MaxQuantity)]
