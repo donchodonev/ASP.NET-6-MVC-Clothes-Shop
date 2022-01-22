@@ -50,7 +50,7 @@
                 .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Value));
 
             CreateMap<Product, ProductDetailsViewModel>()
-                .ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => src.Sizes));
+                .ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => src.Sizes.Where(x => x.Count > 0)));
         }
     }
 }
