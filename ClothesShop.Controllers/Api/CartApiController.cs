@@ -34,9 +34,7 @@
                 return this.Redirect("/");
             }
 
-            var sumOfCurrentCartProductsCount = this.GetCart().Values.Sum(x => x.Count);
-
-            return this.Ok(sumOfCurrentCartProductsCount);
+            return this.Ok(this.UniqueProductsCount());
         }
 
         [Route("api/cart")]
@@ -51,9 +49,14 @@
 
             this.AddToCart(product);
 
-            var sumOfCurrentCartProductsCount = this.GetCart().Values.Sum(x => x.Count);
+            var uniqueProducts = this.UniqueProductsCount();
 
-            return this.Ok(sumOfCurrentCartProductsCount + product.Count);
+            if (this.IsProductInCart(product.Id))
+            {
+                return this.Ok();
+            }
+
+            return this.Ok(uniqueProducts + 1);
         }
     }
 }

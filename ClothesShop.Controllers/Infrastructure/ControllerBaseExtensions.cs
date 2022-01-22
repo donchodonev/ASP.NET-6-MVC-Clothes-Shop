@@ -54,5 +54,15 @@
         {
             return controller.Request.Cookies.ContainsKey(CookieKey);
         }
+
+        public static int UniqueProductsCount(this ControllerBase controller)
+        {
+            return GetCart(controller).Values.Count();
+        }
+
+        public static bool IsProductInCart(this ControllerBase controller, int productId)
+        {
+            return GetCart(controller).Keys.Any(x => x == productId);
+        }
     }
 }
