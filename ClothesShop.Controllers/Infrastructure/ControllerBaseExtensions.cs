@@ -1,6 +1,7 @@
 ﻿namespace ClothesShop.Controllers.Infrastructure
 {
     using ClothesShop.Controllers.Models;
+    using ClothesShop.Data.Miscellaneous;
 
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,9 @@
         {
             Secure = true,
             HttpOnly = true,
-            SameSite = SameSiteMode.Lax
+            SameSite = SameSiteMode.Lax,
+            MaxAge = DateTimeProvider.CookieMaxAge,
+            IsEssential = true
         };
 
         public static void CreateCart(this ControllerBase controller)

@@ -1,7 +1,5 @@
 ﻿namespace ClothesShop.Controllers.Api
 {
-    using AutoMapper;
-
     using ClothesShop.Controllers.Models;
 
     using Microsoft.AspNetCore.Mvc;
@@ -11,13 +9,6 @@
     [ApiController]
     public class CartApiController : ControllerBase
     {
-        private readonly IMapper mapper;
-
-        public CartApiController(IMapper mapper)
-        {
-            this.mapper = mapper;
-        }
-
         [Route("api/cart")]
         [HttpGet]
         public ActionResult<Dictionary<int, ProductCartModel>> Get()
