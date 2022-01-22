@@ -47,7 +47,8 @@
             CreateMap<AllProductViewModel, ProductCartModel>();
 
             CreateMap<Size, SizeWithQuantitySelectListItem>()
-                .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Value));
+                .ForMember(d => d.Text, cfg => cfg.MapFrom(src => src.Value))
+                .ForMember(d => d.Value, cfg => cfg.MapFrom(src => src.Id));
 
             CreateMap<Product, ProductDetailsViewModel>()
                 .ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => src.Sizes.Where(x => x.Count > 0)));

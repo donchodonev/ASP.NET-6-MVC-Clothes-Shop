@@ -23,28 +23,30 @@
 
         public static void CreateCart(this ControllerBase controller)
         {
-            var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<int, ProductCartModel>());
+            var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartModel>());
 
             controller.Response.Cookies.Append(CookieKey, emptyJsonObject, CookieOptions);
         }
 
-        public static Dictionary<int, ProductCartModel> GetCart(this ControllerBase controller)
+        public static Dictionary<string, ProductCartModel> GetCart(this ControllerBase controller)
         {
-            return JsonSerializer.Deserialize<Dictionary<int, ProductCartModel>>(controller.Request.Cookies[CookieKey]);
+            return JsonSerializer.Deserialize<Dictionary<string, ProductCartModel>>(controller.Request.Cookies[CookieKey]);
         }
 
         public static void AddToCart(this ControllerBase controller, ProductCartModel product)
         {
             var cart = GetCart(controller);
 
-            if (cart.ContainsKey(product.Id))
+            var productKey = $"{product.ProductId}:{product.SizeId}";
+
+            if (cart.ContainsKey(productKey))
             {
-                cart[product.Id].Count+=product.Count;
-                cart[product.Id].Total += product.Total;
+                cart[productKey].Count+=product.Count;
+                cart[productKey].Total += product.Total;
             }
             else
             {
-                cart.Add(product.Id, product);
+                cart.Add(productKey, product);
             }
 
             controller.Response.Cookies.Append(CookieKey, JsonSerializer.Serialize(cart), CookieOptions);
@@ -60,9 +62,9 @@
             return GetCart(controller).Values.Count();
         }
 
-        public static bool IsProductInCart(this ControllerBase controller, int productId)
+        public static bool IsProductInCart(this ControllerBase controller, string productKey)
         {
-            return GetCart(controller).Keys.Any(x => x == productId);
+            return GetCart(controller).Keys.Any(x => x == productKey);
         }
     }
 }

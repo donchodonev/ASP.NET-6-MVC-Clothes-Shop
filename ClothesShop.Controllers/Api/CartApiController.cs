@@ -11,7 +11,7 @@
     {
         [Route("api/cart")]
         [HttpGet]
-        public ActionResult<Dictionary<int, ProductCartModel>> Get()
+        public ActionResult<Dictionary<string, ProductCartModel>> Get()
         {
             if (!this.CartExists())
             {
@@ -25,7 +25,7 @@
 
         [Route("api/cart/count")]
         [HttpGet]
-        public ActionResult<Dictionary<int, ProductCartModel>> GetCount()
+        public ActionResult<int> GetCount()
         {
             if (!this.CartExists())
             {
@@ -51,7 +51,9 @@
 
             var uniqueProducts = this.UniqueProductsCount();
 
-            if (this.IsProductInCart(product.Id))
+            var productKey = $"{product.ProductId}:{product.SizeId}";
+
+            if (this.IsProductInCart(productKey))
             {
                 return this.Ok();
             }

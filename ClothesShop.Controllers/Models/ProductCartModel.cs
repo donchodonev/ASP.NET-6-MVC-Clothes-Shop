@@ -9,7 +9,7 @@
     public class ProductCartModel
     {
         [Required]
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         [Url]
         [Required]
@@ -20,6 +20,8 @@
 
         [Range(1,int.MaxValue)]
         public int Count { get; set; }
+
+        public int SizeId { get; set; }
 
         public decimal Total { get; set; }
     }

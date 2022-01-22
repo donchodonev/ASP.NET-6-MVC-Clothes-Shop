@@ -16,7 +16,7 @@
         <form>
             <div class="row input-group mt-5 mb-5 text-center">
                 <h4 class="col-6">Choose a size</h4>
-                <select asp-for=SizeId asp-items=@Model.Sizes class="col-6 text-center form-control border-2 rounded" style="border-color:green;">
+                <select id="sizeId" asp-for=SizeId asp-items=@Model.Sizes class="col-6 text-center form-control border-2 rounded" style="border-color:green;">
                 </select>
             </div>
 
@@ -55,14 +55,17 @@
 <script type="text/javascript">
 
     function getProductData () {
+    let productId = @Model.Id;
+    let imageUrl = `@Model.ImageURL.ToString()`;
 
-    let id = @Model.Id;
-    let imageUrl = `@Model.ImageURL.ToString()`
+    let sizeIdElement = document.getElementById("sizeId");
+    let sizeId = Number(sizeIdElement.options[sizeIdElement.selectedIndex].value);
+
     let price = document.getElementById('pricePerOneUnit').textContent.slice(1);
     let count = document.getElementById('productQuantity').value;
     let total = price * count;
 
-    return {id : id,imageUrl : imageUrl,price : price,count : count,total : total };
+    return {productId : productId, sizeId : sizeId, imageUrl : imageUrl,price : price,count : count,total : total };
 }
 
     document.getElementById('productQuantity').addEventListener('input', (event) => {
