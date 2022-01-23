@@ -1,7 +1,10 @@
+using ClothesShop.Controllers.Models;
 using ClothesShop.Data;
 using ClothesShop.Web.Infrastructure;
 
 using Microsoft.EntityFrameworkCore;
+
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,29 +19,19 @@ builder.Services.AddDefaultIdentity();
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.Configure<CookiePolicyOptions>(options =>
-{
-    // This lambda determines whether user consent for non-essential 
-    // cookies is needed for a given request.
-    options.CheckConsentNeeded = context => true;
-    // requires using Microsoft.AspNetCore.Http;
-    options.MinimumSameSitePolicy = SameSiteMode.None;
-});
-
 builder.Services.AddAutoMapper();
 
 builder.Services.AddCustomServices();
 
 var app = builder.Build();
 
+app.UseCookieCart();
 
 app.UseExceptionsHandling(app.Environment);
 
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-
-app.UseCookiePolicy();
 
 app.UseRouting();
 

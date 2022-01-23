@@ -1,17 +1,13 @@
-﻿using ClothesShop.Controllers.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
-namespace ClothesShop.Controllers
+﻿namespace ClothesShop.Controllers
 {
+    using ClothesShop.Controllers.Models;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using System.Diagnostics;
 
     public class HomeController : Controller
     {
-
-        public HomeController()
-        {
-        }
-
         public IActionResult Index()
         {
             return View();

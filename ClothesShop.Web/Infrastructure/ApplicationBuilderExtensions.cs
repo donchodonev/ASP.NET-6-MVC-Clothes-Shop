@@ -1,10 +1,13 @@
 ﻿namespace ClothesShop.Web.Infrastructure
 {
+    using ClothesShop.Controllers.Models;
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+
+    using System.Text.Json;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants.ClientConstants;
 
@@ -35,6 +38,27 @@
                     pattern: "{controller=Products}/{action=Details}/{id?}");
 
                 endpoints.MapRazorPages();
+            });
+        }
+
+        public static void UseCookieCart(this IApplicationBuilder app)
+        {
+            var context = app.ApplicationServices.GetService<HttpContext>();
+
+            app.Use(async (context, next) =>
+            {
+                if (!context.Request.Cookies.ContainsKey("ClothesShopShoppingCart"))
+                {
+                    var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartModel>());
+
+                    context.Response.Cookies.Append("ClothesShopShoppingCart", emptyJsonObject);
+
+                    await next();
+                }
+                else
+                {
+                    await next();
+                }
             });
         }
 
