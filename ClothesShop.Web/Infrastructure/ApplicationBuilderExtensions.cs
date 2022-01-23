@@ -52,13 +52,9 @@
                     var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartModel>());
 
                     context.Response.Cookies.Append("ClothesShopShoppingCart", emptyJsonObject);
+                }
 
-                    await next();
-                }
-                else
-                {
-                    await next();
-                }
+                await next();
             });
         }
 
