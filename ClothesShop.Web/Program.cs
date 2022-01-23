@@ -1,10 +1,7 @@
-using ClothesShop.Controllers.Models;
 using ClothesShop.Data;
 using ClothesShop.Web.Infrastructure;
 
 using Microsoft.EntityFrameworkCore;
-
-using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +21,6 @@ builder.Services.AddAutoMapper();
 builder.Services.AddCustomServices();
 
 var app = builder.Build();
-
-app.UseCookieCart();
 
 app.UseExceptionsHandling(app.Environment);
 

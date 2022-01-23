@@ -34,10 +34,7 @@ function getCartCount() {
         success: function (count) {
             let cartIcon = document.getElementById('cart-icon');
 
-            if (count > 0) {
-                cartIcon.style.backgroundColor = 'lightgreen';
-                cartIcon.textContent = count;
-            }
+            cartIcon.textContent = count;
         }
     });
 };

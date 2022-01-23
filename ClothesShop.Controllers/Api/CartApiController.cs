@@ -1,5 +1,6 @@
 ﻿namespace ClothesShop.Controllers.Api
 {
+    using ClothesShop.Controllers.ActionFilters;
     using ClothesShop.Controllers.Models;
 
     using Microsoft.AspNetCore.Mvc;
@@ -11,42 +12,26 @@
     {
         [Route("api/cart")]
         [HttpGet]
+        [ServiceFilter(typeof(EnsureCartExists))]
+
         public ActionResult<Dictionary<string, ProductCartModel>> Get()
         {
-            if (!this.CartExists())
-            {
-                this.CreateCart();
-
-                return this.Redirect("/");
-            }
-
             return this.GetCart();
         }
 
         [Route("api/cart/count")]
         [HttpGet]
+        [ServiceFilter(typeof(EnsureCartExists))]
         public ActionResult<int> GetCount()
         {
-            if (!this.CartExists())
-            {
-                this.CreateCart();
-
-                return this.Redirect("/");
-            }
-
             return this.Ok(this.UniqueProductsCount());
         }
 
         [Route("api/cart")]
         [HttpPost]
+        [ServiceFilter(typeof(EnsureCartExists))]
         public ActionResult Post([FromBody] ProductCartModel product)
         {
-            if (!this.CartExists())
-            {
-                this.CreateCart();
-                return this.RedirectToAction("/");
-            }
-
             this.AddToCart(product);
 
             var uniqueProducts = this.UniqueProductsCount();

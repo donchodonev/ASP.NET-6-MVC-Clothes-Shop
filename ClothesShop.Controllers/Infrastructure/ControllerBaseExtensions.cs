@@ -1,36 +1,18 @@
 ﻿namespace ClothesShop.Controllers.Infrastructure
 {
     using ClothesShop.Controllers.Models;
-    using ClothesShop.Data.Miscellaneous;
 
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     using System.Text.Json;
 
+    using static ClothesShop.Data.Miscellaneous.DataConstants;
+
     public static class ControllerBaseExtensions
     {
-        private const string CookieKey = "ClothesShopShoppingCart";
-
-        private static CookieOptions CookieOptions = new CookieOptions
-        {
-            Secure = true,
-            HttpOnly = true,
-            SameSite = SameSiteMode.Lax,
-            MaxAge = DateTimeProvider.CookieMaxAge,
-            IsEssential = true
-        };
-
-        public static void CreateCart(this ControllerBase controller)
-        {
-            var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartModel>());
-
-            controller.Response.Cookies.Append(CookieKey, emptyJsonObject, CookieOptions);
-        }
-
         public static Dictionary<string, ProductCartModel> GetCart(this ControllerBase controller)
         {
-            return JsonSerializer.Deserialize<Dictionary<string, ProductCartModel>>(controller.Request.Cookies[CookieKey]);
+            return JsonSerializer.Deserialize<Dictionary<string, ProductCartModel>>(controller.Request.Cookies[CartConstants.CookieKey]);
         }
 
         public static void AddToCart(this ControllerBase controller, ProductCartModel product)
@@ -49,12 +31,7 @@
                 cart.Add(productKey, product);
             }
 
-            controller.Response.Cookies.Append(CookieKey, JsonSerializer.Serialize(cart), CookieOptions);
-        }
-
-        public static bool CartExists(this ControllerBase controller)
-        {
-            return controller.Request.Cookies.ContainsKey(CookieKey);
+            controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
         }
 
         public static int UniqueProductsCount(this ControllerBase controller)

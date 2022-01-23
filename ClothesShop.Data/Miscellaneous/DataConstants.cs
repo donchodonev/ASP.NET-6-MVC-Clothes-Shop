@@ -1,4 +1,6 @@
-﻿namespace ClothesShop.Data.Miscellaneous
+﻿using Microsoft.AspNetCore.Http;
+
+namespace ClothesShop.Data.Miscellaneous
 {
     public static class DataConstants
     {
@@ -86,6 +88,20 @@
 
             public const int DescriptionMinLength = 15;
             public const int DescriptionMaxLength = 300;
+        }
+
+        public class CartConstants
+        {
+            public const string CookieKey = "ClothesShopShoppingCart";
+
+            public static CookieOptions CookieOptions = new CookieOptions
+            {
+                Secure = true,
+                HttpOnly = true,
+                SameSite = SameSiteMode.Lax,
+                MaxAge = DateTimeProvider.CookieMaxAge,
+                IsEssential = true
+            };
         }
     }
 }

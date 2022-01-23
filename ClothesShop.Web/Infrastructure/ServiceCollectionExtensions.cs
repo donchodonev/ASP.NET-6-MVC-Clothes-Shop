@@ -1,6 +1,7 @@
 ﻿namespace ClothesShop.Web.Infrastructure
 {
     using ClothesShop.Controllers;
+    using ClothesShop.Controllers.ActionFilters;
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
     using ClothesShop.Services;
@@ -34,6 +35,7 @@
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IGenderService, GenderService>();
             services.AddTransient<IAgeGroupService, AgeGroupService>();
+            services.AddScoped<EnsureCartExists, EnsureCartExists>();
         }
     }
 }
