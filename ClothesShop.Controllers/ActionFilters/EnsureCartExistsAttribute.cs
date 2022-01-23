@@ -9,13 +9,9 @@
 
     using static ClothesShop.Data.Miscellaneous.DataConstants;
 
-    public class EnsureCartExists : IActionFilter
+    public class EnsureCartExistsAttribute : ActionFilterAttribute
     {
-        public void OnActionExecuted(ActionExecutedContext context)
-        {
-        }
-
-        public void OnActionExecuting(ActionExecutingContext context)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!CartExists(context))
             {

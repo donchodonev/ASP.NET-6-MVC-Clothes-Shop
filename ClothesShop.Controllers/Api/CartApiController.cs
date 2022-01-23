@@ -12,7 +12,7 @@
     {
         [Route("api/cart")]
         [HttpGet]
-        [ServiceFilter(typeof(EnsureCartExists))]
+        [EnsureCartExists]
 
         public ActionResult<Dictionary<string, ProductCartModel>> Get()
         {
@@ -21,7 +21,7 @@
 
         [Route("api/cart/count")]
         [HttpGet]
-        [ServiceFilter(typeof(EnsureCartExists))]
+        [EnsureCartExists]
         public ActionResult<int> GetCount()
         {
             return this.Ok(this.UniqueProductsCount());
@@ -29,7 +29,7 @@
 
         [Route("api/cart")]
         [HttpPost]
-        [ServiceFilter(typeof(EnsureCartExists))]
+        [EnsureCartExists]
         public ActionResult Post([FromBody] ProductCartModel product)
         {
             this.AddToCart(product);
