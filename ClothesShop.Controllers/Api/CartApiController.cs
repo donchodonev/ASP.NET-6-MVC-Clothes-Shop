@@ -13,7 +13,6 @@
         [Route("api/cart")]
         [HttpGet]
         [EnsureCartExists]
-
         public ActionResult<Dictionary<string, ProductCartModel>> Get()
         {
             return this.GetCart();
