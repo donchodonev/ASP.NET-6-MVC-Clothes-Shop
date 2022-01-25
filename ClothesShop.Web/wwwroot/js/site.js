@@ -75,6 +75,9 @@ function decreaseProductQuantity(productKey) {
             let totalPriceSpan = document.getElementById(productKey + '-totalPrice');
             countSpan.textContent = ` ${result.count} `;
             totalPriceSpan.textContent = `${result.total.toFixed(2)}`;
+        },
+        error: function () {
+            window.location.reload();
         }
     });
 };

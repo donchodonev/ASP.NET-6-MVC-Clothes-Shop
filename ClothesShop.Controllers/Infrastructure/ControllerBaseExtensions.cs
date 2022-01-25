@@ -35,7 +35,7 @@
 
         public static int UniqueProductsCount(this ControllerBase controller)
         {
-            return GetCart(controller).Values.Count();
+            return GetCart(controller).Values.Where(x => x.Count > 0).Count();
         }
 
         public static bool IsProductInCart(this ControllerBase controller, string productKey)
@@ -74,8 +74,12 @@
 
             var productCount = cart.FirstOrDefault(x => x.Key == productKey).Value.Count;
 
-            if (productCount <= 0)
+            if (productCount <= 1)
             {
+                cart.Remove(productKey);
+
+                controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+
                 return null;
             }
 
