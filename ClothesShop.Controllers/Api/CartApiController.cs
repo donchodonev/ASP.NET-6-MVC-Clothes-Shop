@@ -45,30 +45,30 @@
 
         [Route("api/cart/increaseProductCount")]
         [HttpPost]
-        public ActionResult<int> IncreaseProductCount([FromBody]ProductCartCookieKeyModel productKey)
+        public ActionResult<ProductCountChangeResponseModel> IncreaseProductCount([FromBody]ProductCartCookieKeyModel productKey)
         {
-            var increasedCount = this.IncreaseProductCountById(productKey.Key);
+            var increasedCountAndTotal = this.IncreaseProductCountById(productKey.Key);
 
-            if (!increasedCount.HasValue)
+            if (increasedCountAndTotal == null)
             {
                 return this.BadRequest();
             }
 
-            return this.Ok(increasedCount.Value);
+            return increasedCountAndTotal;
         }
 
         [Route("api/cart/decreaseProductCount")]
         [HttpPost]
-        public ActionResult<int> DecreaseProductCount([FromBody] ProductCartCookieKeyModel productKey)
+        public ActionResult<ProductCountChangeResponseModel> DecreaseProductCount([FromBody] ProductCartCookieKeyModel productKey)
         {
-            var decreasedCount = this.DecreaseProductCountById(productKey.Key);
+            var decreasedCountAndTotal = this.DecreaseProductCountById(productKey.Key);
 
-            if (!decreasedCount.HasValue)
+            if (decreasedCountAndTotal == null)
             {
                 return this.BadRequest();
             }
 
-            return decreasedCount.Value;
+            return decreasedCountAndTotal;
         }
     }
 }

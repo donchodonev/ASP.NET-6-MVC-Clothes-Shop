@@ -39,6 +39,45 @@ function getCartCount() {
     });
 };
 
+function increaseProductQuantity(productKey) {
+
+    let data = { key: productKey };
+
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: 'https://localhost:7206/api/cart/increaseProductCount',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (productCountAndTotal) {
+            let result = JSON.parse(JSON.stringify(productCountAndTotal));
+            let countSpan = document.getElementById(productKey + '-count');
+            let totalPriceSpan = document.getElementById(productKey + '-totalPrice');
+            countSpan.textContent = ` ${result.count} `;
+            totalPriceSpan.textContent = `${result.total.toFixed(2)}`;
+        }
+    });
+};
+
+function decreaseProductQuantity(productKey) {
+
+    let data = { key: productKey };
+
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: 'https://localhost:7206/api/cart/decreaseProductCount',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (productCountAndTotal) {
+            let result = JSON.parse(JSON.stringify(productCountAndTotal));
+            let countSpan = document.getElementById(productKey + '-count');
+            let totalPriceSpan = document.getElementById(productKey + '-totalPrice');
+            countSpan.textContent = ` ${result.count} `;
+            totalPriceSpan.textContent = `${result.total.toFixed(2)}`;
+        }
+    });
+};
 
 
 function isInt(n) {

@@ -23,8 +23,7 @@
 
             if (cart.ContainsKey(productKey))
             {
-                cart[productKey].Count+=product.Count;
-                cart[productKey].Total += product.Total;
+                cart[productKey].Count += product.Count;
             }
             else
             {
@@ -44,9 +43,9 @@
             return GetCart(controller).Keys.Any(x => x == productKey);
         }
 
-        public static int? IncreaseProductCountById(this ControllerBase controller, string productKey)
+        public static ProductCountChangeResponseModel? IncreaseProductCountById(this ControllerBase controller, string productKey)
         {
-            if (!IsProductInCart(controller,productKey))
+            if (!IsProductInCart(controller, productKey))
             {
                 return null;
             }
@@ -57,10 +56,14 @@
 
             controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
 
-            return cart.FirstOrDefault(x => x.Key == productKey).Value.Count;
+            return new ProductCountChangeResponseModel()
+            {
+                Count = cart.FirstOrDefault(x => x.Key == productKey).Value.Count,
+                Total = cart.FirstOrDefault(x => x.Key == productKey).Value.Total
+            };
         }
 
-        public static int? DecreaseProductCountById(this ControllerBase controller, string productKey)
+        public static ProductCountChangeResponseModel? DecreaseProductCountById(this ControllerBase controller, string productKey)
         {
             if (!IsProductInCart(controller, productKey))
             {
@@ -73,7 +76,11 @@
 
             controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
 
-            return cart.FirstOrDefault(x => x.Key == productKey).Value.Count;
+            return new ProductCountChangeResponseModel()
+            {
+                Count = cart.FirstOrDefault(x => x.Key == productKey).Value.Count,
+                Total = cart.FirstOrDefault(x => x.Key == productKey).Value.Total
+            };
         }
     }
 }
