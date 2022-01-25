@@ -72,6 +72,13 @@
 
             var cart = GetCart(controller);
 
+            var productCount = cart.FirstOrDefault(x => x.Key == productKey).Value.Count;
+
+            if (productCount <= 0)
+            {
+                return null;
+            }
+
             cart.FirstOrDefault(x => x.Key == productKey).Value.Count--;
 
             controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
