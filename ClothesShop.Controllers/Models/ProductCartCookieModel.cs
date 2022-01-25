@@ -26,5 +26,7 @@
         public string SizeText { get; set; }
 
         public decimal Total { get; set; }
+
+        public string ProductURL => $"/Products/Details?productId={ProductId}";
     }
 }
