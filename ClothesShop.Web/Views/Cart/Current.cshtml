@@ -14,7 +14,7 @@
 
         @foreach (var product in Model)
         {
-            <tr>
+            <tr id=@($"{product.ProductId}:{product.SizeId.ToString()}")>
                 <th scope="row"><a href="@product.ProductURL"><img class="cart-img" src="@product.ImageURL" /></a></th>
                 <td><span class="fs-5">$@product.Price.ToString("F2")</span></td>
                 <td class="fs-5">@product.SizeText</td>

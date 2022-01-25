@@ -43,5 +43,37 @@
         {
             return GetCart(controller).Keys.Any(x => x == productKey);
         }
+
+        public static int? IncreaseProductCountById(this ControllerBase controller, string productKey)
+        {
+            if (!IsProductInCart(controller,productKey))
+            {
+                return null;
+            }
+
+            var cart = GetCart(controller);
+
+            cart.FirstOrDefault(x => x.Key == productKey).Value.Count++;
+
+            controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+
+            return cart.FirstOrDefault(x => x.Key == productKey).Value.Count;
+        }
+
+        public static int? DecreaseProductCountById(this ControllerBase controller, string productKey)
+        {
+            if (!IsProductInCart(controller, productKey))
+            {
+                return null;
+            }
+
+            var cart = GetCart(controller);
+
+            cart.FirstOrDefault(x => x.Key == productKey).Value.Count--;
+
+            controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+
+            return cart.FirstOrDefault(x => x.Key == productKey).Value.Count;
+        }
     }
 }

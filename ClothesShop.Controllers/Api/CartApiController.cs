@@ -42,5 +42,33 @@
 
             return this.Ok(uniqueProducts + 1);
         }
+
+        [Route("api/cart/increaseProductCount")]
+        [HttpPost]
+        public ActionResult<int> IncreaseProductCount([FromBody]ProductCartCookieKeyModel productKey)
+        {
+            var increasedCount = this.IncreaseProductCountById(productKey.Key);
+
+            if (!increasedCount.HasValue)
+            {
+                return this.BadRequest();
+            }
+
+            return this.Ok(increasedCount.Value);
+        }
+
+        [Route("api/cart/decreaseProductCount")]
+        [HttpPost]
+        public ActionResult<int> DecreaseProductCount([FromBody] ProductCartCookieKeyModel productKey)
+        {
+            var decreasedCount = this.DecreaseProductCountById(productKey.Key);
+
+            if (!decreasedCount.HasValue)
+            {
+                return this.BadRequest();
+            }
+
+            return decreasedCount.Value;
+        }
     }
 }
