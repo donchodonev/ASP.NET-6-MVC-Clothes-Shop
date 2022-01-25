@@ -4,6 +4,6 @@
 
     public interface ICartService
     {
-        public Task<(bool Result, string Message)> IsOrderValidAsync(List<ProductCartServiceModel> products);
+        public Task<IOrderValidationResult> IsOrderValidAsync(List<ProductCartServiceModel> products);
     }
 }

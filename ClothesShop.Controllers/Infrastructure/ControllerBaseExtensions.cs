@@ -12,7 +12,15 @@
     {
         public static Dictionary<string, ProductCartCookieModel> GetCart(this ControllerBase controller)
         {
-            return JsonSerializer.Deserialize<Dictionary<string, ProductCartCookieModel>>(controller.Request.Cookies[CartConstants.CookieKey]);
+            try
+            {
+                return JsonSerializer.Deserialize<Dictionary<string, ProductCartCookieModel>>(controller.Request.Cookies[CartConstants.CookieKey]);
+            }
+            catch (Exception)
+            {
+                ClearCart(controller);
+                return new Dictionary<string, ProductCartCookieModel>();
+            }
         }
 
         public static void AddToCart(this ControllerBase controller, ProductCartCookieModel product)
@@ -41,6 +49,15 @@
         public static bool IsProductInCart(this ControllerBase controller, string productKey)
         {
             return GetCart(controller).Keys.Any(x => x == productKey);
+        }
+
+        public static void ClearCart(this ControllerBase controller)
+        {
+            var emptyCart = new Dictionary<string, ProductCartCookieModel>();
+
+            controller.Response.Cookies.Delete(CartConstants.CookieKey);
+
+            controller.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(emptyCart), CartConstants.CookieOptions);
         }
 
         public static ProductCountChangeResponseModel? IncreaseProductCountById(this ControllerBase controller, string productKey)

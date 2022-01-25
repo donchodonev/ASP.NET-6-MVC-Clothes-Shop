@@ -32,7 +32,11 @@
             var products = mapper.Map<List<ProductCartServiceModel>>(this.GetCart().Values.Select(x => x));
 
             //remove async code after testing is finished
-            await cartService.IsOrderValidAsync(products);
+            var validationResult = await cartService.IsOrderValidAsync(products);
+
+            Console.WriteLine(validationResult.IsValid);
+            Console.WriteLine(validationResult.Message);
+            Console.WriteLine(validationResult.ProductId);
 
             return this.View(model);
         }
