@@ -35,7 +35,7 @@
 
                 endpoints.MapControllerRoute(
                     name: "Product Details",
-                    pattern: "{controller=Products}/{action=Details}/{id?}");
+                    pattern: "{controller=Products}/{action=Details}/{productId}");
 
                 endpoints.MapRazorPages();
             });

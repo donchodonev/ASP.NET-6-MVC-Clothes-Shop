@@ -36,9 +36,14 @@
             return View(inputModel);
         }
 
-        public async Task<IActionResult> Details(int productId)
+        public async Task<IActionResult> Details(int? productId)
         {
-            var model = await products.GetByIdAsync<ProductDetailsViewModel>(productId);
+            if (!productId.HasValue)
+            {
+                return this.NotFound();
+            }
+
+            var model = await products.GetByIdAsync<ProductDetailsViewModel>(productId.Value);
 
             return View(model);
         }
