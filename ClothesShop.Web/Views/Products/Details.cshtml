@@ -64,8 +64,9 @@
     let price = document.getElementById('pricePerOneUnit').textContent.slice(1);
     let count = document.getElementById('productQuantity').value;
     let total = price * count;
+    let sizeText = sizeIdElement.options[sizeIdElement.selectedIndex].text;
 
-    return {productId : productId, sizeId : sizeId, imageUrl : imageUrl,price : price,count : count,total : total };
+    return {productId : productId, sizeId : sizeId, sizeText: sizeText, imageUrl : imageUrl,price : price,count : count,total : total };
 }
 
     document.getElementById('productQuantity').addEventListener('input', (event) => {

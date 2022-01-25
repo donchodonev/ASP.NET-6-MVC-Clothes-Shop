@@ -6,7 +6,7 @@
 
     using static Data.Miscellaneous.DataConstants.ProductConstants;
 
-    public class ProductCartModel
+    public class ProductCartCookieModel
     {
         [Required]
         public int ProductId { get; set; }
@@ -22,6 +22,8 @@
         public int Count { get; set; }
 
         public int SizeId { get; set; }
+
+        public string SizeText { get; set; }
 
         public decimal Total { get; set; }
     }

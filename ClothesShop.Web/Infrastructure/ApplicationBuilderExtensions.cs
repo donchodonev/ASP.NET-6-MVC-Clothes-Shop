@@ -53,7 +53,7 @@
             {
                 if (!context.Request.Cookies.ContainsKey("ClothesShopShoppingCart"))
                 {
-                    var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartModel>());
+                    var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartCookieModel>());
 
                     context.Response.Cookies.Append("ClothesShopShoppingCart", emptyJsonObject);
                 }

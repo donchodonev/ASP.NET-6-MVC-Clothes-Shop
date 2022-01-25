@@ -35,6 +35,7 @@
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IGenderService, GenderService>();
             services.AddTransient<IAgeGroupService, AgeGroupService>();
+            services.AddTransient<ICartService, CartService>();
         }
     }
 }

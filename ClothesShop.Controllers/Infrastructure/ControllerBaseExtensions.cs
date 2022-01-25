@@ -10,12 +10,12 @@
 
     public static class ControllerBaseExtensions
     {
-        public static Dictionary<string, ProductCartModel> GetCart(this ControllerBase controller)
+        public static Dictionary<string, ProductCartCookieModel> GetCart(this ControllerBase controller)
         {
-            return JsonSerializer.Deserialize<Dictionary<string, ProductCartModel>>(controller.Request.Cookies[CartConstants.CookieKey]);
+            return JsonSerializer.Deserialize<Dictionary<string, ProductCartCookieModel>>(controller.Request.Cookies[CartConstants.CookieKey]);
         }
 
-        public static void AddToCart(this ControllerBase controller, ProductCartModel product)
+        public static void AddToCart(this ControllerBase controller, ProductCartCookieModel product)
         {
             var cart = GetCart(controller);
 

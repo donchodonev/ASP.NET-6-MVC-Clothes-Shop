@@ -1,1 +1,29 @@
-﻿<p>hi</p>
+﻿@model List<ProductCartCookieModel>
+
+<table class="table table-hover text-center">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Size</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var product in Model)
+        {
+            <tr>
+                <th scope="row"><img class="cart-img" src="@product.ImageURL" /></th>
+                <td><span class="fs-5">@product.Price</span></td>
+                <td class="fs-5">@product.SizeText</td>
+                <td class="fs-5">@product.Count</td>
+                <td class="fs-5">@product.Total</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@*<span class="fs-5 row"><s>$50.00</s></span>*@

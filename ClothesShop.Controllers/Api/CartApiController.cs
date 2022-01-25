@@ -13,7 +13,7 @@
     {
         [Route("api/cart")]
         [HttpGet]
-        public ActionResult<Dictionary<string, ProductCartModel>> Get()
+        public ActionResult<Dictionary<string, ProductCartCookieModel>> Get()
         {
             return this.GetCart();
         }
@@ -27,7 +27,7 @@
 
         [Route("api/cart")]
         [HttpPost]
-        public ActionResult Post([FromBody] ProductCartModel product)
+        public ActionResult Post([FromBody] ProductCartCookieModel product)
         {
             this.AddToCart(product);
 
