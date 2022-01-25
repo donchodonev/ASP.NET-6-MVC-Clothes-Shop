@@ -37,6 +37,10 @@
                     name: "Product Details",
                     pattern: "{controller=Products}/{action=Details}/{productId}");
 
+                endpoints.MapControllerRoute(
+                    name: "Cart View",
+                    pattern: "{controller=Cart}/{action=View}");
+
                 endpoints.MapRazorPages();
             });
         }

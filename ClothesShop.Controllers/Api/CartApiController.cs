@@ -8,11 +8,11 @@
     using static Infrastructure.ControllerBaseExtensions;
 
     [ApiController]
+    [EnsureCartExists]
     public class CartApiController : ControllerBase
     {
         [Route("api/cart")]
         [HttpGet]
-        [EnsureCartExists]
         public ActionResult<Dictionary<string, ProductCartModel>> Get()
         {
             return this.GetCart();
@@ -20,7 +20,6 @@
 
         [Route("api/cart/count")]
         [HttpGet]
-        [EnsureCartExists]
         public ActionResult<int> GetCount()
         {
             return this.Ok(this.UniqueProductsCount());
@@ -28,7 +27,6 @@
 
         [Route("api/cart")]
         [HttpPost]
-        [EnsureCartExists]
         public ActionResult Post([FromBody] ProductCartModel product)
         {
             this.AddToCart(product);
