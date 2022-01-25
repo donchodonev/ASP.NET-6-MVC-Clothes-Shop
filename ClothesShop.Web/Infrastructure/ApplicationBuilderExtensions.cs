@@ -1,6 +1,6 @@
 ﻿namespace ClothesShop.Web.Infrastructure
 {
-    using ClothesShop.Controllers.Models;
+    using ClothesShop.Controllers.Models.Product;
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
 

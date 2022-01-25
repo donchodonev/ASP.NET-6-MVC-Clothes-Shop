@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ClothesShop.Controllers.Models
+﻿namespace ClothesShop.Controllers.Models.Product
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class ProductDetailsViewModel
     {
         public ProductDetailsViewModel()

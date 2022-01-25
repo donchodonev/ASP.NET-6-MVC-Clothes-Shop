@@ -1,7 +1,7 @@
 ﻿namespace ClothesShop.Controllers.Api
 {
     using ClothesShop.Controllers.ActionFilters;
-    using ClothesShop.Controllers.Models;
+    using ClothesShop.Controllers.Models.Product;
 
     using Microsoft.AspNetCore.Mvc;
 

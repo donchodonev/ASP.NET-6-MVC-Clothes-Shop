@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Controllers.Models
+﻿namespace ClothesShop.Controllers.Models.Product
 {
     using ClothesShop.Data.ValidationAttributes;
     using ClothesShop.Services;

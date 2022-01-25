@@ -2,7 +2,7 @@
 {
     using AutoMapper;
 
-    using ClothesShop.Controllers.Models;
+    using ClothesShop.Controllers.Models.Product;
     using ClothesShop.Services;
     using ClothesShop.Services.Models;
 

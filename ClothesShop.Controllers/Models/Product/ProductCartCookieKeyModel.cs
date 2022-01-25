@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Controllers.Models
+﻿namespace ClothesShop.Controllers.Models.Product
 {
     using System.ComponentModel.DataAnnotations;
 
