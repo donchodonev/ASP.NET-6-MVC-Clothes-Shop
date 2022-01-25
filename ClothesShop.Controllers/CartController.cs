@@ -24,6 +24,7 @@
             this.mapper = mapper;
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Current()
         {
             var model = this.GetCart().Values.ToList();
@@ -32,6 +33,7 @@
         }
 
         [HttpPost]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Order()
         {
             var products = mapper.Map<List<ProductCartServiceModel>>(this.GetCart().Values.Select(x => x));
