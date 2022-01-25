@@ -25,9 +25,14 @@
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Current()
+        public async Task<IActionResult> Current()
         {
             var model = this.GetCart().Values.ToList();
+
+            var products = mapper.Map<List<ProductCartServiceModel>>(this.GetCart().Values.Select(x => x));
+
+            //remove async code after testing is finished
+            await cartService.IsOrderValidAsync(products);
 
             return this.View(model);
         }
