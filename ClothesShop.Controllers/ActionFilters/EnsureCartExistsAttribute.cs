@@ -27,7 +27,7 @@
 
         private static void CreateCart(ActionExecutingContext context)
         {
-            var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartModel>());
+            var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartCookieModel>());
 
             context.HttpContext.Response.Cookies.Append(CartConstants.CookieKey, emptyJsonObject, CartConstants.CookieOptions);
         }

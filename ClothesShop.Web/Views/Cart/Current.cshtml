@@ -16,10 +16,10 @@
         {
             <tr>
                 <th scope="row"><img class="cart-img" src="@product.ImageURL" /></th>
-                <td><span class="fs-5">@product.Price</span></td>
+                <td><span class="fs-5">$@product.Price.ToString("F2")</span></td>
                 <td class="fs-5">@product.SizeText</td>
                 <td class="fs-5">@product.Count</td>
-                <td class="fs-5">@product.Total</td>
+                <td class="fs-5">$@product.Total.ToString("F2")</td>
             </tr>
         }
 
