@@ -20,7 +20,7 @@
 
         public virtual ICollection<Product> Products { get; set; }
 
-        public string ClientId { get; set; }
+        public string? ClientId { get; set; }
 
         public virtual Client Client { get; set; }
 

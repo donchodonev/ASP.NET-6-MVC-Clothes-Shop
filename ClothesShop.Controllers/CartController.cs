@@ -18,11 +18,13 @@
     public class CartController : Controller
     {
         private readonly ICartService cart;
+        private readonly IOrderService orders;
         private readonly IMapper mapper;
 
-        public CartController(ICartService cart, IMapper mapper)
+        public CartController(ICartService cart, IOrderService orders, IMapper mapper)
         {
             this.cart = cart;
+            this.orders = orders;
             this.mapper = mapper;
         }
 
@@ -48,6 +50,17 @@
             if (!ModelState.IsValid)
             {
                 return this.View(nameof(Current));
+            }
+
+            var productAndSizeIds = mapper.Map<ProductAndSizeServiceModel[]>(products);
+
+            try
+            {
+                await orders.CreateOrderAsync(productAndSizeIds, model.Country, model.City, model.Street, model.PostalCode);
+            }
+            catch (Exception ex)
+            {
+                return this.RedirectToActionWithTempData("Current", "Cart", "ErrorMessage", ex.Message);
             }
 
             return this.RedirectToAction(nameof(Current));

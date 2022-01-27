@@ -34,9 +34,9 @@
         [MaxLength(PostalCodeMaxLength)]
         public string PostalCode { get; set; }
 
-        public string ClientId { get; set; }
+        public string? ClientId { get; set; }
 
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
 

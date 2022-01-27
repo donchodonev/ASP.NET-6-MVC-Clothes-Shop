@@ -7,7 +7,7 @@
 
     public class ProductServiceMappingProfile : Profile
     {
-       public ProductServiceMappingProfile()
+        public ProductServiceMappingProfile()
         {
             this.CreateMap<Product, ProductAllServiceModel>().ReverseMap();
 
@@ -17,6 +17,8 @@
 
             this.CreateMap<Product, ProductCheckServiceModel>().
                 ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => src.Sizes));
+
+            this.CreateMap<ProductCartServiceModel, ProductAndSizeServiceModel>();
         }
     }
 }

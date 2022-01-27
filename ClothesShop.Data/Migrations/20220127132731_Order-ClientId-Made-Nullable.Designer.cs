@@ -4,6 +4,7 @@ using ClothesShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClothesShop.Data.Migrations
 {
     [DbContext(typeof(ShopDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220127132731_Order-ClientId-Made-Nullable")]
+    partial class OrderClientIdMadeNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -425,6 +427,7 @@ namespace ClothesShop.Data.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ClientId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Country")
@@ -454,8 +457,7 @@ namespace ClothesShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId")
-                        .IsUnique()
-                        .HasFilter("[ClientId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("ShippingAddresses");
                 });
@@ -753,7 +755,9 @@ namespace ClothesShop.Data.Migrations
                 {
                     b.HasOne("ClothesShop.Data.Entities.Client", "Client")
                         .WithOne("ShippingAddress")
-                        .HasForeignKey("ClothesShop.Data.Entities.ShippingAddress", "ClientId");
+                        .HasForeignKey("ClothesShop.Data.Entities.ShippingAddress", "ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
                 });
