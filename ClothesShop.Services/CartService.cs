@@ -17,23 +17,29 @@
             this.productsService = productsService;
         }
 
-        public async Task<IOrderValidationResult> IsOrderValidAsync(List<ProductCartServiceModel> products)
+        public async Task<IOrderValidationResult> IsOrderValidAsync(HttpContext context, List<ProductCartServiceModel> products)
         {
             foreach (var product in products)
             {
                 var dbProduct = await productsService.GetByIdAsync<ProductCheckServiceModel>(product.ProductId);
 
-                var dbProductName = dbProduct.Name;
-                var dbProductBrand = dbProduct.Manufacturer;
-                var productIdentity = $"{dbProductName} by {dbProductBrand}";
-                var aTag = $@"<a href='https://localhost:7206/Products/Details?productId={product.ProductId}'>{productIdentity}</a>";
-                var dueToThatSentence = "Due to that - the product has been removed from your cart.If you still with to purchase it - re-add it to your cart which will automatically correct the product parameters.";
-
                 if (dbProduct == null)
                 {
+                    Remove(context, product.ProductId);
                     return new OrderValidationResult(false, product.ProductId, "A product with the following ID does not exist.");
                 }
-                else if (dbProduct.Price != product.Price)
+
+                var dbProductName = dbProduct.Name;
+
+                var dbProductBrand = dbProduct.Manufacturer;
+
+                var productIdentity = $"{dbProductName} by {dbProductBrand}";
+
+                var aTag = $@"<a href='https://localhost:7206/Products/Details?productId={product.ProductId}'>{productIdentity}</a>";
+
+                var dueToThatSentence = "Due to the found discrepancies, the product has been removed from your cart. If you still with to purchase it - re-add it to your cart which will automatically correct the product parameters.";
+
+                if (dbProduct.Price != product.Price)
                 {
                     return new OrderValidationResult(false, product.ProductId, $@"{aTag} has a different price. Price from the cart shows ${product.Price} while the real price from our database shows ${dbProduct.Price.ToString("F2")}. {dueToThatSentence}");
                 }
@@ -58,7 +64,7 @@
 
                 if (total != product.Total)
                 {
-                    return new OrderValidationResult(false, product.ProductId, $"{count} pieces of {productIdentity} amount to {total} as {count} * {price} = {total}.");
+                    return new OrderValidationResult(false, product.ProductId, $"{count} pieces of {productIdentity} amount to {total} as {count} * {price} = {total}. {dueToThatSentence}");
                 }
             }
 
@@ -103,6 +109,26 @@
             }
 
             context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+        }
+
+        public void Remove(HttpContext context, int productId)
+        {
+            var cart = Get(context);
+
+            var product = cart.Values.First(x => x.ProductId == productId);
+
+            foreach (var key in cart.Keys)
+            {
+                if (cart[key] == product)
+                {
+                    cart.Remove(key);
+
+                    break;
+                }
+            }
+            context.Response.Cookies.Delete(CartConstants.CookieKey);
+            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart));
+
         }
 
         public int UniqueProductsCount(HttpContext context)

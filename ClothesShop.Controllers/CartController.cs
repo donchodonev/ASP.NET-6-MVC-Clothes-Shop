@@ -35,7 +35,7 @@
         {
             var products = mapper.Map<List<ProductCartServiceModel>>(cart.Get(this.HttpContext).Values.Select(x => x));
 
-            var validationResult = await cart.IsOrderValidAsync(products);
+            var validationResult = await cart.IsOrderValidAsync(this.HttpContext, products);
 
             if (!validationResult.IsValid)
             {

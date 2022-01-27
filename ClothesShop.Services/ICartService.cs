@@ -6,7 +6,7 @@
 
     public interface ICartService
     {
-        public Task<IOrderValidationResult> IsOrderValidAsync(List<ProductCartServiceModel> products);
+        public Task<IOrderValidationResult> IsOrderValidAsync(HttpContext context, List<ProductCartServiceModel> products);
 
         public Dictionary<string, ProductCartCookieModel> Get(HttpContext context);
 
@@ -22,5 +22,6 @@
 
         public ProductCountChangeServiceModel? DecreaseProductCountById(HttpContext context, string productKey);
 
+        public void Remove(HttpContext context, int productId);
     }
 }
