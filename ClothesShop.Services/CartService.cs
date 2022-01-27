@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Http;
 
     using System.Text.Json;
+    using System.Web;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants;
 
@@ -43,19 +44,27 @@
 
                 if (dbProduct.Price != product.Price)
                 {
+                    Remove(context, product.ProductId);
+
                     return new OrderValidationResult(false, product.ProductId, $@"{aTag} has a different price. Price from the cart shows ${product.Price} while the real price from our database shows ${dbProduct.Price.ToString("F2")}. {dueToThatSentence}");
                 }
-                else if (dbProduct.ImageURL != product.ImageURL)
+                else if (dbProduct.ImageURL != HttpUtility.HtmlDecode(product.ImageURL))
                 {
-                    return new OrderValidationResult(false, product.ProductId, $"{aTag} has a different ImageURL. The image url from the client is ${product.ImageURL} while the real image URL is ${dbProduct.ImageURL}. {dueToThatSentence}");
+                    Remove(context, product.ProductId);
+
+                    return new OrderValidationResult(false, product.ProductId, $"{aTag} has a different ImageURL. The image url from the client is {product.ImageURL} while the real image URL is {dbProduct.ImageURL}. {dueToThatSentence}");
                 }
                 else if (!dbProduct.Sizes.Any(x => x.Id == product.SizeId))
                 {
+                    Remove(context, product.ProductId);
+
                     return new OrderValidationResult(false, product.ProductId, $"{productIdentity} doesn't have any remaining stock of the chosen size.");
                 }
                 else if (dbProduct.Sizes.First(size => size.Id == product.SizeId).Count < product.Count)
                 {
                     var productOfParticularSizeCount = dbProduct.Sizes.First(size => size.Id == product.SizeId).Count;
+
+                    Remove(context, product.ProductId);
 
                     return new OrderValidationResult(false, product.ProductId, $"{productIdentity} has only {productOfParticularSizeCount} pieces remaining in stock");
                 }
