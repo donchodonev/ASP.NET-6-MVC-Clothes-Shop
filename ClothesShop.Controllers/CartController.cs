@@ -4,6 +4,7 @@
 
     using ClothesShop.Controllers.ActionFilters;
     using ClothesShop.Services;
+    using ClothesShop.Services.Models;
     using ClothesShop.Services.Models.Product;
 
     using Microsoft.AspNetCore.Mvc;
@@ -25,13 +26,13 @@
 
         public IActionResult Current()
         {
-            var model = cart.Get(this.HttpContext).Values.ToList();
+            var products = cart.Get(this.HttpContext).Values.ToList();
 
-            return this.View(model);
+            return this.View(new CartFormServiceModel(products));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateOrder()
+        public async Task<IActionResult> CreateOrder(CartFormServiceModel model)
         {
             var products = mapper.Map<List<ProductCartServiceModel>>(cart.Get(this.HttpContext).Values.Select(x => x));
 
@@ -43,9 +44,10 @@
                 return this.RedirectToAction(nameof(Current));
             }
 
-            Console.WriteLine(validationResult.IsValid);
-            Console.WriteLine(validationResult.Message);
-            Console.WriteLine(validationResult.ProductId);
+            if (!ModelState.IsValid)
+            {
+                return this.View(nameof(Current));
+            }
 
             return this.RedirectToAction(nameof(Current));
         }

@@ -1,7 +1,7 @@
-﻿@model List<ProductCartCookieModel>
+﻿@model CartFormServiceModel
 
 
-    @if (@Model.Count == 0)
+    @if (@Model.Products.Count == 0)
 {
     <h1 class="text-center">Cart is empty</h1>
 }
@@ -19,7 +19,7 @@ else
         </thead>
         <tbody>
 
-            @foreach (var product in Model)
+            @foreach (var product in Model.Products)
             {
                 <tr>
                     <th scope="row"><a href="@product.ProductURL"><img class="cart-img" src="@product.ImageURL" /></a></th>
@@ -44,15 +44,50 @@ else
         </tbody>
     </table>
 
-    <form asp-controller="Cart" asp-action="CreateOrder" method="post">
-        <button class="btn btn-primary float-end">Submit order</button>
-    </form>
+    <h3 class="text-center mt-5 mb-2">Shipping details</h3>
+    <div class="mb-3 text-center">
+        <form class="container" asp-controller="Cart" asp-action="CreateOrder" method="post">
+            <div class="form-group text-center mt-4">
+                <label>Country</label>
+                <input asp-for=Country class="form-control text-center placeholder-glow" placeholder="e.g. Bulgaria">
+                <span class="text-center text-danger " asp-validation-for="Country"></span>
+
+            </div>
+
+            <div class="form-group text-center mt-4">
+                <label>City</label>
+                <input asp-for=City class="form-control text-center" placeholder="e.g. Plovdiv">
+                <span class="text-center text-danger " asp-validation-for="City"></span>
+
+            </div>
+
+            <div class="form-group text-center mt-4">
+                <label>Street</label>
+                <input asp-for=Street class="form-control text-center" placeholder="e.g. Nish 10">
+                <span class="text-center text-danger " asp-validation-for="Street"></span>
+
+            </div>
+
+            <div class="form-group text-center mt-4">
+                <label>Postal Code</label>
+                <input asp-for=PostalCode class="form-control text-center" placeholder="e.g. 4000">
+                <span class="text-center text-danger " asp-validation-for="PostalCode"></span>
+
+            </div>
+
+            <button class="btn btn-primary mt-4">Submit order</button>
+        </form>
+    </div>
 }
 
-    @if (TempData.ContainsKey("ErrorMessage"))
-    {
-        <div class="alert alert-warning text-center mt-2" role="alert">
-           @Html.Raw(@TempData["ErrorMessage"])
-        </div>
-    }
-@*<span class="fs-5 row"><s>$50.00</s></span>*@
+@if (TempData.ContainsKey("ErrorMessage"))
+{
+    <div class="alert alert-warning text-center mt-2" role="alert">
+        @Html.Raw(@TempData["ErrorMessage"])
+    </div>
+}
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/custom-attribute-client-side-validation.js"></script>
+}

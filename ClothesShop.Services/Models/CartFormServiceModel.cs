@@ -1,22 +1,17 @@
-﻿namespace ClothesShop.Data.Entities
+﻿namespace ClothesShop.Services.Models
 {
-    using ClothesShop.Data.Interfaces;
-
-    using Miscellaneous;
+    using ClothesShop.Services.Models.Product;
 
     using System.ComponentModel.DataAnnotations;
 
     using static ClothesShop.Data.Miscellaneous.DataConstants.ShippingAddressConstants;
 
-    public class ShippingAddress : ICreatable, IModifiable, IDeletable
+    public class CartFormServiceModel
     {
-        public ShippingAddress()
+        public CartFormServiceModel(List<ProductCartCookieModel> products)
         {
-            CreatedOn = DateTimeProvider.CurrentTime;
+            Products = products;
         }
-
-        [Required]
-        public int Id { get; set; }
 
         [MinLength(CountryNameMinLength)]
         [MaxLength(CountryNameMaxLength)]
@@ -34,16 +29,6 @@
         [MaxLength(PostalCodeMaxLength)]
         public string PostalCode { get; set; }
 
-        public string ClientId { get; set; }
-
-        public Client Client { get; set; }
-
-        public virtual ICollection<Order> Orders { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public bool? ModifiedOn { get; set; }
-
-        public bool IsDeleted { get; set; }
+        public List<ProductCartCookieModel>? Products { get; set; }
     }
 }
