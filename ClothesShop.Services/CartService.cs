@@ -1,18 +1,14 @@
 ﻿namespace ClothesShop.Services
 {
-    using AutoMapper;
-
     using ClothesShop.Services.Models;
 
     public class CartService : ICartService
     {
         private readonly IProductService productsService;
-        private readonly IMapper mapper;
 
-        public CartService(IProductService productsService, IMapper mapper)
+        public CartService(IProductService productsService)
         {
             this.productsService = productsService;
-            this.mapper = mapper;
         }
 
         public async Task<IOrderValidationResult> IsOrderValidAsync(List<ProductCartServiceModel> products)
@@ -24,6 +20,8 @@
                 var dbProductName = dbProduct.Name;
                 var dbProductBrand = dbProduct.Manufacturer;
                 var productIdentity = $"{dbProductName} by {dbProductBrand}";
+                var aTag = $@"<a href='https://localhost:7206/Products/Details?productId={product.ProductId}'>{productIdentity}</a>";
+                var dueToThatSentence = "Due to that - the product has been removed from your cart.If you still with to purchase it - re-add it to your cart which will automatically correct the product parameters.";
 
                 if (dbProduct == null)
                 {
@@ -31,11 +29,11 @@
                 }
                 else if (dbProduct.Price != product.Price)
                 {
-                    return new OrderValidationResult(false, product.ProductId, $"{productIdentity} has a different price. Price from client is ${product.Price} while the real price is ${dbProduct.Price}.");
+                    return new OrderValidationResult(false, product.ProductId, $@"{aTag} has a different price. Price from the cart shows ${product.Price} while the real price from our database shows ${dbProduct.Price.ToString("F2")}. {dueToThatSentence}");
                 }
                 else if (dbProduct.ImageURL != product.ImageURL)
                 {
-                    return new OrderValidationResult(false, product.ProductId, $"{productIdentity} has a different ImageURL. The image url from the client is ${product.ImageURL} while the real image URL is ${dbProduct.ImageURL}.");
+                    return new OrderValidationResult(false, product.ProductId, $"{aTag} has a different ImageURL. The image url from the client is ${product.ImageURL} while the real image URL is ${dbProduct.ImageURL}. {dueToThatSentence}");
                 }
                 else if (!dbProduct.Sizes.Any(x => x.Id == product.SizeId))
                 {

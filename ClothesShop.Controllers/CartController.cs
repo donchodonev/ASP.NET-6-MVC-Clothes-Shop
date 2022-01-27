@@ -13,6 +13,7 @@
     using static ClothesShop.Controllers.Infrastructure.ControllerBaseExtensions;
 
     [EnsureCartExists]
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class CartController : Controller
     {
         private readonly ICartService cartService;
@@ -24,30 +25,31 @@
             this.mapper = mapper;
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public async Task<IActionResult> Current()
+        public IActionResult Current()
         {
             var model = this.GetCart().Values.ToList();
-
-            var products = mapper.Map<List<ProductCartServiceModel>>(this.GetCart().Values.Select(x => x));
-
-            //remove async code after testing is finished
-            var validationResult = await cartService.IsOrderValidAsync(products);
-
-            Console.WriteLine(validationResult.IsValid);
-            Console.WriteLine(validationResult.Message);
-            Console.WriteLine(validationResult.ProductId);
 
             return this.View(model);
         }
 
         [HttpPost]
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Order()
+        public async Task<IActionResult> CreateOrder()
         {
             var products = mapper.Map<List<ProductCartServiceModel>>(this.GetCart().Values.Select(x => x));
 
-            return this.View();
+            var validationResult = await cartService.IsOrderValidAsync(products);
+
+            if (!validationResult.IsValid)
+            {
+                TempData["ErrorMessage"] = validationResult.Message;
+                return this.RedirectToAction(nameof(Current));
+            }
+
+            Console.WriteLine(validationResult.IsValid);
+            Console.WriteLine(validationResult.Message);
+            Console.WriteLine(validationResult.ProductId);
+
+            return this.RedirectToAction(nameof(Current));
         }
     }
 }
