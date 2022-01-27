@@ -3,7 +3,7 @@
     using AutoMapper;
 
     using ClothesShop.Data.Entities;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     public class ProductServiceMappingProfile : Profile
     {

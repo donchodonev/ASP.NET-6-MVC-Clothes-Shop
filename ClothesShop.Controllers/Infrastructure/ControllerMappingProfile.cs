@@ -5,7 +5,7 @@
     using ClothesShop.Controllers.Models;
     using ClothesShop.Controllers.Models.Product;
     using ClothesShop.Data.Entities;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     public class ControllerMappingProfile : Profile
     {

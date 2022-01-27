@@ -1,7 +1,7 @@
 ﻿namespace ClothesShop.Controllers.ActionFilters
 {
     using ClothesShop.Controllers.Models.Product;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;

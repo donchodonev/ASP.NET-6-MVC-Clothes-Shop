@@ -44,17 +44,15 @@ else
         </tbody>
     </table>
 
-
-    @if (TempData.ContainsKey("ErrorMessage"))
-    {
-        <div class="alert alert-warning text-center" role="alert">
-           @Html.Raw(@TempData["ErrorMessage"])
-        </div>
-    }
-
     <form asp-controller="Cart" asp-action="CreateOrder" method="post">
         <button class="btn btn-primary float-end">Submit order</button>
     </form>
 }
 
+    @if (TempData.ContainsKey("ErrorMessage"))
+    {
+        <div class="alert alert-warning text-center mt-2" role="alert">
+           @Html.Raw(@TempData["ErrorMessage"])
+        </div>
+    }
 @*<span class="fs-5 row"><s>$50.00</s></span>*@

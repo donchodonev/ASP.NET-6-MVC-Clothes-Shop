@@ -1,5 +1,7 @@
 ﻿namespace ClothesShop.Services
 {
+    using ClothesShop.Services.Models.Product;
+
     using ClothesShop.Services.Models;
 
     using Microsoft.AspNetCore.Http;
@@ -126,9 +128,8 @@
                     break;
                 }
             }
-            context.Response.Cookies.Delete(CartConstants.CookieKey);
-            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart),CartConstants.CookieOptions);
 
+            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart),CartConstants.CookieOptions);
         }
 
         public int UniqueProductsCount(HttpContext context)

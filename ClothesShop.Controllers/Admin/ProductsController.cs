@@ -4,7 +4,7 @@
 
     using ClothesShop.Controllers.Models.Product;
     using ClothesShop.Services;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;

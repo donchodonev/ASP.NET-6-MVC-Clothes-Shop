@@ -6,7 +6,7 @@
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
     using ClothesShop.Data.Enums;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     using Microsoft.EntityFrameworkCore;
 

@@ -1,7 +1,7 @@
 ﻿namespace ClothesShop.Services
 {
     using ClothesShop.Data.Entities;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     public interface IProductService
     {

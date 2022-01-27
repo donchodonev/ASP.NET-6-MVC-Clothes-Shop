@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Services.Models
+﻿namespace ClothesShop.Services.Models.Product
 {
     using ClothesShop.Data.Entities;
 

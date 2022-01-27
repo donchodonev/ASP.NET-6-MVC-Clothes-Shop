@@ -2,7 +2,7 @@
 {
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;

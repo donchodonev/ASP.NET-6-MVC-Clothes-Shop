@@ -1,6 +1,7 @@
 ﻿namespace ClothesShop.Services
 {
     using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     using Microsoft.AspNetCore.Http;
 

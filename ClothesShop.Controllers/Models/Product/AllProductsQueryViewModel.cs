@@ -2,7 +2,7 @@
 {
     using ClothesShop.Data.Enums;
     using ClothesShop.Services;
-    using ClothesShop.Services.Models;
+    using ClothesShop.Services.Models.Product;
 
     public class AllProductsQueryViewModel
     {
