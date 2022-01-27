@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Services
+﻿namespace ClothesShop.Services.Contracts
 {
     public interface IAgeGroupService
     {

@@ -1,7 +1,7 @@
 ﻿namespace ClothesShop.Controllers.Models.Product
 {
     using ClothesShop.Data.ValidationAttributes;
-    using ClothesShop.Services;
+    using ClothesShop.Services.Contracts;
 
     using System.ComponentModel.DataAnnotations;
 

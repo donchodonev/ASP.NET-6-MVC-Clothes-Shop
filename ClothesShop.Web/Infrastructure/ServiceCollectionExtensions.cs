@@ -1,10 +1,10 @@
 ﻿namespace ClothesShop.Web.Infrastructure
 {
     using ClothesShop.Controllers;
-    using ClothesShop.Controllers.ActionFilters;
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
     using ClothesShop.Services;
+    using ClothesShop.Services.Contracts;
 
     using Microsoft.AspNetCore.Identity;
     public static class ServiceCollectionExtensions
@@ -36,6 +36,7 @@
             services.AddTransient<IGenderService, GenderService>();
             services.AddTransient<IAgeGroupService, AgeGroupService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderService, OrderService>();
         }
     }
 }

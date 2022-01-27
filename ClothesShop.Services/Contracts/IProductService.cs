@@ -1,4 +1,4 @@
-﻿namespace ClothesShop.Services
+﻿namespace ClothesShop.Services.Contracts
 {
     using ClothesShop.Data.Entities;
     using ClothesShop.Services.Models.Product;

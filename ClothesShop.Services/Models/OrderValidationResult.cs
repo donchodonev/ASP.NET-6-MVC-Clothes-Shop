@@ -1,5 +1,7 @@
 ﻿namespace ClothesShop.Services.Models
 {
+    using ClothesShop.Services.Contracts;
+
     public class OrderValidationResult : IOrderValidationResult
     {
         public OrderValidationResult(bool isValid, int productId, string message)

@@ -3,7 +3,7 @@
     using AutoMapper;
 
     using ClothesShop.Controllers.ActionFilters;
-    using ClothesShop.Services;
+    using ClothesShop.Services.Contracts;
     using ClothesShop.Services.Models;
     using ClothesShop.Services.Models.Product;
 

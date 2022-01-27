@@ -7,6 +7,8 @@
 
     using Microsoft.EntityFrameworkCore;
 
+    using ClothesShop.Services.Contracts;
+
     public class AgeGroupService : IAgeGroupService
     {
         private readonly ShopDbContext data;

@@ -1,7 +1,7 @@
 ﻿namespace ClothesShop.Controllers.Models.Product
 {
     using ClothesShop.Data.Enums;
-    using ClothesShop.Services;
+    using ClothesShop.Services.Contracts;
     using ClothesShop.Services.Models.Product;
 
     public class AllProductsQueryViewModel
