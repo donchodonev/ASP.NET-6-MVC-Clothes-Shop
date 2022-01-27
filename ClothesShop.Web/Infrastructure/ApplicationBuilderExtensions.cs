@@ -9,6 +9,7 @@
 
     using System.Text.Json;
 
+    using static ClothesShop.Data.Miscellaneous.DataConstants;
     using static ClothesShop.Data.Miscellaneous.DataConstants.ClientConstants;
 
     public static class ApplicationBuilderExtensions
@@ -55,7 +56,7 @@
                 {
                     var emptyJsonObject = JsonSerializer.Serialize(new Dictionary<string, ProductCartCookieModel>());
 
-                    context.Response.Cookies.Append("ClothesShopShoppingCart", emptyJsonObject);
+                    context.Response.Cookies.Append("ClothesShopShoppingCart", emptyJsonObject,CartConstants.CookieOptions);
                 }
 
                 await next();

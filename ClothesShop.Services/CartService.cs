@@ -127,7 +127,7 @@
                 }
             }
             context.Response.Cookies.Delete(CartConstants.CookieKey);
-            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart));
+            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart),CartConstants.CookieOptions);
 
         }
 
