@@ -1,5 +1,6 @@
 ﻿namespace ClothesShop.Data.Entities
 {
+    using ClothesShop.Data.Enums;
     using ClothesShop.Data.Interfaces;
     using ClothesShop.Data.Miscellaneous;
 
@@ -27,6 +28,9 @@
         public int ShippingDetailsId { get; set; }
 
         public virtual ShippingDetails ShippingDetails { get; set; }
+
+        [Required]
+        public OrderStatus Status { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
