@@ -2,40 +2,48 @@
 {
     using ClothesShop.Controllers.ActionFilters;
     using ClothesShop.Controllers.Models.Product;
+    using ClothesShop.Services;
+    using ClothesShop.Services.Models;
 
     using Microsoft.AspNetCore.Mvc;
-
-    using static Infrastructure.ControllerBaseExtensions;
 
     [ApiController]
     [EnsureCartExists]
     public class CartApiController : ControllerBase
     {
+        private readonly ICartService cart;
+
+        public CartApiController(ICartService cart)
+        {
+            this.cart = cart;
+        }
         [Route("api/cart")]
         [HttpGet]
         public ActionResult<Dictionary<string, ProductCartCookieModel>> Get()
         {
-            return this.GetCart();
+            return cart.Get(this.HttpContext);
         }
 
         [Route("api/cart/count")]
         [HttpGet]
         public ActionResult<int> GetCount()
         {
-            return this.Ok(this.UniqueProductsCount());
+            var uniqueProductsCount = cart.UniqueProductsCount(this.HttpContext);
+
+            return this.Ok(uniqueProductsCount);
         }
 
         [Route("api/cart")]
         [HttpPost]
         public ActionResult Post([FromBody] ProductCartCookieModel product)
         {
-            this.AddToCart(product);
+            cart.Add(this.HttpContext, product);
 
-            var uniqueProducts = this.UniqueProductsCount();
+            var uniqueProducts = cart.UniqueProductsCount(this.HttpContext);
 
             var productKey = $"{product.ProductId}:{product.SizeId}";
 
-            if (this.IsProductInCart(productKey))
+            if (cart.IsProductInCart(this.HttpContext, productKey))
             {
                 return this.Ok();
             }
@@ -45,9 +53,9 @@
 
         [Route("api/cart/increaseProductCount")]
         [HttpPost]
-        public ActionResult<ProductCountChangeResponseModel> IncreaseProductCount([FromBody]ProductCartCookieKeyModel productKey)
+        public ActionResult<ProductCountChangeServiceModel> IncreaseProductCount([FromBody] ProductCartCookieKeyModel productKey)
         {
-            var increasedCountAndTotal = this.IncreaseProductCountById(productKey.Key);
+            var increasedCountAndTotal = cart.IncreaseProductCountById(this.HttpContext, productKey.Key);
 
             if (increasedCountAndTotal == null)
             {
@@ -59,9 +67,9 @@
 
         [Route("api/cart/decreaseProductCount")]
         [HttpPost]
-        public ActionResult<ProductCountChangeResponseModel> DecreaseProductCount([FromBody] ProductCartCookieKeyModel productKey)
+        public ActionResult<ProductCountChangeServiceModel> DecreaseProductCount([FromBody] ProductCartCookieKeyModel productKey)
         {
-            var decreasedCountAndTotal = this.DecreaseProductCountById(productKey.Key);
+            var decreasedCountAndTotal = cart.DecreaseProductCountById(this.HttpContext, productKey.Key);
 
             if (decreasedCountAndTotal == null)
             {

@@ -1,8 +1,8 @@
 ﻿namespace ClothesShop.Web.Infrastructure
 {
-    using ClothesShop.Controllers.Models.Product;
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
+    using ClothesShop.Services.Models;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;

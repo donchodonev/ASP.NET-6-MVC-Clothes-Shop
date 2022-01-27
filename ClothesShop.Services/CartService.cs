@@ -2,6 +2,12 @@
 {
     using ClothesShop.Services.Models;
 
+    using Microsoft.AspNetCore.Http;
+
+    using System.Text.Json;
+
+    using static ClothesShop.Data.Miscellaneous.DataConstants;
+
     public class CartService : ICartService
     {
         private readonly IProductService productsService;
@@ -57,6 +63,107 @@
             }
 
             return new OrderValidationResult(true, 0, string.Empty);
+        }
+
+        public Dictionary<string, ProductCartCookieModel> Get(HttpContext context)
+        {
+            try
+            {
+                return JsonSerializer.Deserialize<Dictionary<string, ProductCartCookieModel>>(context.Request.Cookies[CartConstants.CookieKey]);
+            }
+            catch (Exception)
+            {
+                Clear(context);
+                return new Dictionary<string, ProductCartCookieModel>();
+            }
+        }
+
+        public void Clear(HttpContext context)
+        {
+            var emptyCart = new Dictionary<string, ProductCartCookieModel>();
+
+            context.Response.Cookies.Delete(CartConstants.CookieKey);
+
+            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(emptyCart), CartConstants.CookieOptions);
+        }
+
+        public void Add(HttpContext context, ProductCartCookieModel product)
+        {
+            var cart = Get(context);
+
+            var productKey = $"{product.ProductId}:{product.SizeId}";
+
+            if (cart.ContainsKey(productKey))
+            {
+                cart[productKey].Count += product.Count;
+            }
+            else
+            {
+                cart.Add(productKey, product);
+            }
+
+            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+        }
+
+        public int UniqueProductsCount(HttpContext context)
+        {
+            return Get(context).Values.Where(x => x.Count > 0).Count();
+        }
+
+        public bool IsProductInCart(HttpContext context, string productKey)
+        {
+            return Get(context).Keys.Any(x => x == productKey);
+        }
+
+        public ProductCountChangeServiceModel? IncreaseProductCountById(HttpContext context, string productKey)
+        {
+            if (!IsProductInCart(context, productKey))
+            {
+                return null;
+            }
+
+            var cart = Get(context);
+
+            cart.FirstOrDefault(x => x.Key == productKey).Value.Count++;
+
+            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+
+            return new ProductCountChangeServiceModel()
+            {
+                Count = cart.FirstOrDefault(x => x.Key == productKey).Value.Count,
+                Total = cart.FirstOrDefault(x => x.Key == productKey).Value.Total
+            };
+        }
+
+        public ProductCountChangeServiceModel? DecreaseProductCountById(HttpContext context, string productKey)
+        {
+            if (!IsProductInCart(context, productKey))
+            {
+                return null;
+            }
+
+            var cart = Get(context);
+
+            var productCount = cart.FirstOrDefault(x => x.Key == productKey).Value.Count;
+
+            if (productCount <= 1)
+            {
+                cart.Remove(productKey);
+
+                context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+
+                return null;
+            }
+
+            cart.FirstOrDefault(x => x.Key == productKey).Value.Count--;
+
+            context.Response.Cookies.Append(CartConstants.CookieKey, JsonSerializer.Serialize(cart), CartConstants.CookieOptions);
+
+            return new ProductCountChangeServiceModel()
+            {
+                Count = cart.FirstOrDefault(x => x.Key == productKey).Value.Count,
+                Total = cart.FirstOrDefault(x => x.Key == productKey).Value.Total
+            };
         }
     }
 }

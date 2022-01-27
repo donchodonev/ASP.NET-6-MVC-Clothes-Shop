@@ -10,24 +10,22 @@
 
     using System.Linq;
 
-    using static ClothesShop.Controllers.Infrastructure.ControllerBaseExtensions;
-
     [EnsureCartExists]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class CartController : Controller
     {
-        private readonly ICartService cartService;
+        private readonly ICartService cart;
         private readonly IMapper mapper;
 
-        public CartController(ICartService cartService, IMapper mapper)
+        public CartController(ICartService cart, IMapper mapper)
         {
-            this.cartService = cartService;
+            this.cart = cart;
             this.mapper = mapper;
         }
 
         public IActionResult Current()
         {
-            var model = this.GetCart().Values.ToList();
+            var model = cart.Get(this.HttpContext).Values.ToList();
 
             return this.View(model);
         }
@@ -35,9 +33,9 @@
         [HttpPost]
         public async Task<IActionResult> CreateOrder()
         {
-            var products = mapper.Map<List<ProductCartServiceModel>>(this.GetCart().Values.Select(x => x));
+            var products = mapper.Map<List<ProductCartServiceModel>>(cart.Get(this.HttpContext).Values.Select(x => x));
 
-            var validationResult = await cartService.IsOrderValidAsync(products);
+            var validationResult = await cart.IsOrderValidAsync(products);
 
             if (!validationResult.IsValid)
             {
