@@ -32,9 +32,19 @@
             order.ShippingDetails = new ShippingDetails();
 
             order.ShippingDetailsId = order.ShippingDetails.Id;
+
             order.ShippingDetails.Country = recipientData.Country;
+
+            order.ShippingDetails.RecipientFirstName = recipientData.FirstName;
+
+            order.ShippingDetails.RecipientLastName = recipientData.LastName;
+
+            order.ShippingDetails.Country = recipientData.Country;
+
             order.ShippingDetails.City = recipientData.City;
+
             order.ShippingDetails.Street = recipientData.Street;
+
             order.ShippingDetails.PostalCode = recipientData.PostalCode;
 
             var query = CreateUpdateQuery(productAndSizeIds);
