@@ -48,7 +48,7 @@ namespace ClothesShop.Data.Miscellaneous
             public const string AdminRoleName = "Administrator";
         }
 
-        public class ShippingAddressConstants
+        public class ShippingDetailsConstants
         {
             public const int CountryNameMinLength = 3;
             public const int CountryNameMaxLength = 100;
@@ -61,6 +61,9 @@ namespace ClothesShop.Data.Miscellaneous
 
             public const int PostalCodeMinLength = 3;
             public const int PostalCodeMaxLength = 10;
+
+            public const int NameMaxLength = 100;
+            public const int NameMinLength = 2;
         }
 
         public class SizeConstants

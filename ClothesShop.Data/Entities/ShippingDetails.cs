@@ -6,11 +6,11 @@
 
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.Miscellaneous.DataConstants.ShippingAddressConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ShippingDetailsConstants;
 
-    public class ShippingAddress : ICreatable, IModifiable, IDeletable
+    public class ShippingDetails : ICreatable, IModifiable, IDeletable
     {
-        public ShippingAddress()
+        public ShippingDetails()
         {
             CreatedOn = DateTimeProvider.CurrentTime;
         }
@@ -33,6 +33,16 @@
         [MinLength(PostalCodeMinLength)]
         [MaxLength(PostalCodeMaxLength)]
         public string PostalCode { get; set; }
+
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
+        [Required]
+        public string RecipientFirstName { get; set; }
+
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
+        [Required]
+        public string RecipientLastName { get; set; }
 
         public string? ClientId { get; set; }
 

@@ -31,7 +31,7 @@
 
         public DbSet<Rating> Ratings { get; set; }
 
-        public DbSet<ShippingAddress> ShippingAddresses { get; set; }
+        public DbSet<ShippingDetails> ShippingAddresses { get; set; }
 
         public DbSet<Size> Sizes { get; set; }
 
@@ -47,7 +47,7 @@
             builder.Entity<Client>()
                 .HasOne(client => client.ShippingAddress)
                 .WithOne(shippingAddress => shippingAddress.Client)
-                .HasForeignKey<ShippingAddress>(client => client.ClientId);
+                .HasForeignKey<ShippingDetails>(client => client.ClientId);
 
             builder.Entity<Order>()
                 .HasOne(sa => sa.ShippingAddress)

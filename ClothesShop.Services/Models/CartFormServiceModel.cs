@@ -4,7 +4,7 @@
 
     using System.ComponentModel.DataAnnotations;
 
-    using static ClothesShop.Data.Miscellaneous.DataConstants.ShippingAddressConstants;
+    using static ClothesShop.Data.Miscellaneous.DataConstants.ShippingDetailsConstants;
 
     public class CartFormServiceModel
     {

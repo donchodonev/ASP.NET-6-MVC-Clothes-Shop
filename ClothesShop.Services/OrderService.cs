@@ -32,7 +32,7 @@
         {
             var order = new Order();
 
-            order.ShippingAddress = new ShippingAddress();
+            order.ShippingAddress = new ShippingDetails();
 
             order.ShippingAddressId = order.ShippingAddress.Id;
             order.ShippingAddress.Country = country;

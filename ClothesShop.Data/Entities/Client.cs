@@ -48,7 +48,7 @@
 
         public int? ShippingAddressId { get; set; }
 
-        public virtual ShippingAddress ShippingAddress { get; set; }
+        public virtual ShippingDetails ShippingAddress { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
