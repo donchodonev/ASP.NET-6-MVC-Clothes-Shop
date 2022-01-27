@@ -11,6 +11,8 @@
 
     using System.Linq;
 
+    using static ClothesShop.Controllers.Infrastructure.ControllerExtensions;
+
     [EnsureCartExists]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class CartController : Controller
@@ -28,7 +30,7 @@
         {
             var products = cart.Get(this.HttpContext).Values.ToList();
 
-            return this.View(new CartFormServiceModel(products));
+            return this.View(new CartFormServiceModel { Products = products });
         }
 
         [HttpPost]
@@ -40,8 +42,7 @@
 
             if (!validationResult.IsValid)
             {
-                TempData["ErrorMessage"] = validationResult.Message;
-                return this.RedirectToAction(nameof(Current));
+                return this.RedirectToActionWithTempData("Current", "Cart", "ErrorMessage", validationResult.Message);
             }
 
             if (!ModelState.IsValid)

@@ -28,7 +28,7 @@
                 if (dbProduct == null)
                 {
                     Remove(context, product.ProductId);
-                    return new OrderValidationResult(false, product.ProductId, "A product with the following ID does not exist.");
+                    return new OrderValidationResult(false, product.ProductId, "A product with a non-existing has been removed from your cart.");
                 }
 
                 var dbProductName = dbProduct.Name;

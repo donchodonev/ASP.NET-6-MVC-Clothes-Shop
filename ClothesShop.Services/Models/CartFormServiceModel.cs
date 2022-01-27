@@ -8,9 +8,8 @@
 
     public class CartFormServiceModel
     {
-        public CartFormServiceModel(List<ProductCartCookieModel> products)
+        public CartFormServiceModel()
         {
-            Products = products;
         }
 
         [MinLength(CountryNameMinLength)]
