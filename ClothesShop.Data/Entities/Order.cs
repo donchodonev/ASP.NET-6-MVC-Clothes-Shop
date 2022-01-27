@@ -10,12 +10,13 @@
     {
         public Order()
         {
+            Id = Guid.NewGuid().ToString();
             Products = new HashSet<Product>();
             CreatedOn = DateTimeProvider.CurrentTime;
         }
 
         [Required]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
 
