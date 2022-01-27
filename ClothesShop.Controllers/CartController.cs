@@ -53,15 +53,12 @@
             }
 
             var productAndSizeIds = mapper.Map<ProductAndSizeServiceModel[]>(products);
+            var recipientData = mapper.Map<OrderRecipientDataModel>(model);
 
             try
             {
                 await orders.CreateOrderAsync(productAndSizeIds,
-                    this.HttpContext,
-                    model.Country,
-                    model.City,
-                    model.Street,
-                    model.PostalCode);
+                    this.HttpContext, recipientData);
             }
             catch (Exception ex)
             {

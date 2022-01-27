@@ -24,9 +24,9 @@
 
         public virtual Client Client { get; set; }
 
-        public int ShippingAddressId { get; set; }
+        public int ShippingDetailsId { get; set; }
 
-        public virtual ShippingDetails ShippingAddress { get; set; }
+        public virtual ShippingDetails ShippingDetails { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

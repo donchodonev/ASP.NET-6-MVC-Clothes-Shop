@@ -46,9 +46,9 @@
 
         public virtual ICollection<Order> Orders { get; set; }
 
-        public int? ShippingAddressId { get; set; }
+        public int? ShippingDetailsId { get; set; }
 
-        public virtual ShippingDetails ShippingAddress { get; set; }
+        public virtual ShippingDetails ShippingDetails { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

@@ -12,6 +12,14 @@
         {
         }
 
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
+        public string FirstName { get; set; }
+
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
+        public string LastName { get; set; }
+
         [MinLength(CountryNameMinLength)]
         [MaxLength(CountryNameMaxLength)]
         public string Country { get; set; }

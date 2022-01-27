@@ -3,6 +3,7 @@
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
     using ClothesShop.Services.Contracts;
+    using ClothesShop.Services.Models;
     using ClothesShop.Services.Models.Product;
 
     using Microsoft.AspNetCore.Http;
@@ -22,23 +23,19 @@
         }
 
         public async Task<string> CreateOrderAsync(
-    ProductAndSizeServiceModel[] productAndSizeIds,
-    HttpContext context,
-    string country,
-    string city,
-    string street,
-    string postalCode,
-    string clientId = null)
+        ProductAndSizeServiceModel[] productAndSizeIds,
+        HttpContext context, OrderRecipientDataModel recipientData,
+        string clientId = null)
         {
             var order = new Order();
 
-            order.ShippingAddress = new ShippingDetails();
+            order.ShippingDetails = new ShippingDetails();
 
-            order.ShippingAddressId = order.ShippingAddress.Id;
-            order.ShippingAddress.Country = country;
-            order.ShippingAddress.City = city;
-            order.ShippingAddress.Street = street;
-            order.ShippingAddress.PostalCode = postalCode;
+            order.ShippingDetailsId = order.ShippingDetails.Id;
+            order.ShippingDetails.Country = recipientData.Country;
+            order.ShippingDetails.City = recipientData.City;
+            order.ShippingDetails.Street = recipientData.Street;
+            order.ShippingDetails.PostalCode = recipientData.PostalCode;
 
             var query = CreateUpdateQuery(productAndSizeIds);
 

@@ -31,7 +31,7 @@
 
         public DbSet<Rating> Ratings { get; set; }
 
-        public DbSet<ShippingDetails> ShippingAddresses { get; set; }
+        public DbSet<ShippingDetails> ShippingDetails { get; set; }
 
         public DbSet<Size> Sizes { get; set; }
 
@@ -45,14 +45,14 @@
                 .HasForeignKey<ClubCard>(client => client.ClientId);
 
             builder.Entity<Client>()
-                .HasOne(client => client.ShippingAddress)
+                .HasOne(client => client.ShippingDetails)
                 .WithOne(shippingAddress => shippingAddress.Client)
                 .HasForeignKey<ShippingDetails>(client => client.ClientId);
 
             builder.Entity<Order>()
-                .HasOne(sa => sa.ShippingAddress)
+                .HasOne(sa => sa.ShippingDetails)
                 .WithMany(sa => sa.Orders)
-                .HasForeignKey(order => order.ShippingAddressId)
+                .HasForeignKey(order => order.ShippingDetailsId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);

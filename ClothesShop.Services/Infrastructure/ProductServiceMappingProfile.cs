@@ -3,6 +3,7 @@
     using AutoMapper;
 
     using ClothesShop.Data.Entities;
+    using ClothesShop.Services.Models;
     using ClothesShop.Services.Models.Product;
 
     public class ProductServiceMappingProfile : Profile
@@ -19,6 +20,8 @@
                 ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => src.Sizes));
 
             this.CreateMap<ProductCartServiceModel, ProductAndSizeServiceModel>();
+
+            this.CreateMap<CartFormServiceModel, OrderRecipientDataModel>();
         }
     }
 }
