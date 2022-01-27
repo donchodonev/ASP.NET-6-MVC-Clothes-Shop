@@ -5,6 +5,7 @@
     using ClothesShop.Services.Contracts;
     using ClothesShop.Services.Models.Product;
 
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
 
     using System.Text;
@@ -12,19 +13,22 @@
     public class OrderService : IOrderService
     {
         private readonly ShopDbContext db;
+        private readonly ICartService cart;
 
-        public OrderService(ShopDbContext db)
+        public OrderService(ShopDbContext db, ICartService cart)
         {
             this.db = db;
+            this.cart = cart;
         }
 
         public async Task<string> CreateOrderAsync(
-            ProductAndSizeServiceModel[] productAndSizeIds,
-            string country,
-            string city,
-            string street,
-            string postalCode,
-            string clientId = null)
+    ProductAndSizeServiceModel[] productAndSizeIds,
+    HttpContext context,
+    string country,
+    string city,
+    string street,
+    string postalCode,
+    string clientId = null)
         {
             var order = new Order();
 
@@ -38,14 +42,16 @@
 
             var query = CreateUpdateQuery(productAndSizeIds);
 
-            db.Orders.Add(order);
-
             using (var transaction = db.Database.BeginTransaction())
             {
                 try
                 {
                     await db.Database.ExecuteSqlRawAsync(query);
+
+                    db.Orders.Add(order);
+
                     await db.SaveChangesAsync();
+
                     transaction.Commit();
                 }
                 catch (Exception)
@@ -54,9 +60,12 @@
                 }
             }
 
+            cart.Clear(context);
+
             return order.Id;
         }
 
+        //Unparameterizer raw SQL queries are bad, except when they're not
         private string CreateUpdateQuery(ProductAndSizeServiceModel[] productAndSizeIds)
         {
             StringBuilder query = new StringBuilder();

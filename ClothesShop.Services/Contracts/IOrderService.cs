@@ -2,10 +2,13 @@
 {
     using ClothesShop.Services.Models.Product;
 
+    using Microsoft.AspNetCore.Http;
+
     public interface IOrderService
     {
         public Task<string> CreateOrderAsync(
     ProductAndSizeServiceModel[] productAndSizeIds,
+    HttpContext context,
     string country,
     string city,
     string street,
