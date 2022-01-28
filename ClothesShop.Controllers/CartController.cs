@@ -65,7 +65,7 @@
                 return this.RedirectToActionWithTempData("Current", "Cart", "ErrorMessage", ex.Message);
             }
 
-            return this.RedirectToAction(nameof(Current));
+            return this.RedirectToActionWithTempData("Current", "Cart", "IsOrderFresh", true);
         }
     }
 }

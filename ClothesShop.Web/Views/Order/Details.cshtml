@@ -1,4 +1,6 @@
-﻿@if (true)
+﻿@model CartFormServiceModel
+
+@if (TempData.ContainsKey("IsOrderFresh"))
 {
     <div class="jumbotron text-center">
         <h1 class="display-4">Thank you for shopping with us !</h1>
@@ -6,4 +8,89 @@
         <p class="lead">If you wish to return to this summary and haven't yet registerd in our site - just bookmark this page.</p>
         <hr class="my-4">
     </div>
+
+    <table class="table table-hover text-center">
+    <thead>
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Size</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <th scope="row"><a href="@product.ProductURL"><img class="cart-img" src="@product.ImageURL" /></a></th>
+                <td><span class="fs-5">$@product.Price.ToString("F2")</span></td>
+                <td class="fs-5">@product.SizeText</td>
+                <td class="fs-5">
+                    <a href="#" onclick="decreaseProductQuantity('@($"{product.ProductId}:{product.SizeId.ToString()}")')" class="text-danger"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" /><path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" /></svg></a>
+
+                    <span id="@($"{product.ProductId}:{product.SizeId.ToString()}")-count"> @product.Count </span>
+
+                    <a href="#" onclick="increaseProductQuantity('@($"{product.ProductId}:{product.SizeId.ToString()}")')" class="text-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </a>
+                </td>
+                <td class="fs-5">$<span id="@($"{product.ProductId}:{product.SizeId.ToString()}")-totalPrice">@product.Total.ToString("F2")</span></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<h3 class="text-center mt-5 mb-2">Shipping details</h3>
+<div class="mb-3 text-center">
+
+    <div class="form-group text-center mt-4">
+        <label>First name</label>
+        <input asp-for=FirstName class="form-control text-center" placeholder="e.g. John">
+
+    </div>
+
+    <div class="form-group text-center mt-4">
+        <label>Last name</label>
+        <input asp-for=LastName class="form-control text-center" placeholder="e.g. Smith">
+
+    </div>
+
+    <div class="form-group text-center mt-4">
+        <label>Country</label>
+        <input asp-for=Country class="form-control text-center placeholder-glow" placeholder="e.g. Bulgaria">
+
+    </div>
+
+    <div class="form-group text-center mt-4">
+        <label>City</label>
+        <input asp-for=City class="form-control text-center" placeholder="e.g. Plovdiv">
+    </div>
+
+    <div class="form-group text-center mt-4">
+        <label>Street</label>
+        <input asp-for=Street class="form-control text-center" placeholder="e.g. General Radko Dimitriev 10">
+
+    </div>
+
+    <div class="form-group text-center mt-4">
+        <label>Postal Code</label>
+        <input asp-for=PostalCode class="form-control text-center" placeholder="e.g. 4000">
+    </div>
+
+    <div class="form-group text-center mt-4">
+        <label>Email Address</label>
+        <input asp-for=EmailAddress class="form-control text-center" placeholder="e.g. somebody@gmail.com">
+    </div>
+</div>
 }
+
+
+
+
+

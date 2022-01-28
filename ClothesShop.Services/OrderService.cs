@@ -19,7 +19,7 @@
         private readonly ICartService cart;
         private readonly IMapper mapper;
 
-        public OrderService(ShopDbContext db, ICartService cart,IMapper mapper)
+        public OrderService(ShopDbContext db, ICartService cart, IMapper mapper)
         {
             this.db = db;
             this.cart = cart;
@@ -31,11 +31,11 @@
         HttpContext context, OrderRecipientDataModel recipientData,
         string clientId = null)
         {
-            var order = new Order();
-
-            order.ShippingDetails = mapper.Map<ShippingDetails>(recipientData);
-
-            order.ShippingDetailsId = order.ShippingDetails.Id;
+            var order = new Order()
+            {
+                ShippingDetails = mapper.Map<ShippingDetails>(recipientData),
+                Status = Data.Enums.OrderStatus.Pending
+            };
 
             var query = CreateUpdateQuery(productAndSizeIds);
 
@@ -56,6 +56,8 @@
                     throw new InvalidOperationException("Something went wrong with your order");
                 }
             }
+
+            order.ShippingDetailsId = order.ShippingDetails.Id;
 
             cart.Clear(context);
 
