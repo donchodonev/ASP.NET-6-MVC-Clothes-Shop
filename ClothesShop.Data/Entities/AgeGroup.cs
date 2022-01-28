@@ -19,6 +19,9 @@
         [Required]
         public string Name { get; set; }
 
+        [Url]
+        public string ImageURL { get; set; }
+
         public virtual ICollection<Client> Clients { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

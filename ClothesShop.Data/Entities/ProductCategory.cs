@@ -22,6 +22,9 @@
         [Range(NameMinLength, NameMaxLength)]
         public string Name { get; set; }
 
+        [Url]
+        public string ImageURL { get; set; }
+
         public virtual ICollection<Product> Products { get; set; }
 
         public bool IsDeleted { get; set; }

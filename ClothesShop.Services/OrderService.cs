@@ -72,7 +72,7 @@
             return order.Id;
         }
 
-        //Unparameterizer raw SQL queries are bad, except when they're not
+        //Unparameterized raw SQL queries are bad, except when they're not
         private string CreateUpdateQuery(ProductAndSizeServiceModel[] productAndSizeIds)
         {
             StringBuilder query = new StringBuilder();
