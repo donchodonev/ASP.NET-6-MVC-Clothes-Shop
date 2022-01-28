@@ -66,6 +66,11 @@
 
                     Remove(context, product.ProductId);
 
+                    if (productOfParticularSizeCount == 0)
+                    {
+                        return new OrderValidationResult(false, product.ProductId, $"{productIdentity} is out of stock !");
+                    }
+
                     return new OrderValidationResult(false, product.ProductId, $"{productIdentity} has only {productOfParticularSizeCount} pieces remaining in stock");
                 }
 

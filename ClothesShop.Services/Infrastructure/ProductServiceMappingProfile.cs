@@ -28,6 +28,11 @@
 
             this.CreateMap<AgeGroup, ProductGroupServiceModel>()
                 .ForMember(d => d.Type, cfg => cfg.MapFrom(src => src.GetType().Name));
+
+            this.CreateMap<OrderRecipientDataModel, ShippingDetails>()
+                .ForMember(d => d.RecipientEmailAddress, cfg => cfg.MapFrom(src => src.EmailAddress))
+                .ForMember(d => d.RecipientFirstName, cfg => cfg.MapFrom(src => src.FirstName))
+                .ForMember(d => d.RecipientLastName, cfg => cfg.MapFrom(src => src.LastName));
         }
     }
 }

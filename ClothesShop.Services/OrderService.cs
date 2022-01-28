@@ -1,5 +1,7 @@
 ﻿namespace ClothesShop.Services
 {
+    using AutoMapper;
+
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
     using ClothesShop.Services.Contracts;
@@ -15,11 +17,13 @@
     {
         private readonly ShopDbContext db;
         private readonly ICartService cart;
+        private readonly IMapper mapper;
 
-        public OrderService(ShopDbContext db, ICartService cart)
+        public OrderService(ShopDbContext db, ICartService cart,IMapper mapper)
         {
             this.db = db;
             this.cart = cart;
+            this.mapper = mapper;
         }
 
         public async Task<string> CreateOrderAsync(
@@ -29,23 +33,9 @@
         {
             var order = new Order();
 
-            order.ShippingDetails = new ShippingDetails();
+            order.ShippingDetails = mapper.Map<ShippingDetails>(recipientData);
 
             order.ShippingDetailsId = order.ShippingDetails.Id;
-
-            order.ShippingDetails.Country = recipientData.Country;
-
-            order.ShippingDetails.RecipientFirstName = recipientData.FirstName;
-
-            order.ShippingDetails.RecipientLastName = recipientData.LastName;
-
-            order.ShippingDetails.Country = recipientData.Country;
-
-            order.ShippingDetails.City = recipientData.City;
-
-            order.ShippingDetails.Street = recipientData.Street;
-
-            order.ShippingDetails.PostalCode = recipientData.PostalCode;
 
             var query = CreateUpdateQuery(productAndSizeIds);
 
