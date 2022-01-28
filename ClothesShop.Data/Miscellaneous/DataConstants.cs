@@ -39,6 +39,9 @@ namespace ClothesShop.Data.Miscellaneous
         {
             public const int NameMinLength = 4;
             public const int NameMaxLength = 50;
+
+            public const int DescriptionMinLength = 20;
+            public const int DescriptionMaxLength = 500;
         }
 
         public class ClientConstants
@@ -76,6 +79,9 @@ namespace ClothesShop.Data.Miscellaneous
         {
             public const int NameMinLength = 4;
             public const int NameMaxLength = 20;
+
+            public const int DescriptionMinLength = 20;
+            public const int DescriptionMaxLength = 500;
         }
 
         public class ClubCardTierConstants

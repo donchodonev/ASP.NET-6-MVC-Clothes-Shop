@@ -33,11 +33,12 @@
         [NotMapped]
         public int Quantity => Sizes.Sum(x => x.Count);
 
-        [Range(DescriptionMinLength,DescriptionMaxLength)]
+        [MinLength(DescriptionMinLength)]
+        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-
-        [Range(ManufacturerNameMinLength, ManufacturerNameMaxLength)]
+        [MinLength(ManufacturerNameMinLength)]
+        [MaxLength(ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
         [Required]

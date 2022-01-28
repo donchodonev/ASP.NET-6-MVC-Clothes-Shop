@@ -22,10 +22,12 @@
         [Range(MinQuantity, MaxQuantity)]
         public int Quantity { get; set; }
 
-        [Range(DescriptionMinLength, DescriptionMaxLength)]
+        [MaxLength(DescriptionMinLength)]
+        [MinLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-        [Range(ManufacturerNameMinLength, ManufacturerNameMaxLength)]
+        [MaxLength(ManufacturerNameMinLength)]
+        [MinLength(ManufacturerNameMaxLength)]
         public string Manufacturer { get; set; }
 
         public  ProductCategory Category { get; set; }

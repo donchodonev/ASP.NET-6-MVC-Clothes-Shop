@@ -19,8 +19,13 @@
         [Required]
         public int Id { get; set; }
 
-        [Range(NameMinLength, NameMaxLength)]
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
+
+        [MinLength(DescriptionMinLength)]
+        [MaxLength(DescriptionMaxLength)]
+        public string Description { get; set; }
 
         [Url]
         public string ImageURL { get; set; }

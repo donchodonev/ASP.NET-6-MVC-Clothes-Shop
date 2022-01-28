@@ -18,7 +18,8 @@
         public int Id { get; set; }
 
         [Required]
-        [Range(SizeNameMinLength, SizeNameMaxLength)]
+        [MinLength(SizeNameMinLength)]
+        [MaxLength(SizeNameMaxLength)]
         public string Value { get; set; }
 
         [Required]

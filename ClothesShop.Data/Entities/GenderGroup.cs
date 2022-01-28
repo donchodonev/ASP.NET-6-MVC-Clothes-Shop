@@ -15,7 +15,8 @@
         public int Id { get; set; }
 
         [Required]
-        [Range(NameMinLength,NameMaxLength)]
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         [Required]

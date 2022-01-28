@@ -15,12 +15,17 @@
         [Required]
         public int Id { get; set; }
 
-        [Range(NameMinLength,NameMaxLength)]
+        [MinLength(NameMinLength)]
+        [MaxLength(NameMaxLength)]
         [Required]
         public string Name { get; set; }
 
         [Url]
         public string ImageURL { get; set; }
+
+        [MinLength(DescriptionMinLength)]
+        [MaxLength(DescriptionMaxLength)]
+        public string Description { get; set; }
 
         public virtual ICollection<Client> Clients { get; set; }
 
