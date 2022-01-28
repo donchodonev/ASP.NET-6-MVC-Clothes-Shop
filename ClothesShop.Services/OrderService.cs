@@ -1,6 +1,7 @@
 ﻿namespace ClothesShop.Services
 {
     using AutoMapper;
+    using AutoMapper.QueryableExtensions;
 
     using ClothesShop.Data;
     using ClothesShop.Data.Entities;
@@ -62,6 +63,31 @@
             cart.Clear(context);
 
             return order.Id;
+        }
+
+        /// <summary>
+        /// Returns the requested projection if the order exists, null if it doesn't
+        /// </summary>
+        /// <typeparam name="TModel"></typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<TModel> FindByIdAsync<TModel>(string id) where TModel : class
+        {
+            if (!await ExistsAsync(id))
+            {
+                return null;
+            }
+
+            return db
+                .Orders
+                .Where(x => x.Id == id)
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .First();
+        }
+
+        public async Task<bool> ExistsAsync(string orderId, bool withDeleted = false)
+        {
+            return await db.Orders.AnyAsync(x => x.Id == orderId && x.IsDeleted == withDeleted);
         }
 
         //Unparameterized raw SQL queries are bad, except when they're not

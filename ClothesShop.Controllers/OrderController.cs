@@ -1,7 +1,7 @@
 ﻿namespace ClothesShop.Controllers
 {
+    using ClothesShop.Controllers.Models;
     using ClothesShop.Services.Contracts;
-    using ClothesShop.Services.Models.Product;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +11,7 @@
 
         public OrderController(IOrderService orders)
         {
-            var model = new List<ProductCartCookieModel>();
+            var model = new OrderDetailsViewModel();
         }
 
         public IActionResult Details(string orderId)

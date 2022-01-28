@@ -1,11 +1,18 @@
 ﻿namespace ClothesShop.Controllers.Models
 {
     using ClothesShop.Controllers.Models.Product;
+    using ClothesShop.Services.Contracts;
 
     public class OrderDetailsViewModel
     {
-        public List<ProductOrderDetailsViewModel> Products { get; set; }
+        public ProductOrderDetailsViewModel[] Products { get; set; }
 
-        public List<OrderShippingDetailsViewModel> ShippingDetails { get; set; }
+        public OrderShippingDetailsViewModel ShippingDetails { get; set; }
+
+        public async Task GetProductsAsync(IOrderService orders, string productId)
+        {
+            Products = await orders.FindByIdAsync<ProductOrderDetailsViewModel[]>(productId);
+            ShippingDetails = await orders.FindByIdAsync<OrderShippingDetailsViewModel>(productId);
+        }
     }
 }

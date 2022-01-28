@@ -37,6 +37,8 @@
 
         public DbSet<Order> Orders { get; set; }
 
+        public DbSet<ProductOrder> ProductsOrders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Client>()
@@ -54,6 +56,19 @@
                 .WithMany(sa => sa.Orders)
                 .HasForeignKey(order => order.ShippingDetailsId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProductOrder>()
+                .HasKey(po => new { po.ProductId, po.OrderId });
+
+            builder.Entity<ProductOrder>()
+                .HasOne<Product>()
+                .WithMany(p => p.ProductOrders)
+                .HasForeignKey(productOrder => productOrder.ProductId);
+
+            builder.Entity<ProductOrder>()
+                .HasOne<Order>()
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(productOrder => productOrder.OrderId);
 
             base.OnModelCreating(builder);
         }
