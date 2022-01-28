@@ -5,7 +5,7 @@
         AgeGroup = 0,
         Babies = 1,
         Children = 2,
-        Teenagers = 3,
+        Teens = 3,
         Adults = 4,
     }
 }

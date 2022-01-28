@@ -1,6 +1,8 @@
 ﻿namespace ClothesShop.Controllers
 {
     using ClothesShop.Controllers.Models;
+    using ClothesShop.Controllers.Models.Product;
+    using ClothesShop.Services.Contracts;
 
     using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,21 @@
 
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IGenderService genderGroups;
+        private readonly IAgeGroupService ageGroups;
+
+        public HomeController(IGenderService genderGroups, IAgeGroupService ageGroups)
         {
-            return View();
+            this.genderGroups = genderGroups;
+            this.ageGroups = ageGroups;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var model = new ProductGroupCollectionViewModel();
+
+            await model.GetGroupsAsync(genderGroups, ageGroups);
+
+            return View(model);
         }
 
         public IActionResult Privacy()

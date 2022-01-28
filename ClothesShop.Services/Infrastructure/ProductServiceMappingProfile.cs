@@ -22,6 +22,12 @@
             this.CreateMap<ProductCartServiceModel, ProductAndSizeServiceModel>();
 
             this.CreateMap<CartFormServiceModel, OrderRecipientDataModel>();
+
+            this.CreateMap<GenderGroup, ProductGroupServiceModel>()
+                .ForMember(d => d.Type, cfg => cfg.MapFrom(src => src.GetType().Name));
+
+            this.CreateMap<AgeGroup, ProductGroupServiceModel>()
+                .ForMember(d => d.Type, cfg => cfg.MapFrom(src => src.GetType().Name));
         }
     }
 }
