@@ -89,6 +89,12 @@ else
                 <span class="text-center text-danger " asp-validation-for="PostalCode"></span>
             </div>
 
+            <div class="form-group text-center mt-4">
+                <label>Email Address</label>
+                <input asp-for=EmailAddress class="form-control text-center" placeholder="e.g. somebody@gmail.com">
+                <span class="text-center text-danger " asp-validation-for="EmailAddress"></span>
+            </div>
+
             <button class="btn btn-primary mt-4">Submit order</button>
         </form>
     </div>

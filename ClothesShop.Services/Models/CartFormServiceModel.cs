@@ -36,6 +36,9 @@
         [MaxLength(PostalCodeMaxLength)]
         public string PostalCode { get; set; }
 
+        [EmailAddress]
+        public string EmailAddress { get; set; }
+
         public List<ProductCartCookieModel>? Products { get; set; }
     }
 }

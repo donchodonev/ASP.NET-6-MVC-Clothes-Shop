@@ -13,5 +13,7 @@
         public string Street { get; set; }
 
         public string PostalCode { get; set; }
+
+        public string EmailAddress { get; set; }
     }
 }

@@ -44,6 +44,9 @@
         [Required]
         public string RecipientLastName { get; set; }
 
+        [EmailAddress]
+        public string RecipientEmailAddress { get; set; }
+
         public string? ClientId { get; set; }
 
         public virtual Client Client { get; set; }

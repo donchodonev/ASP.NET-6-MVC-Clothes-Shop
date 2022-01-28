@@ -42,6 +42,10 @@
                     name: "Cart View",
                     pattern: "{controller=Cart}/{action=View}");
 
+                endpoints.MapControllerRoute(
+                    name: "Order Details View",
+                    pattern: "{controller=Order}/{action=Details}/{orderId:guid?}");
+
                 endpoints.MapRazorPages();
             });
         }
