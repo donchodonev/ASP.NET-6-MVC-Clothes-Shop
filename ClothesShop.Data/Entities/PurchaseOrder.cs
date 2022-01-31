@@ -10,7 +10,6 @@
         public PurchaseOrder()
         {
             CreatedOn = DateTimeProvider.CurrentTime;
-            PurchasesOrders = new HashSet<PurchaseOrder>();
         }
 
         public DateTime CreatedOn { get; set; }
@@ -24,8 +23,5 @@
 
         [NotMapped]
         public virtual Purchase Purchase { get; set; }
-
-        [NotMapped]
-        public ICollection<PurchaseOrder> PurchasesOrders { get; set; }
     }
 }

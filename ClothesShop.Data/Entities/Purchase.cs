@@ -21,6 +21,9 @@
         [Required]
         public int ProductId { get; set; }
 
+        [NotMapped]
+        public virtual Product Product { get; set; }
+
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
@@ -28,11 +31,6 @@
         public int? DiscountId { get; set; }
 
         public virtual Discount Discount { get; set; }
-
-        public int OrderId { get; set; }
-
-        [NotMapped]
-        public Order Order { get; set; }
 
         [NotMapped]
         public decimal TotalPrice => Price - (Price / 100) * Discount.Percentage;

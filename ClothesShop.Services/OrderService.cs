@@ -38,6 +38,7 @@
                 Status = Data.Enums.OrderStatus.Pending
             };
 
+            var purchaseOrders = CreatePurchaseOrders(productAndSizeIds, order);
             var query = CreateUpdateQuery(productAndSizeIds);
 
             using (var transaction = db.Database.BeginTransaction())
@@ -45,8 +46,6 @@
                 try
                 {
                     await db.Database.ExecuteSqlRawAsync(query);
-
-                    db.Orders.Add(order);
 
                     await db.SaveChangesAsync();
 
@@ -57,7 +56,6 @@
                     throw new InvalidOperationException("Something went wrong with your order");
                 }
             }
-
             order.ShippingDetailsId = order.ShippingDetails.Id;
 
             cart.Clear(context);
@@ -98,12 +96,36 @@
             foreach (var product in productAndSizeIds)
             {
                 query.AppendLine("Update [Sizes]");
-                query.AppendLine("SET [Count] = [Count] - 1");
+                query.AppendLine($"SET [Count] = [Count] - {product.Count}");
                 query.AppendLine($"WHERE [Id] = {product.SizeId} AND [ProductId] = {product.ProductId}");
                 query.AppendLine();
             }
 
             return query.ToString().TrimEnd();
+        }
+
+        private Stack<PurchaseOrder> CreatePurchaseOrders(ProductAndSizeServiceModel[] products, Order order)
+        {
+            var purchaseOrdersStack = new Stack<PurchaseOrder>();
+
+            foreach (var product in products)
+            {
+                var purchase = new Purchase()
+                {
+                    ProductId = product.ProductId,
+                    Price = product.Price
+                };
+
+                purchaseOrdersStack.Push(new PurchaseOrder()
+                {
+                    Purchase = purchase,
+                    Order = order,
+                    OrderId = order.Id,
+                    PurchaseId = purchase.Id
+                });
+            }
+
+            return purchaseOrdersStack;
         }
     }
 }

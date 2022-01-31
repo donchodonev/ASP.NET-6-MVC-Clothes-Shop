@@ -65,7 +65,7 @@
             builder.Entity<PurchaseOrder>()
                 .HasOne<Order>()
                 .WithMany(p => p.PurchasesOrders)
-                .HasForeignKey(productOrder => productOrder.OrderId);
+                .HasForeignKey(purchaseOrder => purchaseOrder.OrderId);
 
             builder.Entity<PurchaseOrder>()
                 .HasOne<Purchase>()
