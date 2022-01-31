@@ -5,9 +5,9 @@
 
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class PurchaseOrder : ICreatable
+    public class OrderPurchase : ICreatable
     {
-        public PurchaseOrder()
+        public OrderPurchase()
         {
             CreatedOn = DateTimeProvider.CurrentTime;
         }

@@ -11,7 +11,7 @@
         public Purchase()
         {
             CreatedOn = DateTimeProvider.CurrentTime;
-            PurchasesOrders = new HashSet<PurchaseOrder>();
+            PurchasesOrders = new HashSet<OrderPurchase>();
         }
 
         [Key]
@@ -35,7 +35,8 @@
         [NotMapped]
         public decimal TotalPrice => Price - (Price / 100) * Discount.Percentage;
 
-        public ICollection<PurchaseOrder> PurchasesOrders { get; set; }
+        [NotMapped]
+        public ICollection<OrderPurchase> PurchasesOrders { get; set; }
 
         public DateTime CreatedOn { get; set; }
     }

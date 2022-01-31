@@ -47,6 +47,19 @@
                 {
                     await db.Database.ExecuteSqlRawAsync(query);
 
+                    await db.Purchases.AddRangeAsync(purchaseOrders.Select(x => x.Purchase));
+
+                    await db.SaveChangesAsync();
+
+                    foreach (var po in purchaseOrders)
+                    {
+                        po.PurchaseId = po.Purchase.Id;
+                    }
+
+                    await db.Orders.AddRangeAsync(purchaseOrders.Select(x => x.Order));
+
+                    await db.OrdersPurchases.AddRangeAsync(purchaseOrders);
+
                     await db.SaveChangesAsync();
 
                     transaction.Commit();
@@ -104,9 +117,9 @@
             return query.ToString().TrimEnd();
         }
 
-        private Stack<PurchaseOrder> CreatePurchaseOrders(ProductAndSizeServiceModel[] products, Order order)
+        private Stack<OrderPurchase> CreatePurchaseOrders(ProductAndSizeServiceModel[] products, Order order)
         {
-            var purchaseOrdersStack = new Stack<PurchaseOrder>();
+            var purchaseOrdersStack = new Stack<OrderPurchase>();
 
             foreach (var product in products)
             {
@@ -116,7 +129,7 @@
                     Price = product.Price
                 };
 
-                purchaseOrdersStack.Push(new PurchaseOrder()
+                purchaseOrdersStack.Push(new OrderPurchase()
                 {
                     Purchase = purchase,
                     Order = order,

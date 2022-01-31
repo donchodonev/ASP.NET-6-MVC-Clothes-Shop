@@ -39,7 +39,7 @@
 
         public DbSet<Purchase> Purchases { get; set; }
 
-        public DbSet<PurchaseOrder> PurchasesOrders { get; set; }
+        public DbSet<OrderPurchase> OrdersPurchases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -59,15 +59,15 @@
                 .HasForeignKey(order => order.ShippingDetailsId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<PurchaseOrder>()
+            builder.Entity<OrderPurchase>()
                 .HasKey(po => new { po.PurchaseId, po.OrderId });
 
-            builder.Entity<PurchaseOrder>()
+            builder.Entity<OrderPurchase>()
                 .HasOne<Order>()
                 .WithMany(p => p.PurchasesOrders)
                 .HasForeignKey(purchaseOrder => purchaseOrder.OrderId);
 
-            builder.Entity<PurchaseOrder>()
+            builder.Entity<OrderPurchase>()
                 .HasOne<Purchase>()
                 .WithMany(p => p.PurchasesOrders)
                 .HasForeignKey(purchaseOrder => purchaseOrder.PurchaseId);
