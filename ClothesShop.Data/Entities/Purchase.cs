@@ -21,19 +21,38 @@
         [Required]
         public int ProductId { get; set; }
 
-        [NotMapped]
-        public virtual Product Product { get; set; }
+        public int SizeId { get; set; }
+
+        [Required]
+        public int Count { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
+
+        [NotMapped]
+        public Size Size { get; set; }
+
+        [NotMapped]
+        public virtual Product Product { get; set; }
 
         public int? DiscountId { get; set; }
 
         public virtual Discount Discount { get; set; }
 
         [NotMapped]
-        public decimal TotalPrice => Price - (Price / 100) * Discount.Percentage;
+        public decimal TotalPrice
+        {
+            get
+            {
+                if (Discount != null)
+                {
+                    return (Price * Count) - ((Price * Count) / 100) * Discount.Percentage;
+                }
+
+                return Price * Count;
+            }
+        }
 
         [NotMapped]
         public ICollection<OrderPurchase> PurchasesOrders { get; set; }

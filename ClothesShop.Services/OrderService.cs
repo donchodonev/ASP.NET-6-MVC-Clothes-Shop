@@ -39,22 +39,20 @@
             };
 
             var purchaseOrders = CreatePurchaseOrders(productAndSizeIds, order);
-            var query = CreateUpdateQuery(productAndSizeIds);
+
+            var reduceBoughtProductSizeCount = CreateUpdateQuery(productAndSizeIds);
 
             using (var transaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    await db.Database.ExecuteSqlRawAsync(query);
+                    await db.Database.ExecuteSqlRawAsync(reduceBoughtProductSizeCount);
 
                     await db.Purchases.AddRangeAsync(purchaseOrders.Select(x => x.Purchase));
 
                     await db.SaveChangesAsync();
 
-                    foreach (var po in purchaseOrders)
-                    {
-                        po.PurchaseId = po.Purchase.Id;
-                    }
+                    AddPurchaseIds(purchaseOrders);
 
                     await db.Orders.AddRangeAsync(purchaseOrders.Select(x => x.Order));
 
@@ -69,7 +67,6 @@
                     throw new InvalidOperationException("Something went wrong with your order");
                 }
             }
-            order.ShippingDetailsId = order.ShippingDetails.Id;
 
             cart.Clear(context);
 
@@ -126,7 +123,9 @@
                 var purchase = new Purchase()
                 {
                     ProductId = product.ProductId,
-                    Price = product.Price
+                    Price = product.Price,
+                    SizeId = product.SizeId,
+                    Count = product.Count
                 };
 
                 purchaseOrdersStack.Push(new OrderPurchase()
@@ -139,6 +138,14 @@
             }
 
             return purchaseOrdersStack;
+        }
+
+        public void AddPurchaseIds(Stack<OrderPurchase> purchaseOrders)
+        {
+            foreach (var po in purchaseOrders)
+            {
+                po.PurchaseId = po.Purchase.Id;
+            }
         }
     }
 }
