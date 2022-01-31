@@ -17,7 +17,7 @@
             CreatedOn = DateTimeProvider.CurrentTime;
             Ratings = new HashSet<Rating>();
             Sizes = new HashSet<Size>();
-            ProductOrders = new HashSet<ProductOrder>();
+            Purchases = new HashSet<Purchase>();
         }
 
         [Required]
@@ -49,7 +49,7 @@
 
         public virtual ICollection<Size> Sizes { get; set; }
 
-        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+        public virtual ICollection<Purchase> Purchases { get; set; }
 
         [Required]
         public int GenderGroupId { get; set; }

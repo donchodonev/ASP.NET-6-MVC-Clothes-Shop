@@ -37,7 +37,9 @@
 
         public DbSet<Order> Orders { get; set; }
 
-        public DbSet<ProductOrder> ProductsOrders { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+
+        public DbSet<PurchaseOrder> PurchasesOrders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -57,18 +59,18 @@
                 .HasForeignKey(order => order.ShippingDetailsId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<ProductOrder>()
-                .HasKey(po => new { po.ProductId, po.OrderId });
+            builder.Entity<PurchaseOrder>()
+                .HasKey(po => new { po.PurchaseId, po.OrderId });
 
-            builder.Entity<ProductOrder>()
-                .HasOne<Product>()
-                .WithMany(p => p.ProductOrders)
-                .HasForeignKey(productOrder => productOrder.ProductId);
-
-            builder.Entity<ProductOrder>()
+            builder.Entity<PurchaseOrder>()
                 .HasOne<Order>()
-                .WithMany(p => p.OrderProducts)
+                .WithMany(p => p.PurchasesOrders)
                 .HasForeignKey(productOrder => productOrder.OrderId);
+
+            builder.Entity<PurchaseOrder>()
+                .HasOne<Purchase>()
+                .WithMany(p => p.PurchasesOrders)
+                .HasForeignKey(purchaseOrder => purchaseOrder.PurchaseId);
 
             base.OnModelCreating(builder);
         }

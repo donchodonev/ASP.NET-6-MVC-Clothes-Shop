@@ -5,11 +5,12 @@
 
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class ProductOrder : ICreatable
+    public class PurchaseOrder : ICreatable
     {
-        public ProductOrder()
+        public PurchaseOrder()
         {
             CreatedOn = DateTimeProvider.CurrentTime;
+            PurchasesOrders = new HashSet<PurchaseOrder>();
         }
 
         public DateTime CreatedOn { get; set; }
@@ -19,9 +20,12 @@
         [NotMapped]
         public virtual Order Order { get; set; }
 
-        public int ProductId { get; set; }
+        public int PurchaseId { get; set; }
 
         [NotMapped]
-        public virtual Product Product { get; set; }
+        public virtual Purchase Purchase { get; set; }
+
+        [NotMapped]
+        public ICollection<PurchaseOrder> PurchasesOrders { get; set; }
     }
 }

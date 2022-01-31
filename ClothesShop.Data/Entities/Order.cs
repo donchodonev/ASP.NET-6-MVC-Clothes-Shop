@@ -12,14 +12,14 @@
         public Order()
         {
             Id = Guid.NewGuid().ToString();
-            OrderProducts = new HashSet<ProductOrder>();
+            PurchasesOrders = new HashSet<PurchaseOrder>();
             CreatedOn = DateTimeProvider.CurrentTime;
         }
 
         [Required]
         public string Id { get; set; }
 
-        public virtual ICollection<ProductOrder> OrderProducts { get; set; }
+        public virtual ICollection<PurchaseOrder> PurchasesOrders { get; set; }
 
         public string? ClientId { get; set; }
 
