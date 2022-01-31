@@ -12,5 +12,9 @@
         public Task<TModel> FindByIdAsync<TModel>(string id) where TModel : class;
 
         public Task<bool> ExistsAsync(string orderId, bool withDeleted = false);
+
+        public Task<IEnumerable<TModel>> GetPurchasesAsync<TModel>(string orderId) where TModel : class;
+
+        public Task<TModel> GetShippingDetailsAsync<TModel>(string orderId);
     }
 }

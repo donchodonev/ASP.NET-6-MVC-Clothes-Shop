@@ -24,10 +24,10 @@
             this.CreateMap<CartFormServiceModel, OrderRecipientDataModel>();
 
             this.CreateMap<GenderGroup, ProductGroupServiceModel>()
-                .ForMember(d => d.Type, cfg => cfg.MapFrom(src => src.GetType().Name));
+                .ForMember(d => d.Type, cfg => cfg.MapFrom(src => src.GetType().Name.Substring(0, src.GetType().Name.Length - 5)));
 
             this.CreateMap<AgeGroup, ProductGroupServiceModel>()
-                .ForMember(d => d.Type, cfg => cfg.MapFrom(src => src.GetType().Name));
+                .ForMember(d => d.Type, cfg => cfg.MapFrom(src => src.GetType().Name.Substring(0, src.GetType().Name.Length - 5)));
 
             this.CreateMap<OrderRecipientDataModel, ShippingDetails>()
                 .ForMember(d => d.RecipientEmailAddress, cfg => cfg.MapFrom(src => src.EmailAddress))

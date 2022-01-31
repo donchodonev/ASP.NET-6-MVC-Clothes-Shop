@@ -50,11 +50,11 @@
 
                     await db.Purchases.AddRangeAsync(purchaseOrders.Select(x => x.Purchase));
 
+                    await db.Orders.AddRangeAsync(purchaseOrders.Select(x => x.Order));
+
                     await db.SaveChangesAsync();
 
                     AddPurchaseIds(purchaseOrders);
-
-                    await db.Orders.AddRangeAsync(purchaseOrders.Select(x => x.Order));
 
                     await db.OrdersPurchases.AddRangeAsync(purchaseOrders);
 
@@ -96,6 +96,29 @@
         public async Task<bool> ExistsAsync(string orderId, bool withDeleted = false)
         {
             return await db.Orders.AnyAsync(x => x.Id == orderId && x.IsDeleted == withDeleted);
+        }
+
+        public async Task<IEnumerable<TModel>> GetPurchasesAsync<TModel>(string orderId) where TModel : class
+        {
+            if (!await ExistsAsync(orderId))
+            {
+                return null;
+            }
+
+            return await db
+                .Purchases
+                .Where(x => x.PurchasesOrders.Any(y => y.OrderId == orderId))
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+               .ToListAsync();
+        }
+
+        public async Task<TModel> GetShippingDetailsAsync<TModel>(string orderId)
+        {
+            return await db
+                .ShippingDetails
+                .Where(x => x.Orders.Any(y => y.Id == orderId))
+                .ProjectTo<TModel>(mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
         }
 
         //Unparameterized raw SQL queries are bad, except when they're not
@@ -140,7 +163,7 @@
             return purchaseOrdersStack;
         }
 
-        public void AddPurchaseIds(Stack<OrderPurchase> purchaseOrders)
+        private void AddPurchaseIds(Stack<OrderPurchase> purchaseOrders)
         {
             foreach (var po in purchaseOrders)
             {

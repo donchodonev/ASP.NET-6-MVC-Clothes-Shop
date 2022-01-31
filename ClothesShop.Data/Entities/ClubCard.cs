@@ -24,7 +24,7 @@
 
         public int ClubCardTierId { get; set; }
 
-        public ClubCardTier Tier { get; set; }
+        public virtual ClubCardTier Tier { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

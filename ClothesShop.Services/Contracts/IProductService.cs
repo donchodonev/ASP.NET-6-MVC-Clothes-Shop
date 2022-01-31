@@ -22,5 +22,9 @@
         public Task<IEnumerable<TModel>> GetSizesAsync<TModel>() where TModel : class;
 
         public Task<int> CountFilteredAsync(ProductsServiceQueryFilter filter);
+
+        public Task<string> GetImageUrlAsync(int productId);
+
+        public Task<string> GetProductSizeTextAsync(int sizeId);
     }
 }

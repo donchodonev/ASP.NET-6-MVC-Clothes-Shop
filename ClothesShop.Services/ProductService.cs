@@ -40,6 +40,24 @@
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<string> GetImageUrlAsync(int productId)
+        {
+            return await db
+                .Products
+                .Where(x => x.Id == productId)
+                .Select(x => x.ImageURL)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<string> GetProductSizeTextAsync(int sizeId)
+        {
+            return await db
+                .Sizes
+                .Where(x => x.Id == sizeId)
+                .Select(x => x.Value)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<int> CountFilteredAsync(ProductsServiceQueryFilter filter)
         {
             var query = db.Products.AsQueryable();

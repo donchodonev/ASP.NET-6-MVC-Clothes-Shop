@@ -4,6 +4,6 @@
     {
         Gender = 0,
         Men = 1,
-        Women = 2,
+        Women = 2
     }
 }

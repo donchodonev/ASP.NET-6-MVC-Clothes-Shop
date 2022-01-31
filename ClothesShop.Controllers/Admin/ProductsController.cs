@@ -53,8 +53,6 @@
                 return View("Add", await model.CreateOptionsAsync(products,genders,ageGroups));
             }
 
-            //check if product exists already
-
             await products.AddAsync(mapper.Map<ProductAddServiceModel>(model));
 
             return RedirectToAction("Index", "Home");

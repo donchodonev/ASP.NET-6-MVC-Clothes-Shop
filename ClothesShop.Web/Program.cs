@@ -8,7 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetDefaultConnectionString();
 
 builder.Services.AddDbContext<ShopDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options
+    .UseLazyLoadingProxies()
+    .UseSqlServer(connectionString));
+
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

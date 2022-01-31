@@ -1,6 +1,6 @@
-﻿@model OrderDetailsViewModel
+﻿@model PurchaseDataModel
 
-@if (TempData.ContainsKey("IsOrderFresh"))
+@if (!TempData.ContainsKey("IsOrderFresh"))
 {
     <div class="jumbotron text-center">
         <h1 class="display-4">Thank you for shopping with us !</h1>
@@ -9,44 +9,48 @@
         <hr class="my-4">
     </div>
 
-    <partial name="_OrderProductsPartial" model="@Model.Products"></partial>
+
+        var model = Model.Purchases;
+
+
+        <partial name="_OrderProductsPartial" model="@Model.Purchases"></partial>
 
     <h3 class="text-center mt-5 mb-2">Shipping details</h3>
     <div class="row">
 
         <div class="col-6 form-group text-center mt-4">
             <label>First name</label>
-            <input class="form-control text-center disabled" placeholder="e.g. John">
+            <input value="@Model.ShippingDetails.RecipientFirstName" class="form-control text-center disabled">
         </div>
 
         <div class="col-6 form-group text-center mt-4">
             <label>Last name</label>
-            <input class="form-control text-center disabled" placeholder="e.g. Smith">
+            <input value="@Model.ShippingDetails.RecipientLastName" class="form-control text-center disabled">
         </div>
 
         <div class="col-6 form-group text-center mt-4">
             <label>Country</label>
-            <input class="form-control text-center placeholder-glow disabled" placeholder="e.g. Bulgaria">
+            <input value="@Model.ShippingDetails.Country" class="form-control text-center placeholder-glow disabled">
         </div>
 
         <div class="col-6 form-group text-center mt-4">
             <label>City</label>
-            <input class="form-control text-center disabled" placeholder="e.g. Plovdiv">
+            <input value="@Model.ShippingDetails.City" class="form-control text-center disabled">
         </div>
 
         <div class="col-6 form-group text-center mt-4">
             <label>Street</label>
-            <input class="form-control text-center disabled" placeholder="e.g. General Radko Dimitriev 10">
+            <input value="@Model.ShippingDetails.Street" class="form-control text-center disabled">
         </div>
 
         <div class="col-6 form-group text-center mt-4">
             <label>Postal Code</label>
-            <input class="form-control text-center disabled" placeholder="e.g. 4000">
+            <input value="@Model.ShippingDetails.PostalCode" class="form-control text-center disabled">
         </div>
 
         <div class="col-12 form-group text-center mt-4">
             <label>Email Address</label>
-            <input class="form-control text-center disabled" placeholder="e.g. somebody@gmail.com">
+            <input value="@Model.ShippingDetails.RecipientEmailAddress" class="form-control text-center disabled">
         </div>
     </div>
 }

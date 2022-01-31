@@ -55,7 +55,7 @@
         }
 
         [NotMapped]
-        public ICollection<OrderPurchase> PurchasesOrders { get; set; }
+        public virtual ICollection<OrderPurchase> PurchasesOrders { get; set; }
 
         public DateTime CreatedOn { get; set; }
     }

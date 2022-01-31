@@ -46,7 +46,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AgeGroups");
+                    b.ToTable("AgeGroups", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Client", b =>
@@ -176,7 +176,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ClubCardTierId");
 
-                    b.ToTable("ClubCards");
+                    b.ToTable("ClubCards", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.ClubCardTier", b =>
@@ -194,7 +194,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ClubCardTiers");
+                    b.ToTable("ClubCardTiers", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Discount", b =>
@@ -235,7 +235,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ProductCategoryId");
 
-                    b.ToTable("Discounts");
+                    b.ToTable("Discounts", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.GenderGroup", b =>
@@ -262,7 +262,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GenderGroups");
+                    b.ToTable("GenderGroups", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Order", b =>
@@ -294,7 +294,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ShippingDetailsId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.OrderPurchase", b =>
@@ -312,7 +312,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrdersPurchases");
+                    b.ToTable("OrdersPurchases", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Product", b =>
@@ -376,7 +376,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("GenderGroupId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.ProductCategory", b =>
@@ -412,7 +412,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Purchase", b =>
@@ -447,7 +447,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Purchases");
+                    b.ToTable("Purchases", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Rating", b =>
@@ -483,7 +483,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("Ratings", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.ShippingDetails", b =>
@@ -546,7 +546,7 @@ namespace ClothesShop.Data.Migrations
                         .IsUnique()
                         .HasFilter("[ClientId] IS NOT NULL");
 
-                    b.ToTable("ShippingDetails");
+                    b.ToTable("ShippingDetails", (string)null);
                 });
 
             modelBuilder.Entity("ClothesShop.Data.Entities.Size", b =>
@@ -581,7 +581,7 @@ namespace ClothesShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Sizes");
+                    b.ToTable("Sizes", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -8,15 +8,26 @@
     public class OrderController : Controller
     {
         private readonly IOrderService orders;
+        private readonly IProductService products;
 
-        public OrderController(IOrderService orders)
+        public OrderController(IOrderService orders, IProductService products)
         {
-            var model = new OrderDetailsViewModel();
+            this.orders = orders;
+            this.products = products;
         }
 
-        public IActionResult Details(string orderId)
+        public async Task<IActionResult> Details(string orderId)
         {
-            return this.View();
+            if (orderId == null)
+            {
+                return this.BadRequest();
+            }
+
+            var model = new PurchaseDataModel();
+
+            await model.PopulateModelAsync(orders, products, orderId);
+
+            return this.View(model);
         }
     }
 }

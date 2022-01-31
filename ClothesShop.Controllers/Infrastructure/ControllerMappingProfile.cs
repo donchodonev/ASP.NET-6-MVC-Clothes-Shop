@@ -41,9 +41,9 @@
             CreateMap<Product, AllProductViewModel>();
 
             CreateMap<ProductsControllerQueryFilter, ProductsServiceQueryFilter>()
-                .ForMember(d => d.GenderId,cfg => cfg.MapFrom(src => (int)src.GenderOptions))
-                .ForMember(d => d.AgeGroupId,cfg => cfg.MapFrom(src => (int)src.AgeOptions))
-                .ForMember(d => d.RatingValue,cfg => cfg.MapFrom(src => (int)src.RatingOptions));
+                .ForMember(d => d.GenderId, cfg => cfg.MapFrom(src => (int)src.GenderOptions))
+                .ForMember(d => d.AgeGroupId, cfg => cfg.MapFrom(src => (int)src.AgeOptions))
+                .ForMember(d => d.RatingValue, cfg => cfg.MapFrom(src => (int)src.RatingOptions));
 
             CreateMap<AllProductViewModel, ProductCartCookieModel>();
 
@@ -55,6 +55,16 @@
                 .ForMember(d => d.Sizes, cfg => cfg.MapFrom(src => src.Sizes.Where(x => x.Count > 0)));
 
             CreateMap<ProductCartCookieModel, ProductCartServiceModel>();
+
+            CreateMap<OrderPurchase, ProductOrderDetailsViewModel>()
+                .ForMember(d => d.ProductId, cfg => cfg.MapFrom(src => src.Purchase.ProductId))
+                .ForMember(d => d.Count, cfg => cfg.MapFrom(src => src.Purchase.Count))
+                .ForMember(d => d.Price, cfg => cfg.MapFrom(src => src.Purchase.Price));
+
+            CreateMap<Purchase, PurchaseDetailsViewModel>()
+                .ForMember(d => d.SizeText, cfg => cfg.MapFrom(src => src.Size.Value));
+
+            CreateMap<ShippingDetails, PurchaseShippingDetailsViewModel>();
         }
     }
 }
